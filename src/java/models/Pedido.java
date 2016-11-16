@@ -8,41 +8,41 @@ import java.sql.Date;
  */
 public class Pedido {
     /**
-     * Id del pedido.
+     * id del pedido.
      */
-    private int Id;
+    private int id;
 
     /**
      * ID del usuario que generó el pedido.
      */
-    private String UsuarioId;
+    private String usuarioId;
 
     /**
      * Estatus actual del pedido.
      */
-    private int Status;
+    private int status;
 
     /**
      * Fecha en la cual se generó el pedido.
      */
-    private Date Fecha;
+    private Date fecha;
 
     /**
      * ID del profesor que imparte el laboratorio.
      */
-    private String ProfesorId;
+    private String profesorId;
 
     /**
      * Clave del laboratorio para el cual se pide el material.
      */
-    private String LaboratorioId;
+    private String laboratorioId;
 
     /**
      * Regresa el ID del pedido.
      * @return El ID del pedido.
      */
     public final int getId() {
-        return Id;
+        return id;
     }
 
     /**
@@ -50,7 +50,7 @@ public class Pedido {
      * @param nuevoId El nuevo ID del pedido.
      */
     public final void setId(int nuevoId) {
-        this.Id = nuevoId;
+        this.id = nuevoId;
     }
 
     /**
@@ -58,7 +58,7 @@ public class Pedido {
      * @return El ID del usuario que generó el pedido.
      */
     public final String getUsuarioId() {
-        return UsuarioId;
+        return usuarioId;
     }
 
     /**
@@ -66,7 +66,7 @@ public class Pedido {
      * @param nuevoUsuarioId El nuevo ID de usuario del pedido.
      */
     public final void setUsuarioId(final String nuevoUsuarioId) {
-        this.UsuarioId = nuevoUsuarioId;
+        this.usuarioId = nuevoUsuarioId;
     }
 
     /**
@@ -74,7 +74,7 @@ public class Pedido {
      * @return El estatus del pedido.
      */
     public final int getStatus() {
-        return Status;
+        return status;
     }
 
     /**
@@ -82,7 +82,7 @@ public class Pedido {
      * @param nuevoStatus El nuevo estatus del pedido.
      */
     public final void setStatus(final int nuevoStatus) {
-        this.Status = nuevoStatus;
+        this.status = nuevoStatus;
     }
 
     /**
@@ -90,7 +90,7 @@ public class Pedido {
      * @return La fecha en la que el pedido fue creado.
      */
     public final Date getFecha() {
-        return Fecha;
+        return fecha;
     }
 
     /**
@@ -98,7 +98,7 @@ public class Pedido {
      * @param nuevaFecha La nueva fecha del pedido.
      */
     public final void setFecha(final Date nuevaFecha) {
-        this.Fecha = nuevaFecha;
+        this.fecha = nuevaFecha;
     }
 
     /**
@@ -106,7 +106,7 @@ public class Pedido {
      * @return El ID del profesor.
      */
     public final String getProfesorId() {
-        return ProfesorId;
+        return profesorId;
     }
 
     /**
@@ -114,7 +114,7 @@ public class Pedido {
      * @param nuevoProfesorId El nuevo ID de profesor.
      */
     public final void setProfesorId(final String nuevoProfesorId) {
-        this.ProfesorId = nuevoProfesorId;
+        this.profesorId = nuevoProfesorId;
     }
 
     /**
@@ -122,7 +122,7 @@ public class Pedido {
      * @return El ID del laboratorio.
      */
     public final String getLaboratorioId() {
-        return LaboratorioId;
+        return laboratorioId;
     }
 
     /**
@@ -130,6 +130,6 @@ public class Pedido {
      * @param nuevoLaboratorioId El nuevo ID de laboratorio.
      */
     public final void setLaboratorioId(final String nuevoLaboratorioId) {
-        this.LaboratorioId = nuevoLaboratorioId;
+        this.laboratorioId = nuevoLaboratorioId;
     }
 }
