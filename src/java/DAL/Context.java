@@ -1,7 +1,6 @@
 package DAL;
 
-import models.Pedido;
-import models.Usuario;
+import models.*;
 import java.sql.*;
 import java.util.LinkedList;
 
@@ -22,23 +21,23 @@ public class Context {
         }
     }
     
-    public static Usuario GetUsuario(String id){
+    public static Usuario GetUsuario(String matricula){
         Usuario usuario = null;
         
         try {
             ResultSet results = Statement.executeQuery(""
                     + "SELECT * "
-                    + "FROM InventarioQuimica.Usuario "
-                    + "WHERE Id = " + id + ";");
+                    + "FROM inventarioquimica.usuario "
+                    + "WHERE matricula = " + matricula + ";");
             
             if (results.next()) {
                 usuario = new Usuario();
                 
-                usuario.setId(results.getString("Id"));
-                usuario.setNombre(results.getString("Nombre"));
-                usuario.setPassword(results.getString("Password"));
-                usuario.setRol(results.getString("Rol"));
-                usuario.setCreadorId(results.getString("CreadorId"));
+                usuario.setMatricula(results.getString("id"));
+                usuario.setNombre(results.getString("nombre"));
+                usuario.setPassword(results.getString("password"));
+                usuario.setRol(results.getString("rol"));
+                usuario.setCreadorId(results.getString("creadorId"));
             }
         }
         catch (SQLException e)
@@ -54,16 +53,16 @@ public class Context {
 
         try {
             ResultSet results = Statement.executeQuery(
-                    "SELECT * FROM InventarioQuimica.Usuario;");
+                    "SELECT * FROM inventarioquimica.usuario;");
             
             while(results.next()) {
                 Usuario usuario = new Usuario();
                 
-                usuario.setId(results.getString("Id"));
-                usuario.setNombre(results.getString("Nombre"));
-                usuario.setPassword(results.getString("Password"));
-                usuario.setRol(results.getString("Rol"));
-                usuario.setCreadorId(results.getString("CreadorId"));
+                usuario.setMatricula(results.getString("matricula"));
+                usuario.setNombre(results.getString("nombre"));
+                usuario.setPassword(results.getString("password"));
+                usuario.setRol(results.getString("rol"));
+                usuario.setCreadorId(results.getString("creadorId"));
                 
                 usuarios.add(usuario);
             }
@@ -76,6 +75,7 @@ public class Context {
         return usuarios;
     }
     
+    /*
     public static LinkedList<Pedido> GetPedidosForUsuario(String usuarioId) {
         LinkedList<Pedido> pedidosForUsuario = new LinkedList<>();
 
@@ -101,4 +101,5 @@ public class Context {
         
         return pedidosForUsuario;
     }
+*/
 }
