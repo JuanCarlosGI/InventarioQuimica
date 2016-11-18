@@ -14,31 +14,14 @@ import java.util.LinkedList;
  */
 public final class Context {
     /**
-     * Statement que será usado para ejecutar consultas a la base de datos.
+     * Constructor privado para asegurar que nadie instancie la clase.
      */
-    private static Statement statement;
-
-    //  Static constructor
-    static {
-        try {
-            String url = "jdbc:mysql://localhost:3306/mysql";
-
-            Connection connection;
-            connection = DriverManager.getConnection(url, "root", "");
-
-            statement = connection.createStatement();
-        } catch (Exception e) {
-            System.out.println(e.toString());
-        }
+    private Context() {
     }
 
     /**
-     * Constructor privado para asegurar que nadie instancie la clase.
-     */
-    private Context() { }
-
-    /**
      * Obtiene un usuario dado su matricula.
+     *
      * @param matricula Matricula del usuario que se busca.
      * @return El usuario correspondiente, o nulo si no existe.
      */
@@ -46,23 +29,27 @@ public final class Context {
         Usuario usuario = null;
 
         try {
-            ResultSet results = statement.executeQuery(""
+            String url = "jdbc:mysql://localhost:3306/mysql";
+            Connection connection;
+            connection = DriverManager.getConnection(url, "root", "");
+            Statement statement = connection.createStatement();
+
+            try (ResultSet resultSet = statement.executeQuery(""
                     + "SELECT * "
                     + "FROM inventarioquimica.usuario "
-                    + "WHERE matricula = " + matricula + ";");
-
-            if (results.next()) {
-                usuario = new Usuario();
-
-                usuario.setMatricula(results.getString("id"));
-                usuario.setNombre(results.getString("nombre"));
-                usuario.setPassword(results.getString("password"));
-                usuario.setRol(results.getString("rol"));
-                usuario.setCreadorId(results.getString("creadorId"));
-                usuario.setCorreo(results.getString("correo"));
+                    + "WHERE matricula = " + matricula + ";")) {
+                if (resultSet.next()) {
+                    usuario = new Usuario();
+                    usuario.setMatricula(resultSet.getString("id"));
+                    usuario.setNombre(resultSet.getString("nombre"));
+                    usuario.setPassword(resultSet.getString("password"));
+                    usuario.setRol(resultSet.getString("rol"));
+                    usuario.setCreadorId(resultSet.getString("creadorId"));
+                    usuario.setCorreo(resultSet.getString("correo"));
+                }
             }
-        } catch (SQLException e) {
-            System.out.println(e.toString());
+        } catch (SQLException exception) {
+            System.out.println(exception);
         }
 
         return usuario;
@@ -70,26 +57,33 @@ public final class Context {
 
     /**
      * Obtiene la lista de todos los usuarios.
+     *
      * @return Lista con todos los usuarios.
      */
     public static LinkedList<Usuario> getUsuarios() {
         LinkedList<Usuario> usuarios = new LinkedList<>();
 
         try {
-            ResultSet results = statement.executeQuery(
-                    "SELECT * FROM inventarioquimica.usuario;");
+            String url = "jdbc:mysql://localhost:3306/mysql";
+            Connection connection;
+            connection = DriverManager.getConnection(url, "root", "");
+            Statement statement = connection.createStatement();
 
-            while (results.next()) {
-                Usuario usuario = new Usuario();
+            try (ResultSet resultSet = statement.executeQuery(
+                    "SELECT * FROM inventarioquimica.usuario;")) {
 
-                usuario.setMatricula(results.getString("matricula"));
-                usuario.setNombre(results.getString("nombre"));
-                usuario.setPassword(results.getString("password"));
-                usuario.setRol(results.getString("rol"));
-                usuario.setCreadorId(results.getString("creadorId"));
-                usuario.setCorreo(results.getString("correo"));
+                while (resultSet.next()) {
+                    Usuario usuario = new Usuario();
 
-                usuarios.add(usuario);
+                    usuario.setMatricula(resultSet.getString("matricula"));
+                    usuario.setNombre(resultSet.getString("nombre"));
+                    usuario.setPassword(resultSet.getString("password"));
+                    usuario.setRol(resultSet.getString("rol"));
+                    usuario.setCreadorId(resultSet.getString("creadorId"));
+                    usuario.setCorreo(resultSet.getString("correo"));
+
+                    usuarios.add(usuario);
+                }
             }
         } catch (SQLException e) {
             System.out.println(e.toString());
