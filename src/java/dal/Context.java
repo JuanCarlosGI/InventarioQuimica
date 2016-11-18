@@ -14,6 +14,11 @@ import java.util.LinkedList;
  */
 public final class Context {
     /**
+     * String conteniendo el URL de la base de datos.
+     */
+    private static final String URL = "jdbc:mysql://localhost:3306/mysql";
+
+    /**
      * Constructor privado para asegurar que nadie instancie la clase.
      */
     private Context() {
@@ -29,15 +34,14 @@ public final class Context {
         Usuario usuario = null;
 
         try {
-            String url = "jdbc:mysql://localhost:3306/mysql";
             Connection connection;
-            connection = DriverManager.getConnection(url, "root", "");
+            connection = DriverManager.getConnection(URL, "root", "");
             Statement statement = connection.createStatement();
 
             try (ResultSet resultSet = statement.executeQuery(""
                     + "SELECT * "
                     + "FROM inventarioquimica.usuario "
-                    + "WHERE matricula = " + matricula + ";")) {
+                    + "WHERE matricula = '" + matricula + "';")) {
                 if (resultSet.next()) {
                     usuario = new Usuario();
                     usuario.setMatricula(resultSet.getString("id"));
@@ -64,9 +68,8 @@ public final class Context {
         LinkedList<Usuario> usuarios = new LinkedList<>();
 
         try {
-            String url = "jdbc:mysql://localhost:3306/mysql";
             Connection connection;
-            connection = DriverManager.getConnection(url, "root", "");
+            connection = DriverManager.getConnection(URL, "root", "");
             Statement statement = connection.createStatement();
 
             try (ResultSet resultSet = statement.executeQuery(
@@ -90,5 +93,84 @@ public final class Context {
         }
 
         return usuarios;
+    }
+
+    /**
+     * Crea un nuevo registro en la base de datos con el nuevo usuario.
+     * @param usuario El usuario a ser guardado.
+     * @return Valor indicando si fue exitoso o no.
+     */
+    public static boolean insertarUsuario(final Usuario usuario) {
+        try {
+            Connection connection;
+            connection = DriverManager.getConnection(URL, "root", "");
+            Statement statement = connection.createStatement();
+
+            statement.executeUpdate(""
+                    + "INSERT INTO invantarioquimica.usuario "
+                    + "(matricula, nombre, password, rol, creadorId, correo) "
+                    + "VALUES ("
+                    + "'" + usuario.getMatricula() + "', "
+                    + "'" + usuario.getNombre() + "', "
+                    + "'" + usuario.getPassword() + "', "
+                    + "'" + usuario.getRol() + "', "
+                    + "'" + usuario.getCreadorId() + "', "
+                    + "'" + usuario.getCorreo() + "');");
+        } catch (SQLException exception) {
+            System.out.println(exception);
+            return false;
+        }
+
+        return true;
+    }
+
+    /**
+     * Actualiza los valores de un usuario. Notar que la llave primaria no puede
+     * ser editada.
+     * @param usuario Usuario con los nuevos valores.
+     * @return Valor indicando si la operación fue exitosa o no.
+     */
+    public static boolean actualizarUsuario(final Usuario usuario) {
+        try {
+            Connection connection;
+            connection = DriverManager.getConnection(URL, "root", "");
+            Statement statement = connection.createStatement();
+
+            statement.executeUpdate(""
+                    + "UPDATE invantarioquimica.usuario SET "
+                    + "nombre = '" + usuario.getNombre() + "', "
+                    + "password = '" + usuario.getPassword() + "', "
+                    + "rol = '" + usuario.getRol() + "', "
+                    + "creadorId = '" + usuario.getCreadorId() + "', "
+                    + "correo = '" + usuario.getCorreo() + "' "
+                    + "WHERE matricula = '" + usuario.getMatricula() + "';");
+        } catch (SQLException exception) {
+            System.out.println(exception);
+            return false;
+        }
+
+        return true;
+    }
+
+    /**
+     * Elimina un usuario de la base de datos.
+     * @param matricula MAtricula del alumno por eliminar.
+     * @return Valor indicando si la operación fue exitosa.
+     */
+    public static boolean eliminarUsuario(final String matricula) {
+        try {
+            Connection connection;
+            connection = DriverManager.getConnection(URL, "root", "");
+            Statement statement = connection.createStatement();
+
+            statement.executeUpdate(""
+                    + "DELETE FROM invantarioquimica.usuario "
+                    + "WHERE matricula = '" + matricula + "';");
+        } catch (SQLException exception) {
+            System.out.println(exception);
+            return false;
+        }
+
+        return true;
     }
 }
