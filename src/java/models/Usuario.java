@@ -1,63 +1,133 @@
 package models;
 
-import java.util.LinkedList;
-import DAL.*;
-
+/**
+ * Clase representando a un usuario.
+ * @author Juan Carlos Guzmán Islas
+ */
 public class Usuario {
-    private String Matricula;
-    private String Password;
-    private String Nombre;
-    private String Rol;
-    private String CreadorId;
-    private String Correo;
+    /**
+     * La matricula del usuario.
+     */
+    private String matricula;
 
-    public String getMatricula() {
-        return Matricula;
+    /**
+     * La contraseña del usuario.
+     */
+    private String password;
+
+    /**
+     * El nombre del usuario.
+     */
+    private String nombre;
+
+    /**
+     * El rol del usuario. Puede ser "administrador", "maestro" o "alumno".
+     */
+    private String rol;
+
+    /**
+     * El ID del creador del usuario.
+     */
+    private String creadorId;
+
+    /**
+     * El correo electrónico del usuario.
+     */
+    private String correo;
+
+    /**
+     * Getter de matricula.
+     * @return La matricula del usuario.
+     */
+    public final String getMatricula() {
+        return matricula;
     }
 
-    public void setMatricula(String Matricula) {
-        this.Matricula = Matricula;
+    /**
+     * Setter de matricula.
+     * @param nuevaMatricula La nueva matrícula.
+     */
+    public final void setMatricula(final String nuevaMatricula) {
+        this.matricula = nuevaMatricula;
     }
 
-    public String getPassword() {
-        return Password;
+    /**
+     * Getter de password.
+     * @return La contraseña.
+     */
+    public final String getPassword() {
+        return password;
     }
 
-    public void setPassword(String Password) {
-        this.Password = Password;
+    /**
+     * Setter de password.
+     * @param nuevaPassword La nueva contraseña.
+     */
+    public final void setPassword(final String nuevaPassword) {
+        this.password = nuevaPassword;
     }
 
-    public String getNombre() {
-        return Nombre;
+    /**
+     * Getter de nombre.
+     * @return El nombre.
+     */
+    public final String getNombre() {
+        return nombre;
     }
 
-    public void setNombre(String Nombre) {
-        this.Nombre = Nombre;
+    /**
+     * Setter de nombre.
+     * @param nuevoNombre El nuevo nombre.
+     */
+    public final void setNombre(final String nuevoNombre) {
+        this.nombre = nuevoNombre;
     }
 
-    public String getRol() {
-        return Rol;
+    /**
+     * Getter de rol.
+     * @return El rol.
+     */
+    public final String getRol() {
+        return rol;
     }
 
-    public void setRol(String Rol) {
-        this.Rol = Rol;
+    /**
+     * Setter de rol.
+     * @param nuevoRol El nuevo rol.
+     */
+    public final void setRol(final String nuevoRol) {
+        this.rol = nuevoRol;
     }
 
-    public String getCreadorId() {
-        return CreadorId;
+    /**
+     * Getter de creadorId.
+     * @return El ID del creador.
+     */
+    public final String getCreadorId() {
+        return creadorId;
     }
 
-    public void setCreadorId(String CreadorId) {
-        this.CreadorId = CreadorId;
+    /**
+     * Setter de creadorId.
+     * @param nuevoCreadorId El nuevo ID.
+     */
+    public final void setCreadorId(final String nuevoCreadorId) {
+        this.creadorId = nuevoCreadorId;
     }
 
-    public String getCorreo() {
-        return Correo;
+    /**
+     * Getter de correo.
+     * @return El correo.
+     */
+    public final String getCorreo() {
+        return correo;
     }
 
-    public void setCorreo(String Correo) {
-        this.Correo = Correo;
+    /**
+     * Setter de correo.
+     * @param nuevoCorreo El nuevo correo.
+     */
+    public final void setCorreo(final String nuevoCorreo) {
+        this.correo = nuevoCorreo;
     }
-    
-    
 }
