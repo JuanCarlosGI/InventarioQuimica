@@ -1,6 +1,7 @@
 package dal;
 
 import models.Usuario;
+import models.Pedido;
 import java.sql.Connection;
 import java.sql.Statement;
 import java.sql.DriverManager;
@@ -166,6 +167,157 @@ public final class Context {
             statement.executeUpdate(""
                     + "DELETE FROM invantarioquimica.usuario "
                     + "WHERE matricula = '" + matricula + "';");
+        } catch (SQLException exception) {
+            System.out.println(exception);
+            return false;
+        }
+
+        return true;
+    }
+
+    /**
+     * Obtiene un pedido dado su ID.
+     * @param id ID del pedido que se busca.
+     * @return El pedido correspondiente, o nulo si no existe.
+     */
+    public static Pedido getPedido(final int id) {
+        Pedido pedido = null;
+
+        try {
+            Connection connection;
+            connection = DriverManager.getConnection(URL, "root", "");
+            Statement statement = connection.createStatement();
+
+            try (ResultSet resultSet = statement.executeQuery(""
+                    + "SELECT * "
+                    + "FROM inventarioquimica.pedido "
+                    + "WHERE id = " + id + ";")) {
+                if (resultSet.next()) {
+                    pedido = new Pedido();
+
+                    pedido.setId(resultSet.getInt("id"));
+                    pedido.setUsuarioId(resultSet.getString("usuarioId"));
+                    pedido.setStatus(resultSet.getInt("status"));
+                    pedido.setLaboratorioId(
+                            resultSet.getString("laboratorioId"));
+                    pedido.setProfesorId(resultSet.getString("profesorId"));
+                    pedido.setFecha(resultSet.getDate("fecha"));
+                }
+            }
+        } catch (SQLException exception) {
+            System.out.println(exception);
+        }
+
+        return pedido;
+    }
+
+    /**
+     * Obtiene la lista de todos los pedidos.
+     * @return Lista con todos los pedidos.
+     */
+    public static LinkedList<Pedido> getPedidos() {
+        LinkedList<Pedido> pedidos = new LinkedList<>();
+
+        try {
+            Connection connection;
+            connection = DriverManager.getConnection(URL, "root", "");
+            Statement statement = connection.createStatement();
+
+            try (ResultSet resultSet = statement.executeQuery(
+                    "SELECT * FROM inventarioquimica.pedido;")) {
+
+                while (resultSet.next()) {
+                    Pedido pedido = new Pedido();
+
+                    pedido.setId(resultSet.getInt("id"));
+                    pedido.setUsuarioId(resultSet.getString("usuarioId"));
+                    pedido.setStatus(resultSet.getInt("status"));
+                    pedido.setLaboratorioId(
+                            resultSet.getString("laboratorioId"));
+                    pedido.setProfesorId(resultSet.getString("profesorId"));
+                    pedido.setFecha(resultSet.getDate("fecha"));
+
+                    pedidos.add(pedido);
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println(e.toString());
+        }
+
+        return pedidos;
+    }
+
+    /**
+     * Crea un nuevo registro en la base de datos con el nuevo pedido.
+     * @param pedido El pedido a ser guardado.
+     * @return Valor indicando si fue exitoso o no.
+     */
+    public static boolean insertarPedido(final Pedido pedido) {
+        try {
+            Connection connection;
+            connection = DriverManager.getConnection(URL, "root", "");
+            Statement statement = connection.createStatement();
+
+            statement.executeUpdate(""
+                    + "INSERT INTO invantarioquimica.pedido "
+                    + "(id, usuarioId, profesorId, labratorioId, fecha, status)"
+                    + "VALUES ("
+                    + pedido.getId() + ", "
+                    + "'" + pedido.getUsuarioId() + "', "
+                    + "'" + pedido.getProfesorId() + "', "
+                    + pedido.getLaboratorioId() + ", "
+                    + "'" + pedido.getFecha() + "', "
+                    + pedido.getStatus() + ");");
+        } catch (SQLException exception) {
+            System.out.println(exception);
+            return false;
+        }
+
+        return true;
+    }
+
+    /**
+     * Actualiza los valores de un pedido. Notar que la llave primaria no puede
+     * ser editada.
+     * @param pedido Pedido con los nuevos valores.
+     * @return Valor indicando si la operación fue exitosa o no.
+     */
+    public static boolean actualizarPedido(final Pedido pedido) {
+        try {
+            Connection connection;
+            connection = DriverManager.getConnection(URL, "root", "");
+            Statement statement = connection.createStatement();
+
+            statement.executeUpdate(""
+                    + "UPDATE invantarioquimica.pedido SET "
+                    + "usuarioId = '" + pedido.getUsuarioId() + "', "
+                    + "profesorId = '" + pedido.getProfesorId() + "', "
+                    + "laboratorioId = " + pedido.getLaboratorioId() + ", "
+                    + "fecha = '" + pedido.getFecha() + "', "
+                    + "status = " + pedido.getStatus() + " "
+                    + "WHERE id = " + pedido.getId() + ";");
+        } catch (SQLException exception) {
+            System.out.println(exception);
+            return false;
+        }
+
+        return true;
+    }
+
+    /**
+     * Elimina un pedido de la base de datos.
+     * @param id ID del pedido por eliminar.
+     * @return Valor indicando si la operación fue exitosa.
+     */
+    public static boolean eliminarPedido(final int id) {
+        try {
+            Connection connection;
+            connection = DriverManager.getConnection(URL, "root", "");
+            Statement statement = connection.createStatement();
+
+            statement.executeUpdate(""
+                    + "DELETE FROM invantarioquimica.pedido "
+                    + "WHERE id = " + id + ";");
         } catch (SQLException exception) {
             System.out.println(exception);
             return false;
