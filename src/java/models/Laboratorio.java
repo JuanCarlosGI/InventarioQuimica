@@ -1,7 +1,7 @@
 package models;
 
 /**
- * Clase que representa a un laboratorio
+ * Clase que representa a un laboratorio.
  * @author Juan Carlos Guzmán Islas
  */
 public class Laboratorio {

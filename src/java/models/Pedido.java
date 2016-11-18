@@ -49,7 +49,7 @@ public class Pedido {
      * Le asigna un nuevo ID al pedido.
      * @param nuevoId El nuevo ID del pedido.
      */
-    public final void setId(int nuevoId) {
+    public final void setId(final int nuevoId) {
         this.id = nuevoId;
     }
 
