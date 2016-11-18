@@ -38,42 +38,48 @@
     <div class="nav-wrapper center">
       <div class="col s12">
         <a href="#!" class="breadcrumb">Inicio</a>
-        <a href="#!" class="breadcrumb">Agregar Laboratorio</a>
+        <a href="#!" class="breadcrumb">Administradores</a>
       </div>
     </div>
   </nav>
   <!-- NAVBAR END-->
 
-    <body>     
-    <!--se debe agregar el java para crear el crear el usuario dependiendo del rol-->
-    <div class="container">
-    <div class='section'></div>
+  <body>
+    <div class="section"></div>
 
-  <div class='section'></div>
-        <form action="#">
-          <div class="row">
-            <div class="input-field col s6">
-              <input placeholder="Quimica Organica" type="text" class="validate" id="nombre" name="nombre">
-              <label for="nombre">Nombre</label>
-            </div>
-            <div class="input-field col s6">
-              <input required placeholder="23" type="text" class="validate" id="clave" name="clave">
-              <label for="clave">Clave</label>
-            </div>
-          </div><br>
+    <div class="row center">
+      <div class="col s12">
+        <a class="waves-effect waves-light btn-large"><i class="material-icons left">add</i>Agregar Administrador</a>
+      </div>
+    </div>
 
-          <div class='section'>
-            <div class="row center">
-            <button class="btn waves-effect waves-light red" type="submit" name="action">Cancelar
-              <i class="material-icons right">error</i>
-              </button>
-              <button class="btn waves-effect waves-light" type="submit" name="action">Agregar Laboratorio
-              <i class="material-icons right">send</i>
-              </button>
-            </div>
-          </div>
-        </form>
-        </div>
+    <table class='striped centered'>
+        <thead>
+          <tr>
+              <th data-field="matriucla">Nomina</th>
+              <th data-field="nombre">Nombre</th>
+              <th data-field="apellidos">Apellidos</th>
+              <th data-field="correo">Correo</th>
+              <th data-field="modificar">Modificar</th>
+              <th data-field="eliminar">Eliminar</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td>A0119390</td>
+            <td>Zoraida</td>
+            <td>Vazquez</td>
+            <td>z.vazquez@itesm.mx</td>
+            <td>
+              <button class="btn waves-effect waves-light" name="action"><i class="material-icons right">mode_edit</i>Modificar</button>
+            </td>
+            <td>
+            <button class="btn waves-effect waves-light red" name="action"><i class="material-icons right">delete</i>Eliminar</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
 
     <!--Import jQuery before materialize.js-->
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
