@@ -1,4 +1,4 @@
-package DAL;
+package dal;
 
 import models.Usuario;
 import java.sql.Connection;
