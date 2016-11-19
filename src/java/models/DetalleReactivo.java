@@ -25,6 +25,11 @@ public class DetalleReactivo {
     private String reactivoId;
 
     /**
+     * Cantidad de unidades que se regresaron.
+     */
+    private int cantidadRegresada;
+
+    /**
      * Regresa el valor de cantidad.
      * @return El valor de cantidad.
      */
@@ -86,5 +91,21 @@ public class DetalleReactivo {
      */
     public final void setReactivoId(final String nuevoReactivoId) {
         this.reactivoId = nuevoReactivoId;
+    }
+
+    /**
+     * Getter de cantidadRegesada.
+     * @return La cantidad regresada.
+     */
+    public final int getCantidadRegresada() {
+        return cantidadRegresada;
+    }
+
+    /**
+     * Setter de cantidadRegresada.
+     * @param nuevaCantidadRegresada La nueva cantidad regresada.
+     */
+    public final void setCantidadRegresada(final int nuevaCantidadRegresada) {
+        cantidadRegresada = nuevaCantidadRegresada;
     }
 }
