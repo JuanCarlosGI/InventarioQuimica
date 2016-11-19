@@ -36,7 +36,7 @@
           </ul>
         </div>
       </nav>
-      <nav>
+      <nav style="background-color: #3f51b5">
     <div class="nav-wrapper center">
       <div class="col s12">
         <a href="#!" class="breadcrumb">Inicio</a>
@@ -76,48 +76,37 @@
         </div>
       </div><br>
 
-      <label>Seleccionar tipos de elementos:</label>
-      <div class='row'>
-        <div class="input-field col s6">
-          <select tabindex="8">
-            <option value="1" selected>Consumibles</option>
-            <option value="2">Materiales</option>
-            <option value="3">Reactivos</option>
-          </select>
-        </div>
-      </div>
+      <h5>Productos</h5>
 
-      <h5>Consumibles</h5>
-
-      <table id="tabla-prestamo-alumno">
-      <tr>
-        <th>Nombre</th>
-        <th>Capacidad</th>
-        <th>Marca</th>
-        <th>Cantidad</th>
-        <th>Observaciones</th>
-      </tr>
-      <tr>
-        <td id="descip-1" class="celda" ondblclick="modificar(this)"> 
-          <select required tabindex="9">
-            <option value="" disabled selected>Seleccionar</option>
-            <option value="1">Consumible 1</option>
-            <option value="2">Consumible 2</option>
-            <option value="3">Consumible 3</option>
-          </select>
-        </td>
-        <td id="capacidad-1" class="celda" ondblclick="modificar(this)"> <input required placeholder="gramos" id="capacidad" name="capacidad"> </td>
-        <td id="marca-1" class="celda" ondblclick="modificar(this)">
-          <select required tabindex="10">
-            <option value="" disabled selected>Seleccionar</option>
-            <option value="1">Marca 1</option>
-            <option value="2">Marca 2</option>
-            <option value="3">Marca 3</option>
-          </select>
-        </td>
-        <td id="cantidad-1" class="celda" ondblclick="modificar(this)"> <input required placeholder="gramos" id="cantidad" name="cantidad"> </td>
-        <td id="observaciones-1" class="celda" ondblclick="modificar(this)"> <input placeholder="Observaciones" id="observaciones" name="observaciones"> </td>
-      </tr>
+      <table class="responsive-table striped" id="vale">
+        <tr>
+          <td id="tipo-1"> 
+            <select required>
+              <option value="" disabled selected>Tipo</option>
+              <option value="Material">Material</option>
+              <option value="Equipo">Equipo</option>
+              <option value="Consumible">Consumible</option>
+              <option value="Reactivo">Reactivo</option>
+            </select>
+          </td>
+          <td id="capacidad-1"> 
+            <input required placeholder="gramos" id="capacidad" name="capacidad"> 
+          </td>
+          <td id="marca-1">
+            <select required>
+              <option value="" disabled selected>Marca</option>
+              <option value="1">Marca 1</option>
+              <option value="2">Marca 2</option>
+              <option value="3">Marca 3</option>
+            </select>
+          </td>
+          <td id="cantidad-1"> 
+            <input required placeholder="gramos" id="cantidad" name="cantidad"> 
+          </td>
+          <td id="observaciones-1"> 
+            <input placeholder="Observaciones" id="observaciones" name="observaciones"> 
+          </td>
+        </tr>
       </table>
 
       <div class='section'>
@@ -131,7 +120,7 @@
 
       <div class='section'>
         <div class="row center">
-          <button class="btn waves-effect waves-light" type="submit" name="action">Enviar Vale
+          <button class="btn waves-effect waves-light" type="submit" name="action">Crear Vale
           <i class="material-icons right">send</i>
           </button>
         </div>
