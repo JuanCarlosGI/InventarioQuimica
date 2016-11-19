@@ -36,57 +36,70 @@
           </ul>
         </div>
       </nav>
-      <nav style="background-color: #00bcd4">
+      <nav style="background-color: #3f51b5">
     <div class="nav-wrapper center">
       <div class="col s12">
         <a href="#!" class="breadcrumb">Inicio</a>
-        <a href="#!" class="breadcrumb">Editar Alumnos</a>
+        <a href="#!" class="breadcrumb">Lista Vales</a>
       </div>
     </div>
   </nav>
   <!-- NAVBAR END-->
 
   <body>
-    <div class="section"></div>
-    <div class="row">
-      <div class="col s2 m3 l4"></div>
-      <div class="card col s8 m6 l4">
-        <div class="card-content center">
-          <span class="card-title activator grey-text text-darken-4">AGREGAR ALUMNO</span>
-        </div>
-        <div class="card-reveal center">
-            <input placeholder="Matricula" type="text" class="validate" id="matricula" name="matricula">
-        </div>
-      </div>
-    </div>
-
-    <table class="responsive-table striped">
+    <table class='responsive-table striped centered'>
         <thead>
           <tr>
-              <th data-field="matriucla">Matricula</th>
-              <th data-field="nombre">Nombre</th>
-              <th data-field="apellidos">Apellidos</th>
-              <th data-field="correo">Correo</th>
-              <th data-field="maestra">Maestra</th>
-              <th data-field="laboratorio">Laboratorio</th>
-              <th data-field="modificar">Modificar</th>
-              <th data-field="eliminar">Eliminar</th>
+              <th data-field="folio">Folio</th>
+              <th data-field="fecha_emision">Fecha de Emision</th>
+              <th data-field="fecha_entrega">Fecha de Entrega</th>
+              <th data-field="fecha_entrega">Fecha de Devolución</th>
+              <th data-field="profesor">Profesor</th>
+              <th data-field="vale">Vale</th>
           </tr>
         </thead>
 
         <tbody>
           <tr>
-            <td>A0119390</td>
-            <td>Mauro</td>
-            <td>Amarante Esparza</td>
-            <td>mauro.amarante94@gmail.com</td>
-            <td>Zoraida Vazquez</td>
-            <td>#21</td>
+            <td>000122003</td>
+            <td>18/11/16</td>
             <td>
-              <button class="btn waves-effect waves-light" name="action"><i class="material-icons center">mode_edit</i></button>
+              18/11/16
             </td>
             <td>
-            <button class="btn waves-effect waves-light red" name="action"><i class="material-icons center">delete</i></button>
+              <button class="btn waves-effect waves-light red" name="action"><i class="material-icons">error</i></button>
+            </td>
+            <td>Zoraida Vazquez</td>
+            <td>
+              <button class="btn waves-effect waves-light" name="action"><i class="material-icons center">description</i></button>
+            </td>
+          </tr>
+          <tr>
+            <td>000122003</td>
+            <td>18/11/16</td>
+            <td>
+              18/11/16
+            </td>
+            <td>
+              <button class="btn waves-effect waves-light blue" name="action"><i class="material-icons">schedule</i></button>
+            </td>
+            <td>Zoraida Vazquez</td>
+            <td>
+              <button class="btn waves-effect waves-light" name="action"><i class="material-icons center">description</i></button>
+            </td>
+          </tr>
+          <tr>
+            <td>000122003</td>
+            <td>18/11/16</td>
+            <td>
+              18/11/16
+            </td>
+            <td>
+              18/11/16
+            </td>
+            <td>Zoraida Vazquez</td>
+            <td>
+              <button class="btn waves-effect waves-light" name="action"><i class="material-icons center">description</i></button>
             </td>
           </tr>
         </tbody>
