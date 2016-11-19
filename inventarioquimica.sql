@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 16-11-2016 a las 19:29:33
+-- Tiempo de generación: 19-11-2016 a las 19:26:38
 -- Versión del servidor: 10.1.16-MariaDB
 -- Versión de PHP: 5.6.24
 
@@ -19,6 +19,36 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `inventarioquimica`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `consumible`
+--
+
+CREATE TABLE `consumible` (
+  `clave` varchar(100) NOT NULL,
+  `nombre` varchar(100) NOT NULL,
+  `marca` varchar(100) NOT NULL,
+  `presentacion` varchar(100) NOT NULL,
+  `contenido` varchar(100) NOT NULL,
+  `localizacion` varchar(100) NOT NULL,
+  `descripcion` varchar(1000) NOT NULL,
+  `cantidad` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `detalleconsumible`
+--
+
+CREATE TABLE `detalleconsumible` (
+  `cantidad` int(11) NOT NULL,
+  `observaciones` varchar(1000) NOT NULL,
+  `pedidoId` int(11) NOT NULL,
+  `consumibleId` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -153,6 +183,12 @@ CREATE TABLE `usuario` (
 --
 -- Índices para tablas volcadas
 --
+
+--
+-- Indices de la tabla `consumible`
+--
+ALTER TABLE `consumible`
+  ADD PRIMARY KEY (`clave`);
 
 --
 -- Indices de la tabla `equipo`
