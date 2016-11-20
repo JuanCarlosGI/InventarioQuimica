@@ -2,12 +2,15 @@ package data;
 
 import models.Usuario;
 import models.Pedido;
+import models.Laboratorio;
 import java.sql.Connection;
 import java.sql.Statement;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.LinkedList;
+import models.Equipo;
+import models.Material;
 
 /**
  * Clase que será utilzada para obetener acceso a la base de datos.
@@ -17,7 +20,8 @@ public final class Context {
     /**
      * String conteniendo el URL de la base de datos.
      */
-    private static final String URL = "jdbc:mysql://localhost/inventarioquimica";
+    private static final String URL =
+            "jdbc:mysql://localhost/inventarioquimica";
 
     /**
      * Constructor privado para asegurar que nadie instancie la clase.
@@ -44,7 +48,6 @@ public final class Context {
                     + "FROM usuario "
                     + "WHERE matricula = '" + matricula + "';")) {
                 if (resultSet.next()) {
-                    
                     usuario = new Usuario();
                     usuario.setMatricula(resultSet.getString("matricula"));
                     usuario.setNombre(resultSet.getString("nombre"));
@@ -75,7 +78,7 @@ public final class Context {
             Statement statement = connection.createStatement();
 
             try (ResultSet resultSet = statement.executeQuery(
-                    "SELECT * FROM inventarioquimica.usuario;")) {
+                    "SELECT * FROM usuario;")) {
 
                 while (resultSet.next()) {
                     Usuario usuario = new Usuario();
@@ -109,7 +112,7 @@ public final class Context {
             Statement statement = connection.createStatement();
 
             statement.executeUpdate(""
-                    + "INSERT INTO invantarioquimica.usuario "
+                    + "INSERT INTO usuario "
                     + "(matricula, nombre, password, rol, creadorId, correo) "
                     + "VALUES ("
                     + "'" + usuario.getMatricula() + "', "
@@ -139,7 +142,7 @@ public final class Context {
             Statement statement = connection.createStatement();
 
             statement.executeUpdate(""
-                    + "UPDATE invantarioquimica.usuario SET "
+                    + "UPDATE usuario SET "
                     + "nombre = '" + usuario.getNombre() + "', "
                     + "password = '" + usuario.getPassword() + "', "
                     + "rol = '" + usuario.getRol() + "', "
@@ -166,7 +169,7 @@ public final class Context {
             Statement statement = connection.createStatement();
 
             statement.executeUpdate(""
-                    + "DELETE FROM invantarioquimica.usuario "
+                    + "DELETE FROM usuario "
                     + "WHERE matricula = '" + matricula + "';");
         } catch (SQLException exception) {
             System.out.println(exception);
@@ -191,7 +194,7 @@ public final class Context {
 
             try (ResultSet resultSet = statement.executeQuery(""
                     + "SELECT * "
-                    + "FROM inventarioquimica.pedido "
+                    + "FROM pedido "
                     + "WHERE id = " + id + ";")) {
                 if (resultSet.next()) {
                     pedido = new Pedido();
@@ -225,7 +228,7 @@ public final class Context {
             Statement statement = connection.createStatement();
 
             try (ResultSet resultSet = statement.executeQuery(
-                    "SELECT * FROM inventarioquimica.pedido;")) {
+                    "SELECT * FROM pedido;")) {
 
                 while (resultSet.next()) {
                     Pedido pedido = new Pedido();
@@ -260,7 +263,7 @@ public final class Context {
             Statement statement = connection.createStatement();
 
             statement.executeUpdate(""
-                    + "INSERT INTO invantarioquimica.pedido "
+                    + "INSERT INTO pedido "
                     + "(id, usuarioId, profesorId, labratorioId, fecha, status)"
                     + "VALUES ("
                     + pedido.getId() + ", "
@@ -290,7 +293,7 @@ public final class Context {
             Statement statement = connection.createStatement();
 
             statement.executeUpdate(""
-                    + "UPDATE invantarioquimica.pedido SET "
+                    + "UPDATE pedido SET "
                     + "usuarioId = '" + pedido.getUsuarioId() + "', "
                     + "profesorId = '" + pedido.getProfesorId() + "', "
                     + "laboratorioId = " + pedido.getLaboratorioId() + ", "
@@ -317,8 +320,446 @@ public final class Context {
             Statement statement = connection.createStatement();
 
             statement.executeUpdate(""
-                    + "DELETE FROM invantarioquimica.pedido "
+                    + "DELETE FROM pedido "
                     + "WHERE id = " + id + ";");
+        } catch (SQLException exception) {
+            System.out.println(exception);
+            return false;
+        }
+
+        return true;
+    }
+
+    /**
+     * Obtiene un laboratorio de la base de datos.
+     * @param clave ID del laboratorio a obtener.
+     * @return El laboratorio, o nulo si no encuentra un laboratorio con dicha
+     * clave.
+     */
+    public static Laboratorio getLaboratorio(final String clave) {
+        Laboratorio laboratorio = null;
+
+        try {
+            Connection connection;
+            connection = DriverManager.getConnection(URL, "root", "");
+            Statement statement = connection.createStatement();
+
+            try (ResultSet resultSet = statement.executeQuery(""
+                    + "SELECT * "
+                    + "FROM laboratorio "
+                    + "WHERE clave = '" + clave + "';")) {
+                if (resultSet.next()) {
+                    laboratorio = new Laboratorio();
+
+                    laboratorio.setClave(resultSet.getString("clave"));
+                    laboratorio.setNombre(resultSet.getString("nombre"));
+                }
+            }
+        } catch (SQLException exception) {
+            System.out.println(exception);
+        }
+
+        return laboratorio;
+    }
+
+    /**
+     * Obtiene la lista de todos los laboratorios.
+     * @return Lista con todos los laboratorios.
+     */
+    public static LinkedList<Laboratorio> getLaboratorios() {
+        LinkedList<Laboratorio> laboratorios = new LinkedList<>();
+
+        try {
+            Connection connection;
+            connection = DriverManager.getConnection(URL, "root", "");
+            Statement statement = connection.createStatement();
+
+            try (ResultSet resultSet = statement.executeQuery(
+                    "SELECT * FROM laboratorio;")) {
+
+                while (resultSet.next()) {
+                    Laboratorio laboratorio = new Laboratorio();
+
+                    laboratorio.setClave(resultSet.getString("clave"));
+                    laboratorio.setNombre(resultSet.getString("nombre"));
+
+                    laboratorios.add(laboratorio);
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println(e.toString());
+        }
+
+        return laboratorios;
+    }
+
+    /**
+     * Crea un nuevo registro en la base de datos con el nuevo laboratorio.
+     * @param laboratorio El laboratorio a ser guardado.
+     * @return Valor indicando si fue exitoso o no.
+     */
+    public static boolean insertarLaboratorio(final Laboratorio laboratorio) {
+        try {
+            Connection connection;
+            connection = DriverManager.getConnection(URL, "root", "");
+            Statement statement = connection.createStatement();
+
+            statement.executeUpdate(""
+                    + "INSERT INTO laboratorio "
+                    + "(clave, nombre)"
+                    + "VALUES ("
+                    + "'" + laboratorio.getClave() + "', "
+                    + "'" + laboratorio.getNombre() + "');");
+        } catch (SQLException exception) {
+            System.out.println(exception);
+            return false;
+        }
+
+        return true;
+    }
+
+    /**
+     * Actualiza los valores de un laboratorio. Notar que la llave primaria no
+     * puede ser editada.
+     * @param laboratorio Pedido con los nuevos valores.
+     * @return Valor indicando si la operación fue exitosa o no.
+     */
+    public static boolean actualizarLaboratorio(final Laboratorio laboratorio) {
+        try {
+            Connection connection;
+            connection = DriverManager.getConnection(URL, "root", "");
+            Statement statement = connection.createStatement();
+
+            statement.executeUpdate(""
+                    + "UPDATE laboratorio SET "
+                    + "nombre = '" + laboratorio.getNombre() + "' "
+                    + "WHERE clave = " + laboratorio.getClave() + ";");
+        } catch (SQLException exception) {
+            System.out.println(exception);
+            return false;
+        }
+
+        return true;
+    }
+
+    /**
+     * Elimina un laboratorio de la base de datos.
+     * @param clave ID del laboratorio por eliminar.
+     * @return Valor indicando si la operación fue exitosa.
+     */
+    public static boolean eliminarLaboratorio(final String clave) {
+        try {
+            Connection connection;
+            connection = DriverManager.getConnection(URL, "root", "");
+            Statement statement = connection.createStatement();
+
+            statement.executeUpdate(""
+                    + "DELETE FROM pedido "
+                    + "WHERE clave = " + clave + ";");
+        } catch (SQLException exception) {
+            System.out.println(exception);
+            return false;
+        }
+
+        return true;
+    }
+
+    /**
+     * Obtiene un Equipo de la base de datos.
+     * @param clave La clave del equipo por obtener.
+     * @return El equipo, o nulo si no se encontró.
+     */
+    public static Equipo getEquipo(final String clave) {
+        Equipo equipo = null;
+
+        try {
+            Connection connection;
+            connection = DriverManager.getConnection(URL, "root", "");
+            Statement statement = connection.createStatement();
+
+            try (ResultSet resultSet = statement.executeQuery(""
+                    + "SELECT * "
+                    + "FROM equipo "
+                    + "WHERE clave = '" + clave + "';")) {
+                if (resultSet.next()) {
+                    equipo = new Equipo();
+
+                    equipo.setClave(resultSet.getString("clave"));
+                    equipo.setNombre(resultSet.getString("nombre"));
+                    equipo.setMarca(resultSet.getString("marca"));
+                    equipo.setCantidad(resultSet.getInt("cantidad"));
+                    equipo.setLocalizacion(resultSet.getString("localizacion"));
+                    equipo.setDescripcion(resultSet.getString("descripcion"));
+                }
+            }
+        } catch (SQLException exception) {
+            System.out.println(exception);
+        }
+
+        return equipo;
+    }
+
+    /**
+     * Obtiene la lista de todos los equipos.
+     * @return Lista con todos los equipos.
+     */
+    public static LinkedList<Equipo> getEquipos() {
+        LinkedList<Equipo> equipos = new LinkedList<>();
+
+        try {
+            Connection connection;
+            connection = DriverManager.getConnection(URL, "root", "");
+            Statement statement = connection.createStatement();
+
+            try (ResultSet resultSet = statement.executeQuery(
+                    "SELECT * FROM equipo;")) {
+
+                while (resultSet.next()) {
+                    Equipo equipo = new Equipo();
+
+                    equipo.setClave(resultSet.getString("clave"));
+                    equipo.setNombre(resultSet.getString("nombre"));
+                    equipo.setMarca(resultSet.getString("marca"));
+                    equipo.setCantidad(resultSet.getInt("cantidad"));
+                    equipo.setLocalizacion(resultSet.getString("localizacion"));
+                    equipo.setDescripcion(resultSet.getString("descripcion"));
+
+                    equipos.add(equipo);
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println(e.toString());
+        }
+
+        return equipos;
+    }
+
+    /**
+     * Crea un nuevo registro en la base de datos con el nuevo equipo.
+     * @param equipo El equipo a ser guardado.
+     * @return Valor indicando si fue exitoso o no.
+     */
+    public static boolean insertarEquipo(final Equipo equipo) {
+        try {
+            Connection connection;
+            connection = DriverManager.getConnection(URL, "root", "");
+            Statement statement = connection.createStatement();
+
+            statement.executeUpdate(""
+                    + "INSERT INTO equipo "
+                    + "(clave, nombre, marca, cantidad, localizacion, "
+                    + "descripcion) "
+                    + "VALUES ("
+                    + "'" + equipo.getClave() + "', "
+                    + "'" + equipo.getNombre() + "', "
+                    + "'" + equipo.getMarca() + "', "
+                    + equipo.getCantidad() + ", "
+                    + "'" + equipo.getLocalizacion() + "', "
+                    + "'" + equipo.getDescripcion() + "');");
+        } catch (SQLException exception) {
+            System.out.println(exception);
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * Actualiza los valores de un equipo. Notar que la llave primaria no puede
+     * ser editada.
+     * @param equipo equipo con los nuevos valores.
+     * @return Valor indicando si la operación fue exitosa o no.
+     */
+    public static boolean actualizarEquipo(final Equipo equipo) {
+        try {
+            Connection connection;
+            connection = DriverManager.getConnection(URL, "root", "");
+            Statement statement = connection.createStatement();
+
+            statement.executeUpdate(""
+                    + "UPDATE equipo SET "
+                    + "nombre = '" + equipo.getNombre() + "', "
+                    + "marca = '" + equipo.getMarca() + "', "
+                    + "cantidad = " + equipo.getCantidad() + ", "
+                    + "localizacion = '" + equipo.getLocalizacion() + "', "
+                    + "descripcion = '" + equipo.getDescripcion() + "' "
+                    + "WHERE clave = " + equipo.getClave() + ";");
+        } catch (SQLException exception) {
+            System.out.println(exception);
+            return false;
+        }
+
+        return true;
+    }
+
+    /**
+     * Elimina un equipo de la base de datos.
+     * @param clave ID del laboratorio por eliminar.
+     * @return Valor indicando si la operación fue exitosa.
+     */
+    public static boolean eliminarEquipo(final String clave) {
+        try {
+            Connection connection;
+            connection = DriverManager.getConnection(URL, "root", "");
+            Statement statement = connection.createStatement();
+
+            statement.executeUpdate(""
+                    + "DELETE FROM equipo "
+                    + "WHERE clave = " + clave + ";");
+        } catch (SQLException exception) {
+            System.out.println(exception);
+            return false;
+        }
+
+        return true;
+    }
+
+    /**
+     * Obtiene un Material de la base de datos.
+     * @param clave La clave del material por obtener.
+     * @return El material, o nulo si no se encontró.
+     */
+    public static Material getMaterial(final String clave) {
+        Material material = null;
+
+        try {
+            Connection connection;
+            connection = DriverManager.getConnection(URL, "root", "");
+            Statement statement = connection.createStatement();
+
+            try (ResultSet resultSet = statement.executeQuery(""
+                    + "SELECT * "
+                    + "FROM material "
+                    + "WHERE clave = '" + clave + "';")) {
+                if (resultSet.next()) {
+                    material = new Material();
+
+                    material.setClave(resultSet.getString("clave"));
+                    material.setNombre(resultSet.getString("nombre"));
+                    material.setMarca(resultSet.getString("marca"));
+                    material.setCantidad(resultSet.getInt("cantidad"));
+                    material.setLocalizacion(resultSet.
+                            getString("localizacion"));
+                    material.setCapacidad(resultSet.getString("capacidad"));
+                    material.setDescripcion(resultSet.getString("descripcion"));
+                }
+            }
+        } catch (SQLException exception) {
+            System.out.println(exception);
+        }
+
+        return material;
+    }
+
+    /**
+     * Obtiene la lista de todos los materiales.
+     * @return Lista con todos los materiales.
+     */
+    public static LinkedList<Material> getMateriales() {
+        LinkedList<Material> materiales = new LinkedList<>();
+
+        try {
+            Connection connection;
+            connection = DriverManager.getConnection(URL, "root", "");
+            Statement statement = connection.createStatement();
+
+            try (ResultSet resultSet = statement.executeQuery(
+                    "SELECT * FROM material;")) {
+
+                while (resultSet.next()) {
+                    Material material = new Material();
+
+                    material.setClave(resultSet.getString("clave"));
+                    material.setNombre(resultSet.getString("nombre"));
+                    material.setMarca(resultSet.getString("marca"));
+                    material.setCantidad(resultSet.getInt("cantidad"));
+                    material.setLocalizacion(resultSet
+                            .getString("localizacion"));
+                    material.setCapacidad(resultSet.getString("capacidad"));
+                    material.setDescripcion(resultSet.getString("descripcion"));
+
+                    materiales.add(material);
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println(e.toString());
+        }
+
+        return materiales;
+    }
+
+    /**
+     * Crea un nuevo registro en la base de datos con el nuevo material.
+     * @param material El material a ser guardado.
+     * @return Valor indicando si fue exitoso o no.
+     */
+    public static boolean insertarMaterial(final Material material) {
+        try {
+            Connection connection;
+            connection = DriverManager.getConnection(URL, "root", "");
+            Statement statement = connection.createStatement();
+
+            statement.executeUpdate(""
+                    + "INSERT INTO material "
+                    + "(clave, nombre, marca, cantidad, localizacion, "
+                    + "descripcion, capacidad) "
+                    + "VALUES ("
+                    + "'" + material.getClave() + "', "
+                    + "'" + material.getNombre() + "', "
+                    + "'" + material.getMarca() + "', "
+                    + material.getCantidad() + ", "
+                    + "'" + material.getLocalizacion() + "', "
+                    + "'" + material.getDescripcion() + "', "
+                    + "'" + material.getCapacidad() + "');");
+        } catch (SQLException exception) {
+            System.out.println(exception);
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * Actualiza los valores de un material. Notar que la llave primaria no
+     * puede ser editada.
+     * @param material Material con los nuevos valores.
+     * @return Valor indicando si la operación fue exitosa o no.
+     */
+    public static boolean actualizarMaterial(final Material material) {
+        try {
+            Connection connection;
+            connection = DriverManager.getConnection(URL, "root", "");
+            Statement statement = connection.createStatement();
+
+            statement.executeUpdate(""
+                    + "UPDATE material SET "
+                    + "nombre = '" + material.getNombre() + "', "
+                    + "marca = '" + material.getMarca() + "', "
+                    + "cantidad = " + material.getCantidad() + ", "
+                    + "localizacion = '" + material.getLocalizacion() + "', "
+                    + "descripcion = '" + material.getDescripcion() + "', "
+                    + "capacidad = '" + material.getCapacidad() + "' "
+                    + "WHERE clave = " + material.getClave() + ";");
+        } catch (SQLException exception) {
+            System.out.println(exception);
+            return false;
+        }
+
+        return true;
+    }
+
+    /**
+     * Elimina un material de la base de datos.
+     * @param clave ID del material por eliminar.
+     * @return Valor indicando si la operación fue exitosa.
+     */
+    public static boolean eliminarMaterial(final String clave) {
+        try {
+            Connection connection;
+            connection = DriverManager.getConnection(URL, "root", "");
+            Statement statement = connection.createStatement();
+
+            statement.executeUpdate(""
+                    + "DELETE FROM material "
+                    + "WHERE clave = " + clave + ";");
         } catch (SQLException exception) {
             System.out.println(exception);
             return false;

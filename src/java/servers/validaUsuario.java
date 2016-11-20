@@ -25,7 +25,7 @@ public class validaUsuario extends HttpServlet
                 RequestDispatcher dispatcher =
                  getServletContext().getRequestDispatcher(url);
                 dispatcher.forward(request, response); 
-            } else if (usuario.getRol().equals("Maestro")) {
+            } else if (usuario.getRol().equals("Profesor")) {
                 HttpSession session = request.getSession();
                 session.setAttribute("usuario", usuario);
                 String url = "/profesor_login.html";
