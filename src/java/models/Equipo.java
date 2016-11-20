@@ -26,6 +26,11 @@ public class Equipo {
     private int cantidad;
 
     /**
+     * Localizacion del equipo
+     */
+    private String localizacion;
+    
+    /**
      * Descripción del equipo.
      */
     private String descripcion;
@@ -93,7 +98,23 @@ public class Equipo {
     public final void setCantidad(final int nuevaCantidad) {
         this.cantidad = nuevaCantidad;
     }
+    
+    /**
+     * Regresa el valor de localizacion.
+     * @return El valor de localizacion.
+     */
+    public final String getLocalizacion() {
+        return localizacion;
+    }
 
+    /**
+     * Asigna el valor de localizacion.
+     * @param nuevaLocalizacion El nuevo valor de localizacion.
+     */
+    public final void setLocalizacion(final String nuevaLocalizacion) {
+        this.localizacion = nuevaLocalizacion;
+    }
+    
     /**
      * Regresa el valor de descripcion.
      * @return El valor de descripcion.

@@ -4,10 +4,32 @@
         <servlet-name>validaUsuario</servlet-name>
         <servlet-class>servers.validaUsuario</servlet-class>
     </servlet>
+    
     <servlet-mapping>
         <servlet-name>validaUsuario</servlet-name>
         <url-pattern>/validaUsuario</url-pattern>
     </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>addAlumno</servlet-name>
+        <servlet-class>servers.addAlumno</servlet-class>
+    </servlet>
+    
+    <servlet-mapping>
+        <servlet-name>addAlumno</servlet-name>
+        <url-pattern>/addAlumno</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>addProfesor</servlet-name>
+        <servlet-class>servers.addProfesor</servlet-class>
+    </servlet>
+    
+    <servlet-mapping>
+        <servlet-name>addProfesor</servlet-name>
+        <url-pattern>/addProfesor</url-pattern>
+    </servlet-mapping>
+    
     <session-config>
         <session-timeout>30</session-timeout>
     </session-config>

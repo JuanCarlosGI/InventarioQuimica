@@ -19,12 +19,12 @@ public class validaUsuario extends HttpServlet
         
         if (usuario != null && usuario.getPassword().contentEquals(pass)) {
             if (usuario.getRol().equals("Administrador")) {
-                String url = "/loginAdmin.html";
+                String url = "/admin_login.html";
                 RequestDispatcher dispatcher =
                  getServletContext().getRequestDispatcher(url);
                 dispatcher.forward(request, response); 
-            } else if (usuario.getRol().equals("Maestro")) {
-                String url = "/loginMaestro.html";
+            } else if (usuario.getRol().equals("Profesor")) {
+                String url = "/profesor_login.html";
                 RequestDispatcher dispatcher =
                  getServletContext().getRequestDispatcher(url);
                 dispatcher.forward(request, response); 

@@ -45,20 +45,20 @@
     </div>
   </nav>
   <!-- NAVBAR END-->
-
-  <body>
-    <div class="section"></div>
-    <div class="row">
-      <div class="col s2 m3 l4"></div>
-      <div class="card col s8 m6 l4">
-        <div class="card-content center">
-          <span class="card-title activator grey-text text-darken-4">AGREGAR ALUMNO</span>
+    <form action="addAlumno" method="post">
+        <div class="section"></div>
+        <div class="row">
+          <div class="col s2 m3 l4"></div>
+          <div class="card col s8 m6 l4">
+            <div class="card-content center">
+              <span class="card-title activator grey-text text-darken-4">AGREGAR ALUMNO</span>
+            </div>
+            <div class="card-reveal center">
+                <input placeholder="Matricula" type="text" class="validate" id="matricula" name="matricula"/>
+            </div>
+          </div>
         </div>
-        <div class="card-reveal center">
-            <input placeholder="Matricula" type="text" class="validate" id="matricula" name="matricula"/>
-        </div>
-      </div>
-    </div>
+    </form>
 
     <table class="responsive-table striped">
         <thead>

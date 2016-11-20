@@ -9,6 +9,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.LinkedList;
+import models.Equipo;
 
 /**
  * Clase que será utilzada para obetener acceso a la base de datos.
@@ -110,7 +111,7 @@ public final class Context {
             Statement statement = connection.createStatement();
 
             statement.executeUpdate(""
-                    + "INSERT INTO invantarioquimica.usuario "
+                    + "INSERT INTO inventarioquimica.usuario "
                     + "(matricula, nombre, password, rol, creadorId, correo) "
                     + "VALUES ("
                     + "'" + usuario.getMatricula() + "', "
@@ -459,6 +460,34 @@ public final class Context {
             return false;
         }
 
+        return true;
+    }
+    
+    /**
+     * Crea un nuevo registro en la base de datos con el nuevo equipo.
+     * @param equipo El equipo a ser guardado.
+     * @return Valor indicando si fue exitoso o no.
+     */
+    public static boolean insertarEquipo(final Equipo equipo) {
+        try {
+            Connection connection;
+            connection = DriverManager.getConnection(URL, "root", "");
+            Statement statement = connection.createStatement();
+
+            statement.executeUpdate(""
+                    + "INSERT INTO inventarioquimica.equipo "
+                    + "(clave, nombre, marca, cantidad, localizacion, descripcion) "
+                    + "VALUES ("
+                    + "'" + equipo.getClave() + "', "
+                    + "'" + equipo.getNombre() + "', "
+                    + "'" + equipo.getMarca() + "', "
+                    + "'" + equipo.getCantidad() + "', "
+                    + "'" + equipo.getLocalizacion() + "', "
+                    + "'" + equipo.getDescripcion() + "');");
+        } catch (SQLException exception) {
+            System.out.println(exception);
+            return false;
+        }
         return true;
     }
 }
