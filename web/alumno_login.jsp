@@ -1,3 +1,11 @@
+<%-- 
+    Document   : alumno_login
+    Created on : Nov 19, 2016, 6:20:32 PM
+    Author     : Cesar
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
   <html>
     <head>
@@ -14,10 +22,12 @@
     </head>
 
     <body>
+        <%@ page import="models.Usuario" %>
+        <jsp:useBean id = "usuario" class="models.Usuario" scope = "session"/>
       <!-- NAVBAR -->
       <!-- Dropdown Menu Structure -->
       <ul id="dropdown1" class="dropdown-content">
-        <li><a href="#!">Perfil</a></li>
+        <li><a href="alumno_perfil.html">Perfil</a></li>
         <li class="divider"></li>
         <li><a href="#!">Salir</a></li>
       </ul>
@@ -31,7 +41,7 @@
           <li><a class="dropdown-button" href="#!" data-activates="dropdown1">USUARIO<i class="material-icons right">arrow_drop_down</i></a></li>
         </ul>
           <ul class="side-nav" id="mobile-demo">
-            <li><a href="#">Perfil</a></li>
+            <li><a href="alumno_perfil.html">Perfil</a></li>
             <li><a href="#">Salir</a></li>
           </ul>
         </div>
@@ -63,48 +73,21 @@
           <div class="col s12">
             <div class="card blue">
               <div class="card-content white-text">
-                <span class="card-title">Bienvenido NOMBRE</span>
-                <p>Vales atrasados: 1</p>
-                <p>Vales activos: 3</p>
-                <p>Total de vales del semestre: 20</p>
+                <span class="card-title">Bienvenido ${usuario.nombre}</span>
+                <p>Laboratorio #2</p>
+                <p>Hora Laboratorio: 10:30</p>
+                <p>Vales activos: 2</p>
               </div>
             </div>
           </div>
         
 
         <div class="row">
-          <div class="col s12 m6 l4">
-            <h5 class="center"><i class="material-icons">assignment_ind</i> Usuarios</h5>
-            <div class="section center">
-              <a href="admin_editarAlumnos.html" class="waves-effect waves-light btn-large" style="width: 80%; background-color: #00bcd4">Editar Alumnos</a><br><br>
-              <a href="admin_editarProfesores.html" class="waves-effect waves-light btn-large" style="width: 80%; background-color: #00bcd4">Editar Maestros</a><br><br>
-              <a href="#" class="waves-effect waves-light btn-large" style="width: 80%; background-color: #00bcd4">Editar Administradores</a><br><br>
-              <a href="#" class="waves-effect waves-light btn-large" style="width: 80%; background-color: #00bcd4">Crear Laboratorio</a>
-            </div>
-          </div>
-          <div class="col s12 m6 l4">
-            <h5 class="center"><i class="material-icons">view_list</i> Inventario</h5>
-            <div class="section center">
-              <a href="#" class="waves-effect waves-light btn-large" style="width: 80%; background-color: #ffa000">Materiales</a><br><br>
-              <a href="admin_equipos.html" class="waves-effect waves-light btn-large" style="width: 80%; background-color: #ffa000">Equipos</a><br><br>
-              <a href="admin_reactivos.html" class="waves-effect waves-light btn-large" style="width: 80%; background-color: #ffa000">Reactivos</a><br><br>
-              <a href="#" class="waves-effect waves-light btn-large" style="width: 80%; background-color: #ffa000">Consumibles</a>
-            </div>
-          </div>
-          <div class="col s12 m6 l4">
+          <div class="col s12">
             <h5 class="center"><i class="material-icons">description</i> Vales</h5>
             <div class="section center">
-              <a href="#" class="waves-effect waves-light btn-large" style="width: 80%; background-color: #3f51b5">Entregar productos</a><br><br>
-              <a href="#" class="waves-effect waves-light btn-large" style="width: 80%; background-color: #3f51b5">Lista de Vales</a><br><br>
-              <a href="#" class="waves-effect waves-light btn-large" style="width: 80%; background-color: #3f51b5">Crear Vale</a><br><br>
-              <a href="#" class="waves-effect waves-light btn-large" style="width: 80%; background-color: #3f51b5">Detalle Vale</a>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col s12">
-          <div class="section center">
-            <a href="#" class="waves-effect waves-light btn-large red" style="width: 80%">Borrar alumnos del Semestre</a><br><br>
+              <a href="alumno_crearVale.html" class="waves-effect waves-light btn-large" style="width: 80%; background-color: #3f51b5">Crear Vale</a><br><br>
+              <a href="alumno_misVales.html" class="waves-effect waves-light btn-large" style="width: 80%; background-color: #3f51b5">Mis Vales</a>
             </div>
           </div>
         </div>
