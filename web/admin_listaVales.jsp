@@ -1,3 +1,16 @@
+<%-- 
+    Document   : admin_listaVales
+    Created on : Nov 20, 2016, 1:56:10 PM
+    Author     : Cesar
+--%>
+
+<%@page import="java.util.LinkedList"%>
+<%@page import="java.util.ArrayList"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ page import="data.Context" %>
+<%@ page import="models.Pedido" %>
+<%@ page import="models.Usuario" %>
+
 <!DOCTYPE html>
   <html>
     <head>
@@ -12,8 +25,7 @@
       <meta charset="UTF-8">
       <meta http-equiv="Content-type" content="text/html; charset=UTF-8">
     </head>
-<%@ page import="models.Usuario" %>
-        <jsp:useBean id = "usuario" class="models.Usuario" scope = "session"/>
+
     <body>
       <!-- NAVBAR -->
       <!-- Dropdown Menu Structure -->
@@ -25,11 +37,11 @@
 
       <nav>
         <div class="nav-wrapper">
-          <a href="#" class="brand-logo center">Almacén de Química</a>
+          <a href="#" class="brand-logo center">AlmacÃ©n de QuÃ­mica</a>
           <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
           <ul class="right hide-on-med-and-down">
           <!-- Dropdown Trigger -->
-          <li><a class="dropdown-button" href="#!" data-activates="dropdown1">${usuario.nombre}<i class="material-icons right">arrow_drop_down</i></a></li>
+          <li><a class="dropdown-button" href="#!" data-activates="dropdown1">USUARIO<i class="material-icons right">arrow_drop_down</i></a></li>
         </ul>
           <ul class="side-nav" id="mobile-demo">
             <li><a href="#">Perfil</a></li>
@@ -41,7 +53,7 @@
     <div class="nav-wrapper center">
       <div class="col s12">
         <a href="#!" class="breadcrumb">Inicio</a>
-        <a href="#!" class="breadcrumb">Mis Vales</a>
+        <a href="#!" class="breadcrumb">Lista Vales</a>
       </div>
     </div>
   </nav>
@@ -54,29 +66,47 @@
               <th data-field="folio">Folio</th>
               <th data-field="fecha_emision">Fecha de Emision</th>
               <th data-field="fecha_entrega">Fecha de Entrega</th>
-              <th data-field="fecha_entrega">Fecha de Devolución</th>
+              <th data-field="fecha_entrega">Fecha de DevoluciÃ³n</th>
+              <th data-field="profesor">Matricula/Nomina</th>
+              <th data-field="profesor">Nombre</th>
               <th data-field="vale">Vale</th>
           </tr>
         </thead>
+        
+        
 
         <tbody>
-            <%@ page import="models.Pedido" %>
-            <%@page import="java.util.LinkedList"%>
             <%
-                LinkedList<Pedido> pedidos = usuario.getPedidos();
-                for (Pedido pedido : usuario.getPedidos())
-                {
+            LinkedList<Pedido> pedidos= Context.getPedidos();
+            for(int i = 0; i < pedidos.size(); i+=1){
+                System.out.println(pedidos.get(i).getId());
+                System.out.println(pedidos.get(i).getFechaEmision());
+                System.out.println(pedidos.get(i).getFechaEntrega());
+                System.out.println(pedidos.get(i).getFechaDevolucion());
+                System.out.println(pedidos.get(i).getUsuarioId());
+
+             %>
+          <tr>
+            <td><%=pedidos.get(i).getId()%></td>
+            <td><%=pedidos.get(i).getFechaEmision()%></td>
+            <td>
+              <%=pedidos.get(i).getFechaEntrega()%>
+            </td>
+            <td>
+              <%=pedidos.get(i).getFechaDevolucion()%>
+            </td>
+            <td><%=pedidos.get(i).getUsuarioId()%></td>
+            <%
+            Usuario usuario = Context.getUsuario(pedidos.get(i).getUsuarioId());
+            
             %>
-            <tr>
-                <td><%=pedido.getId()%></td>
-                <td><%=pedido.getFechaEmision()%></td>
-                <td><%=pedido.getStatus() >= 1 ? pedido.getFechaEntrega() : ""%></td>
-                <td><%=pedido.getStatus() >= 2 ? pedido.getFechaDevolucion() : ""%></td>
-                <td><button class="btn waves-effect waves-light" name="action"><i class="material-icons center">description</i></button></td>
-            </tr>
-                
-            <% 
-                }
+            <td><%=usuario.getNombre()%></td>
+            <td>
+              <button class="btn waves-effect waves-light" name="action" ><i class="material-icons center">description</i></button>
+            </td>
+          </tr>
+          <%
+            }
             %>
         </tbody>
       </table>
