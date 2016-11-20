@@ -9,7 +9,9 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.LinkedList;
+import models.Consumible;
 import models.Equipo;
+import models.Reactivo;
 import models.Material;
 
 /**
@@ -562,6 +564,35 @@ public final class Context {
         }
         return true;
     }
+    
+    /**
+     * Crea un nuevo registro en la base de datos con el nuevo reactivo.
+     * @param equipo El reactivo a ser guardado.
+     * @return Valor indicando si fue exitoso o no.
+     */
+    public static boolean insertarReactivo(final Reactivo reactivo) {
+        try {
+            Connection connection;
+            connection = DriverManager.getConnection(URL, "root", "");
+            Statement statement = connection.createStatement();
+            statement.executeUpdate(""
+                    + "INSERT INTO reactivo "
+                    + "(clave, nombre, marca, presentacion, contenido, localizacion, descripcion, cantidad) "
+                    + "VALUES ("
+                    + "'" + reactivo.getClave() + "', "
+                    + "'" + reactivo.getNombre() + "', "
+                    + "'" + reactivo.getMarca() + "', "
+                    + "'" + reactivo.getPresentacion() + "', "
+                    + "'" + reactivo.getContenido() + "', "
+                    + "'" + reactivo.getLocalizacion() + "', "
+                    + "'" + reactivo.getDescripcion() + "', "
+                    + reactivo.getCantidad() + "');");
+            } catch (SQLException exception) {
+            System.out.println(exception);
+            return false;
+        }
+        return true;
+    }
 
     /**
      * Actualiza los valores de un equipo. Notar que la llave primaria no puede
@@ -587,8 +618,41 @@ public final class Context {
             System.out.println(exception);
             return false;
         }
-
         return true;
+    }
+    /**
+     * Obtiene un reactivo dado su clave.
+     *
+     * @param clave Clave del reactivo que se busca.
+     * @return El reactivo correspondiente, o nulo si no existe.
+     */
+    public static Reactivo getReactivo(final String clave) {
+        Reactivo reactivo = null;
+        try {
+            Connection connection;
+            connection = DriverManager.getConnection(URL, "root", "");
+            Statement statement = connection.createStatement();
+            try (ResultSet resultSet = statement.executeQuery(""
+                    + "SELECT * "
+                    + "FROM reactivo "
+                    + "WHERE clave = '" + clave + "';")) {
+                if (resultSet.next()) {
+                    reactivo = new Reactivo();
+                    reactivo.setClave(resultSet.getString("clave"));
+                    reactivo.setNombre(resultSet.getString("nombre"));
+                    reactivo.setMarca(resultSet.getString("marca"));
+                    reactivo.setPresentacion(resultSet.getString("presentacion"));
+                    reactivo.setContenido(resultSet.getString("contenido"));
+                    reactivo.setLocalizacion(resultSet.getString("localizacion"));
+                    reactivo.setDescripcion(resultSet.getString("descripcion"));
+                    reactivo.setCantidad(resultSet.getInt("cantidad"));
+                }
+                }
+        } catch (SQLException exception) {
+            System.out.println(exception);
+        }
+
+        return reactivo;
     }
 
     /**
@@ -620,7 +684,6 @@ public final class Context {
      */
     public static Material getMaterial(final String clave) {
         Material material = null;
-
         try {
             Connection connection;
             connection = DriverManager.getConnection(URL, "root", "");
@@ -646,8 +709,43 @@ public final class Context {
         } catch (SQLException exception) {
             System.out.println(exception);
         }
-
+        
         return material;
+    }
+    
+    /**
+     * Obtiene la lista de todos los reactivos.
+     *
+     * @return Lista con todos los reactivos.
+     */
+    public static LinkedList<Reactivo> getReactivos() {
+        LinkedList<Reactivo> reactivos = new LinkedList<>();
+        try {
+            Connection connection;
+            connection = DriverManager.getConnection(URL, "root", "");
+            Statement statement = connection.createStatement();
+
+            try (ResultSet resultSet = statement.executeQuery(
+                    "SELECT * FROM reactivo;")) {
+
+                while (resultSet.next()) {
+                    Reactivo reactivo = new Reactivo();
+                    reactivo.setClave(resultSet.getString("clave"));
+                    reactivo.setNombre(resultSet.getString("nombre"));
+                    reactivo.setMarca(resultSet.getString("marca"));
+                    reactivo.setPresentacion(resultSet.getString("presentacion"));
+                    reactivo.setContenido(resultSet.getString("contenido"));
+                    reactivo.setLocalizacion(resultSet.getString("localizacion"));
+                    reactivo.setDescripcion(resultSet.getString("descripcion"));
+                    reactivo.setCantidad(resultSet.getInt("cantidad"));
+                    reactivos.add(reactivo);
+                }                
+            }
+        } catch (SQLException e) {
+            System.out.println(e.toString());
+        }
+        
+        return reactivos;
     }
 
     /**
@@ -667,7 +765,6 @@ public final class Context {
 
                 while (resultSet.next()) {
                     Material material = new Material();
-
                     material.setClave(resultSet.getString("clave"));
                     material.setNombre(resultSet.getString("nombre"));
                     material.setMarca(resultSet.getString("marca"));
@@ -685,6 +782,38 @@ public final class Context {
         }
 
         return materiales;
+    }
+    
+    /**
+     * Actualiza los valores de un reactivo. Notar que la llave primaria no puede
+     * ser editada.
+     * @param reactivo Reactivo con los nuevos valores.
+     * @return Valor indicando si la operación fue exitosa o no.
+     */
+    public static boolean actualizarReactivo(final Reactivo reactivo) {
+        try {
+            Connection connection;
+            connection = DriverManager.getConnection(URL, "root", "");
+            Statement statement = connection.createStatement();
+
+            statement.executeUpdate(""
+                    + "UPDATE reactivo SET "
+                    + "marca = '" + reactivo.getNombre() + "', "
+                    + "password = '" + reactivo.getMarca() + "', "
+                    + "presentacion = '" + reactivo.getPresentacion() + "', "
+                    + "contenido = '" + reactivo.getContenido() + "', "
+                    + "localizacion = '" + reactivo.getLocalizacion() + "', "
+                    + "descripcion = '" + reactivo.getDescripcion() + "', "
+                    + "cantidad = " + reactivo.getCantidad() + " "
+                    + "WHERE clave = '" + reactivo.getClave() + "';");
+                    } catch (SQLException exception) {
+            System.out.println(exception);
+            return false;
+        }
+
+        return true;
+    
+        //return materiales;
     }
 
     /**
@@ -738,7 +867,30 @@ public final class Context {
                     + "descripcion = '" + material.getDescripcion() + "', "
                     + "capacidad = '" + material.getCapacidad() + "' "
                     + "WHERE clave = " + material.getClave() + ";");
+
         } catch (SQLException exception) {
+            System.out.println(exception);
+            return false;
+        }
+
+        return true;
+    }
+    
+    /**
+     * Elimina un reactivo de la base de datos.
+     * @param clave Clave del reactivo por eliminar.
+     * @return Valor indicando si la operación fue exitosa.
+     */
+    public static boolean eliminarReactivo(final String clave) {
+        try {
+            Connection connection;
+            connection = DriverManager.getConnection(URL, "root", "");
+            Statement statement = connection.createStatement();
+
+            statement.executeUpdate(""
+        + "DELETE FROM reactivo "
+                    + "WHERE clave = '" + clave + "';");
+            } catch (SQLException exception) {
             System.out.println(exception);
             return false;
         }
@@ -761,6 +913,157 @@ public final class Context {
                     + "DELETE FROM material "
                     + "WHERE clave = " + clave + ";");
         } catch (SQLException exception) {
+            System.out.println(exception);
+            return false;
+        }
+
+        return true;
+    }
+    
+    /**
+     * Crea un nuevo consumible en la base de datos con el nuevo consumible.
+     * @param equipo El consumible a ser guardado.
+     * @return Valor indicando si fue exitoso o no.
+     */
+    public static boolean insertarConsumible(final Consumible consumible) {
+        try {
+            Connection connection;
+            connection = DriverManager.getConnection(URL, "root", "");
+            Statement statement = connection.createStatement();
+            statement.executeUpdate(""
+                    + "INSERT INTO consumible "
+                    + "(clave, nombre, marca, presentacion, contenido, localizacion, descripcion, cantidad) "
+                    + "VALUES ("
+                    + "'" + consumible.getClave() + "', "
+                    + "'" + consumible.getNombre() + "', "
+                    + "'" + consumible.getMarca() + "', "
+                    + "'" + consumible.getPresentacion() + "', "
+                    + "'" + consumible.getContenido() + "', "
+                    + "'" + consumible.getLocalizacion() + "', "
+                    + "'" + consumible.getDescripcion() + "', "
+                    + consumible.getCantidad() + "');");
+            } catch (SQLException exception) {
+            System.out.println(exception);
+            return false;
+        }
+        return true;
+    }
+    
+    /**
+     * Obtiene un consumible dado su clave.
+     *
+     * @param clave Clave del consumible que se busca.
+     * @return El consumible correspondiente, o nulo si no existe.
+     */
+    public static Consumible getConsumible(final String clave) {
+        Consumible consumible = null;
+        try {
+            Connection connection;
+            connection = DriverManager.getConnection(URL, "root", "");
+            Statement statement = connection.createStatement();
+            try (ResultSet resultSet = statement.executeQuery(""
+                    + "SELECT * "
+                    + "FROM consumible "
+                    + "WHERE clave = '" + clave + "';")) {
+                if (resultSet.next()) {
+                    consumible = new Consumible();
+                    consumible.setClave(resultSet.getString("clave"));
+                    consumible.setNombre(resultSet.getString("nombre"));
+                    consumible.setMarca(resultSet.getString("marca"));
+                    consumible.setPresentacion(resultSet.getString("presentacion"));
+                    consumible.setContenido(resultSet.getString("contenido"));
+                    consumible.setLocalizacion(resultSet.getString("localizacion"));
+                    consumible.setDescripcion(resultSet.getString("descripcion"));
+                    consumible.setCantidad(resultSet.getInt("cantidad"));
+                }
+            }
+        } catch (SQLException exception) {
+            System.out.println(exception);
+        }
+
+        return consumible;
+    }
+    
+    /**
+     * Obtiene la lista de todos los consumible.
+     *
+     * @return Lista con todos los consumible.
+     */
+    public static LinkedList<Consumible> getConsumibles() {
+        LinkedList<Consumible> consumibles = new LinkedList<>();
+        try {
+            Connection connection;
+            connection = DriverManager.getConnection(URL, "root", "");
+            Statement statement = connection.createStatement();
+
+            try (ResultSet resultSet = statement.executeQuery(
+                    "SELECT * FROM consumible;")) {
+
+                while (resultSet.next()) {
+                    Consumible consumible = new Consumible();
+                    consumible.setClave(resultSet.getString("clave"));
+                    consumible.setNombre(resultSet.getString("nombre"));
+                    consumible.setMarca(resultSet.getString("marca"));
+                    consumible.setPresentacion(resultSet.getString("presentacion"));
+                    consumible.setContenido(resultSet.getString("contenido"));
+                    consumible.setLocalizacion(resultSet.getString("localizacion"));
+                    consumible.setDescripcion(resultSet.getString("descripcion"));
+                    consumible.setCantidad(resultSet.getInt("cantidad"));
+                    consumibles.add(consumible);
+                }                
+            }
+        } catch (SQLException e) {
+            System.out.println(e.toString());
+        }
+        
+        return consumibles;
+    }
+    
+    /**
+     * Actualiza los valores de un consumible. Notar que la llave primaria no puede
+     * ser editada.
+     * @param consumible Consumible con los nuevos valores.
+     * @return Valor indicando si la operación fue exitosa o no.
+     */
+    public static boolean actualizarConsumible(final Consumible consumible) {
+        try {
+            Connection connection;
+            connection = DriverManager.getConnection(URL, "root", "");
+            Statement statement = connection.createStatement();
+
+            statement.executeUpdate(""
+                    + "UPDATE consumible SET "
+                    + "marca = '" + consumible.getNombre() + "', "
+                    + "password = '" + consumible.getMarca() + "', "
+                    + "presentacion = '" + consumible.getPresentacion() + "', "
+                    + "contenido = '" + consumible.getContenido() + "', "
+                    + "localizacion = '" + consumible.getLocalizacion() + "', "
+                    + "descripcion = '" + consumible.getDescripcion() + "', "
+                    + "cantidad = " + consumible.getCantidad() + " "
+                    + "WHERE clave = '" + consumible.getClave() + "';");
+                    } catch (SQLException exception) {
+            System.out.println(exception);
+            return false;
+        }
+
+        return true;
+    }
+    
+    /**
+     * Elimina un consumible de la base de datos.
+     * @param clave Clave del consumible por eliminar.
+     * @return Valor indicando si la operación fue exitosa.
+     */
+    public static boolean eliminarConsumible(final String clave) {
+        try {
+            Connection connection;
+            connection = DriverManager.getConnection(URL, "root", "");
+            Statement statement = connection.createStatement();
+
+            statement.executeUpdate(""
+        + "DELETE FROM consumible "
+                    + "WHERE clave = '" + clave + "';");
+            } catch (SQLException exception) {
             System.out.println(exception);
             return false;
         }
