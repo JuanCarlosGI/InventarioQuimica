@@ -10,7 +10,7 @@ public class DetalleConsumible {
     private int cantidad;
 
     /**
-     * Observaciones sobre el equipo que se pide.
+     * Observaciones sobre el consumible que se pide.
      */
     private String observaciones;
 
@@ -20,9 +20,9 @@ public class DetalleConsumible {
     private int pedidoId;
 
     /**
-     * Clave del material al que se hace referencia.
+     * Clave del consumible al que se hace referencia.
      */
-    private String reactivoId;
+    private String consumibleId;
 
     /**
      * Regresa el valor de cantidad.
@@ -73,18 +73,18 @@ public class DetalleConsumible {
     }
 
     /**
-     * Regresa el valor de reactivoId.
-     * @return El valor de reactivoId.
+     * Regresa el valor de consumibleId.
+     * @return El valor de consumibleId.
      */
-    public final String getReactivoId() {
-        return reactivoId;
+    public final String getConsumibleId() {
+        return consumibleId;
     }
 
     /**
-     * Asigna el valor de reactivoId.
-     * @param nuevoReactivoId En nuevo valor de reactivoId.
+     * Asigna el valor de consumibleId.
+     * @param nuevoConsumibleId En nuevo valor de consumibleId.
      */
-    public final void setReactivoId(final String nuevoReactivoId) {
-        this.reactivoId = nuevoReactivoId;
+    public final void setconsumibleId(final String nuevoConsumibleId) {
+        this.consumibleId = nuevoConsumibleId;
     }
 }
