@@ -3,6 +3,10 @@ package data;
 import models.Usuario;
 import models.Pedido;
 import models.Laboratorio;
+import models.DetalleConsumible;
+import models.DetalleEquipo;
+import models.DetalleMaterial;
+import models.DetalleReactivo;
 import java.sql.Connection;
 import java.sql.Statement;
 import java.sql.DriverManager;
@@ -1070,4 +1074,152 @@ public final class Context {
 
         return true;
     }
+    
+    
+     /**
+     * Obtiene la lista de todos los detalleconsumibles de un pedido.
+     * @return Lista con todos los detalled consumibles de un pedido.
+     */
+    public static LinkedList<DetalleConsumible> getDetalleConsumible(final int id) {
+        LinkedList<DetalleConsumible> detalleConsumibles = new LinkedList<>();
+
+        try {
+            Connection connection;
+            connection = DriverManager.getConnection(URL, "root", "");
+            Statement statement = connection.createStatement();
+
+            try (ResultSet resultSet = statement.executeQuery(""
+                    + "SELECT * "
+                    + "FROM detalleconsumible "
+                    + "WHERE pedidoId = " + id + ";")) {
+
+                while (resultSet.next()) {
+                    DetalleConsumible detalleConsumible = new DetalleConsumible();
+
+                    detalleConsumible.setCantidad(resultSet.getInt("cantidad"));
+                    detalleConsumible.setObservaciones(resultSet.getString("observaciones"));
+                    detalleConsumible.setPedidoId(resultSet.getInt("pedidoId"));
+                    detalleConsumible.setconsumibleId(
+                            resultSet.getString("consumibleId"));
+                    detalleConsumibles.add(detalleConsumible);
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println(e.toString());
+        }
+
+        return detalleConsumibles;
+    }
+    
+    /**
+     * Obtiene la lista de todos los detalleReactivos de un pedido.
+     * @return Lista con todos los detalled Reactivos de un pedido.
+     */
+    public static LinkedList<DetalleReactivo> getDetalleReactivo(final int id) {
+        LinkedList<DetalleReactivo> detalleReactivos = new LinkedList<>();
+
+        try {
+            Connection connection;
+            connection = DriverManager.getConnection(URL, "root", "");
+            Statement statement = connection.createStatement();
+
+            try (ResultSet resultSet = statement.executeQuery(""
+                    + "SELECT * "
+                    + "FROM detallereactivo "
+                    + "WHERE pedidoId = " + id + ";")) {
+
+                while (resultSet.next()) {
+                    DetalleReactivo detalleReactivo = new DetalleReactivo();
+
+                    detalleReactivo.setCantidad(resultSet.getInt("cantidad"));
+                    detalleReactivo.setObservaciones(resultSet.getString("observaciones"));
+                    detalleReactivo.setPedidoId(resultSet.getInt("pedidoId"));
+                    detalleReactivo.setReactivoId(
+                            resultSet.getString("reactivoId"));
+                    detalleReactivo.setCantidadRegresada(resultSet.getInt("cantidadRegresada"));
+                    detalleReactivos.add(detalleReactivo);
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println(e.toString());
+        }
+
+        return detalleReactivos;
+    }
+    
+    
+    /**
+     * Obtiene la lista de todos los detalleEquipos de un pedido.
+     * @return Lista con todos los detalled Equipos de un pedido.
+     */
+    public static LinkedList<DetalleEquipo> getDetalleEquipo(final int id) {
+        LinkedList<DetalleEquipo> detalleEquipos = new LinkedList<>();
+
+        try {
+            Connection connection;
+            connection = DriverManager.getConnection(URL, "root", "");
+            Statement statement = connection.createStatement();
+
+            try (ResultSet resultSet = statement.executeQuery(""
+                    + "SELECT * "
+                    + "FROM detalleequipo "
+                    + "WHERE pedidoId = " + id + ";")) {
+
+                while (resultSet.next()) {
+                    DetalleEquipo detalleEquipo = new DetalleEquipo();
+
+                    detalleEquipo.setCantidad(resultSet.getInt("cantidad"));
+                    detalleEquipo.setObservaciones(resultSet.getString("observaciones"));
+                    detalleEquipo.setPedidoId(resultSet.getInt("pedidoId"));
+                    detalleEquipo.setEquipoId(
+                            resultSet.getString("equipoId"));
+                    detalleEquipo.setCantidadRegresada(resultSet.getInt("cantidadRegresada"));
+                    detalleEquipos.add(detalleEquipo);
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println(e.toString());
+        }
+
+        return detalleEquipos;
+    }
+    
+    
+    /**
+     * Obtiene la lista de todos los detalleMaterials de un pedido.
+     * @return Lista con todos los detalled Materials de un pedido.
+     */
+    public static LinkedList<DetalleMaterial> getDetalleMaterial(final int id) {
+        LinkedList<DetalleMaterial> detalleMaterials = new LinkedList<>();
+
+        try {
+            Connection connection;
+            connection = DriverManager.getConnection(URL, "root", "");
+            Statement statement = connection.createStatement();
+
+            try (ResultSet resultSet = statement.executeQuery(""
+                    + "SELECT * "
+                    + "FROM detallematerial "
+                    + "WHERE pedidoId = " + id + ";")) {
+
+                while (resultSet.next()) {
+                    DetalleMaterial detalleMaterial = new DetalleMaterial();
+
+                    detalleMaterial.setCantidad(resultSet.getInt("cantidad"));
+                    detalleMaterial.setObservaciones(resultSet.getString("observaciones"));
+                    detalleMaterial.setPedidoId(resultSet.getInt("pedidoId"));
+                    detalleMaterial.setMaterialId(
+                            resultSet.getString("materialId"));
+                    detalleMaterial.setCantidadRegresada(resultSet.getInt("cantidadRegresada"));
+                    detalleMaterials.add(detalleMaterial);
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println(e.toString());
+        }
+
+        return detalleMaterials;
+    }
+    
+    
 }
