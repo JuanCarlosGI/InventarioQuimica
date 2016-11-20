@@ -29,7 +29,7 @@ public final class Context {
      */
     private static final String URL =
             "jdbc:mysql://localhost/inventarioquimica";
-
+    
     /**
      * Constructor privado para asegurar que nadie instancie la clase.
      */
@@ -64,7 +64,7 @@ public final class Context {
                     usuario.setCorreo(resultSet.getString("correo"));
                 }
             }
-        } catch (SQLException exception) {
+        } catch (Exception exception) {
             System.out.println(exception);
         }
 
