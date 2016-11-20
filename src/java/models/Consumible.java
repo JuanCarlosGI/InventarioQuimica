@@ -1,5 +1,8 @@
 package models;
 
+import data.Context;
+import java.util.List;
+
 /**
  * Clase representando un consumible del laboratorio.
  * @author Juan Carlos Guzmán Islas
@@ -172,4 +175,13 @@ public class Consumible {
     public final void setCantidad(final int nuevaCantidad) {
         this.cantidad = nuevaCantidad;
     }
+
+    /**
+     * Obtiene la lista de detalleConsumible que tienen como consumible a este
+     * consumible.
+     * @return La lista de detalles.
+     *
+    public final List<DetalleConsumible> getDetalleConsumibles() {
+        return Context.getDetallesConsumibles().removeIf(c -> c.getConsumibleId() != clave);
+    }*/
 }
