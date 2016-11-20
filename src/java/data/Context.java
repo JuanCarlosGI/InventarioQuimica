@@ -2,6 +2,7 @@ package data;
 
 import models.Usuario;
 import models.Pedido;
+import models.Laboratorio;
 import java.sql.Connection;
 import java.sql.Statement;
 import java.sql.DriverManager;
@@ -17,7 +18,8 @@ public final class Context {
     /**
      * String conteniendo el URL de la base de datos.
      */
-    private static final String URL = "jdbc:mysql://localhost/inventarioquimica";
+    private static final String URL =
+            "jdbc:mysql://localhost/inventarioquimica";
 
     /**
      * Constructor privado para asegurar que nadie instancie la clase.
@@ -44,7 +46,6 @@ public final class Context {
                     + "FROM usuario "
                     + "WHERE matricula = '" + matricula + "';")) {
                 if (resultSet.next()) {
-                    
                     usuario = new Usuario();
                     usuario.setMatricula(resultSet.getString("matricula"));
                     usuario.setNombre(resultSet.getString("nombre"));
@@ -319,6 +320,140 @@ public final class Context {
             statement.executeUpdate(""
                     + "DELETE FROM invantarioquimica.pedido "
                     + "WHERE id = " + id + ";");
+        } catch (SQLException exception) {
+            System.out.println(exception);
+            return false;
+        }
+
+        return true;
+    }
+
+    /**
+     * Obtiene un laboratorio de la base de datos.
+     * @param clave ID del laboratorio a obtener.
+     * @return El laboratorio, o nulo si no encuentra un laboratorio con dicha
+     * clave.
+     */
+    public static Laboratorio getLaboratorio(final String clave) {
+        Laboratorio laboratorio = null;
+
+        try {
+            Connection connection;
+            connection = DriverManager.getConnection(URL, "root", "");
+            Statement statement = connection.createStatement();
+
+            try (ResultSet resultSet = statement.executeQuery(""
+                    + "SELECT * "
+                    + "FROM inventarioquimica.laboratorio "
+                    + "WHERE clave = '" + clave + "';")) {
+                if (resultSet.next()) {
+                    laboratorio = new Laboratorio();
+
+                    laboratorio.setClave(resultSet.getString("clave"));
+                    laboratorio.setNombre(resultSet.getString("nombre"));
+                }
+            }
+        } catch (SQLException exception) {
+            System.out.println(exception);
+        }
+
+        return laboratorio;
+    }
+
+    /**
+     * Obtiene la lista de todos los laboratorios.
+     * @return Lista con todos los laboratorios.
+     */
+    public static LinkedList<Laboratorio> getLaboratorios() {
+        LinkedList<Laboratorio> laboratorios = new LinkedList<>();
+
+        try {
+            Connection connection;
+            connection = DriverManager.getConnection(URL, "root", "");
+            Statement statement = connection.createStatement();
+
+            try (ResultSet resultSet = statement.executeQuery(
+                    "SELECT * FROM inventarioquimica.laboratorio;")) {
+
+                while (resultSet.next()) {
+                    Laboratorio laboratorio = new Laboratorio();
+
+                    laboratorio.setClave(resultSet.getString("clave"));
+                    laboratorio.setNombre(resultSet.getString("nombre"));
+
+                    laboratorios.add(laboratorio);
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println(e.toString());
+        }
+
+        return laboratorios;
+    }
+
+    /**
+     * Crea un nuevo registro en la base de datos con el nuevo laboratorio.
+     * @param laboratorio El laboratorio a ser guardado.
+     * @return Valor indicando si fue exitoso o no.
+     */
+    public static boolean insertarLaboratorio(final Laboratorio laboratorio) {
+        try {
+            Connection connection;
+            connection = DriverManager.getConnection(URL, "root", "");
+            Statement statement = connection.createStatement();
+
+            statement.executeUpdate(""
+                    + "INSERT INTO invantarioquimica.laboratorio "
+                    + "(clave, nombre)"
+                    + "VALUES ("
+                    + "'" + laboratorio.getClave() + "', "
+                    + "'" + laboratorio.getNombre() + "');");
+        } catch (SQLException exception) {
+            System.out.println(exception);
+            return false;
+        }
+
+        return true;
+    }
+
+    /**
+     * Actualiza los valores de un pedido. Notar que la llave primaria no puede
+     * ser editada.
+     * @param laboratorio Pedido con los nuevos valores.
+     * @return Valor indicando si la operación fue exitosa o no.
+     */
+    public static boolean actualizarLaboratorio(final Laboratorio laboratorio) {
+        try {
+            Connection connection;
+            connection = DriverManager.getConnection(URL, "root", "");
+            Statement statement = connection.createStatement();
+
+            statement.executeUpdate(""
+                    + "UPDATE invantarioquimica.laboratorio SET "
+                    + "nombre = '" + laboratorio.getNombre() + "' "
+                    + "WHERE clave = " + laboratorio.getClave() + ";");
+        } catch (SQLException exception) {
+            System.out.println(exception);
+            return false;
+        }
+
+        return true;
+    }
+
+    /**
+     * Elimina un laboratorio de la base de datos.
+     * @param clave ID del laboratorio por eliminar.
+     * @return Valor indicando si la operación fue exitosa.
+     */
+    public static boolean eliminarLaboratorio(final String clave) {
+        try {
+            Connection connection;
+            connection = DriverManager.getConnection(URL, "root", "");
+            Statement statement = connection.createStatement();
+
+            statement.executeUpdate(""
+                    + "DELETE FROM invantarioquimica.pedido "
+                    + "WHERE clave = " + clave + ";");
         } catch (SQLException exception) {
             System.out.println(exception);
             return false;
