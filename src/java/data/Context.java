@@ -17,6 +17,7 @@ import models.Consumible;
 import models.Equipo;
 import models.Reactivo;
 import models.Material;
+import models.RegistroLaboratorio;
 
 /**
  * Clase que será utilzada para obetener acceso a la base de datos.
@@ -1221,5 +1222,32 @@ public final class Context {
         return detalleMaterials;
     }
     
-    
+    public static LinkedList<RegistroLaboratorio> getRegistrosLaboratorios() {
+        LinkedList<RegistroLaboratorio> registros = new LinkedList<>();
+
+        try {
+            Connection connection;
+            connection = DriverManager.getConnection(URL, "root", "");
+            Statement statement = connection.createStatement();
+
+            try (ResultSet resultSet = statement.executeQuery(""
+                    + "SELECT * "
+                    + "FROM registrolaboratorio;")) {
+
+                while (resultSet.next()) {
+                    RegistroLaboratorio registro = new RegistroLaboratorio();
+
+                    registro.setAlumnoId(resultSet.getString("alumnoId"));
+                    registro.setLaboratorioId(resultSet.getString("laboratorioId"));
+                    registro.setMaestroId(resultSet.getString("maestroId"));
+                    
+                    registros.add(registro);
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println(e.toString());
+        }
+
+        return registros;
+    }
 }
