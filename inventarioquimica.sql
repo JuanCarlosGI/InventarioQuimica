@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 19-11-2016 a las 19:26:38
+-- Tiempo de generación: 20-11-2016 a las 20:47:16
 -- Versión del servidor: 10.1.16-MariaDB
 -- Versión de PHP: 5.6.24
 
@@ -120,6 +120,17 @@ CREATE TABLE `laboratorio` (
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `maestrolaboratorio`
+--
+
+CREATE TABLE `maestrolaboratorio` (
+  `maestroId` varchar(10) NOT NULL,
+  `laboratorioId` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `material`
 --
 
@@ -142,10 +153,12 @@ CREATE TABLE `material` (
 CREATE TABLE `pedido` (
   `id` int(11) NOT NULL,
   `status` int(11) NOT NULL,
-  `fecha` date NOT NULL,
+  `fechaEmision` date NOT NULL,
   `profesorId` varchar(100) NOT NULL,
   `usuarioId` varchar(10) NOT NULL,
-  `laboratorioId` varchar(100) NOT NULL
+  `laboratorioId` varchar(100) NOT NULL,
+  `fechaEntrega` date NOT NULL,
+  `fechaDevolucion` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -168,6 +181,18 @@ CREATE TABLE `reactivo` (
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `registrolaboratorio`
+--
+
+CREATE TABLE `registrolaboratorio` (
+  `maestroId` varchar(10) NOT NULL,
+  `alumnoId` varchar(10) NOT NULL,
+  `laboratorioId` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `usuario`
 --
 
@@ -179,6 +204,14 @@ CREATE TABLE `usuario` (
   `creadorId` varchar(100) NOT NULL,
   `correo` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `usuario`
+--
+
+INSERT INTO `usuario` (`matricula`, `password`, `rol`, `nombre`, `creadorId`, `correo`) VALUES
+('A01195359', 'A01195359', 'Alumno', 'Cesar de la Barreda', 'A01196064', 'cesar@gmail.com'),
+('A01196064', 'A01196064', 'Administrador', 'Armando Aguilar', '', 'armando@gmail.com');
 
 --
 -- Índices para tablas volcadas
