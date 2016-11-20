@@ -11,6 +11,19 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
       <meta charset="UTF-8">
       <meta http-equiv="Content-type" content="text/html; charset=UTF-8">
+
+      <script>
+        function validate() {
+          var check = prompt("¿Estás seguro? \n Escribe 'borrar alumnos del semestre'");
+          
+          if (check == "borrar alumnos del semestre") {
+              alert("boom");
+          }
+          else {
+            alert("No se borro información");
+          }
+        }
+      </script>
     </head>
 
     <body>
@@ -104,7 +117,7 @@
         <div class="row">
           <div class="col s12">
           <div class="section center">
-            <a href="#" class="waves-effect waves-light btn-large red" style="width: 80%">Borrar alumnos del Semestre</a><br><br>
+            <a onclick="validate()" class="waves-effect waves-light btn-large red" style="width: 80%">Borrar alumnos del Semestre</a><br><br>
             </div>
           </div>
         </div>
