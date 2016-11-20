@@ -7,6 +7,8 @@
       <!--Import materialize.css-->
       <link type="text/css" rel="stylesheet" href="css/materialize.css"  media="screen,projection"/>
 
+      <script type="text/javascript" src="js/agregarLaboratorio.js"></script>
+
       <!--Let browser know website is optimized for mobile-->
       <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
       <meta charset="UTF-8">
@@ -71,7 +73,7 @@
             <label for="email">Correo</label>
           </div>
           <div class="input-field col s6">
-            <input required placeholder="36" type="text" class="validate" id="numeroAlumnos" name="numeroAlumnos"/>
+            <input required placeholder="36" type="text" class="validate" id="numeroAlumnos" name="numeroAlumnos" onchange="nuevosAlumnos(this)"/>
             <label for="numeroAlumnos">Cantidad de Alumnos inscritos</label>
           </div>
         </div><br>
@@ -81,8 +83,7 @@
             <h5>Matriculas</h5>
           </div>
           <div class="col s1 m3"></div>
-          <div class="input-field col s10 m6">
-            <input required placeholder="A000000" type="text" class="validate" id="matricula-1" name="matricula-1"/>
+          <div id="alumnos" class="input-field col s10 m6">
           </div>
         </div>
 
