@@ -212,7 +212,9 @@ public final class Context {
                     pedido.setLaboratorioId(
                             resultSet.getString("laboratorioId"));
                     pedido.setProfesorId(resultSet.getString("profesorId"));
-                    pedido.setFecha(resultSet.getDate("fecha"));
+                    pedido.setFechaEmision(resultSet.getDate("fechaEmision"));
+                    pedido.setFechaDevolucion(resultSet.getDate("fechaDevolucion"));
+                    pedido.setFechaEntrega(resultSet.getDate("fechaEntrega"));
                 }
             }
         } catch (SQLException exception) {
@@ -246,7 +248,9 @@ public final class Context {
                     pedido.setLaboratorioId(
                             resultSet.getString("laboratorioId"));
                     pedido.setProfesorId(resultSet.getString("profesorId"));
-                    pedido.setFecha(resultSet.getDate("fecha"));
+                    pedido.setFechaEmision(resultSet.getDate("fechaEmision"));
+                    pedido.setFechaDevolucion(resultSet.getDate("fechaDevolucion"));
+                    pedido.setFechaEntrega(resultSet.getDate("fechaEntrega"));
 
                     pedidos.add(pedido);
                 }
@@ -271,13 +275,15 @@ public final class Context {
 
             statement.executeUpdate(""
                     + "INSERT INTO pedido "
-                    + "(id, usuarioId, profesorId, labratorioId, fecha, status)"
+                    + "(id, usuarioId, profesorId, labratorioId, fechaEmision, fechaEntrega, fechaDevolucion, status)"
                     + "VALUES ("
                     + pedido.getId() + ", "
                     + "'" + pedido.getUsuarioId() + "', "
                     + "'" + pedido.getProfesorId() + "', "
                     + pedido.getLaboratorioId() + ", "
-                    + "'" + pedido.getFecha() + "', "
+                    + "'" + pedido.getFechaEmision() + "', "
+                    + "'" + pedido.getFechaEntrega() + "', "
+                    + "'" + pedido.getFechaDevolucion() + "', "
                     + pedido.getStatus() + ");");
         } catch (SQLException exception) {
             System.out.println(exception);
@@ -304,7 +310,9 @@ public final class Context {
                     + "usuarioId = '" + pedido.getUsuarioId() + "', "
                     + "profesorId = '" + pedido.getProfesorId() + "', "
                     + "laboratorioId = " + pedido.getLaboratorioId() + ", "
-                    + "fecha = '" + pedido.getFecha() + "', "
+                    + "fechaEmision = '" + pedido.getFechaEmision() + "', "
+                    + "fechaEntrega = '" + pedido.getFechaEntrega() + "', "
+                    + "fechaDevolucion = '" + pedido.getFechaDevolucion() + "', "
                     + "status = " + pedido.getStatus() + " "
                     + "WHERE id = " + pedido.getId() + ";");
         } catch (SQLException exception) {

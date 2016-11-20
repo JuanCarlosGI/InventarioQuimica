@@ -25,7 +25,11 @@ public class Pedido {
     /**
      * Fecha en la cual se generó el pedido.
      */
-    private Date fecha;
+    private Date fechaEmision;
+    
+    private Date fechaEntrega;
+    
+    private Date fechaDevolucion;
 
     /**
      * ID del profesor que imparte el laboratorio.
@@ -86,19 +90,19 @@ public class Pedido {
     }
 
     /**
-     * Regresa la fecha en la que el pedido fue creado.
-     * @return La fecha en la que el pedido fue creado.
+     * Regresa la fechaEmision en la que el pedido fue creado.
+     * @return La fechaEmision en la que el pedido fue creado.
      */
-    public final Date getFecha() {
-        return fecha;
+    public final Date getFechaEmision() {
+        return fechaEmision;
     }
 
     /**
-     * Le asigna una nueva fecha al pedido.
-     * @param nuevaFecha La nueva fecha del pedido.
+     * Le asigna una nueva fechaEmision al pedido.
+     * @param nuevaFecha La nueva fechaEmision del pedido.
      */
-    public final void setFecha(final Date nuevaFecha) {
-        this.fecha = nuevaFecha;
+    public final void setFechaEmision(final Date nuevaFecha) {
+        this.fechaEmision = nuevaFecha;
     }
 
     /**
@@ -132,4 +136,22 @@ public class Pedido {
     public final void setLaboratorioId(final String nuevoLaboratorioId) {
         this.laboratorioId = nuevoLaboratorioId;
     }
+
+    public Date getFechaEntrega() {
+        return fechaEntrega;
+    }
+
+    public void setFechaEntrega(Date fechaEntrega) {
+        this.fechaEntrega = fechaEntrega;
+    }
+
+    public Date getFechaDevolucion() {
+        return fechaDevolucion;
+    }
+
+    public void setFechaDevolucion(Date fechaDevolucion) {
+        this.fechaDevolucion = fechaDevolucion;
+    }
+    
+    
 }
