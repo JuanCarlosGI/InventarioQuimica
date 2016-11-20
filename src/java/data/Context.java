@@ -77,7 +77,7 @@ public final class Context {
             Statement statement = connection.createStatement();
 
             try (ResultSet resultSet = statement.executeQuery(
-                    "SELECT * FROM inventarioquimica.usuario;")) {
+                    "SELECT * FROM usuario;")) {
 
                 while (resultSet.next()) {
                     Usuario usuario = new Usuario();
@@ -111,7 +111,7 @@ public final class Context {
             Statement statement = connection.createStatement();
 
             statement.executeUpdate(""
-                    + "INSERT INTO inventarioquimica.usuario "
+                    + "INSERT INTO usuario "
                     + "(matricula, nombre, password, rol, creadorId, correo) "
                     + "VALUES ("
                     + "'" + usuario.getMatricula() + "', "
@@ -141,7 +141,7 @@ public final class Context {
             Statement statement = connection.createStatement();
 
             statement.executeUpdate(""
-                    + "UPDATE invantarioquimica.usuario SET "
+                    + "UPDATE usuario SET "
                     + "nombre = '" + usuario.getNombre() + "', "
                     + "password = '" + usuario.getPassword() + "', "
                     + "rol = '" + usuario.getRol() + "', "
@@ -168,7 +168,7 @@ public final class Context {
             Statement statement = connection.createStatement();
 
             statement.executeUpdate(""
-                    + "DELETE FROM invantarioquimica.usuario "
+                    + "DELETE FROM usuario "
                     + "WHERE matricula = '" + matricula + "';");
         } catch (SQLException exception) {
             System.out.println(exception);
@@ -193,7 +193,7 @@ public final class Context {
 
             try (ResultSet resultSet = statement.executeQuery(""
                     + "SELECT * "
-                    + "FROM inventarioquimica.pedido "
+                    + "FROM pedido "
                     + "WHERE id = " + id + ";")) {
                 if (resultSet.next()) {
                     pedido = new Pedido();
@@ -227,7 +227,7 @@ public final class Context {
             Statement statement = connection.createStatement();
 
             try (ResultSet resultSet = statement.executeQuery(
-                    "SELECT * FROM inventarioquimica.pedido;")) {
+                    "SELECT * FROM pedido;")) {
 
                 while (resultSet.next()) {
                     Pedido pedido = new Pedido();
@@ -262,7 +262,7 @@ public final class Context {
             Statement statement = connection.createStatement();
 
             statement.executeUpdate(""
-                    + "INSERT INTO invantarioquimica.pedido "
+                    + "INSERT INTO pedido "
                     + "(id, usuarioId, profesorId, labratorioId, fecha, status)"
                     + "VALUES ("
                     + pedido.getId() + ", "
@@ -292,7 +292,7 @@ public final class Context {
             Statement statement = connection.createStatement();
 
             statement.executeUpdate(""
-                    + "UPDATE invantarioquimica.pedido SET "
+                    + "UPDATE pedido SET "
                     + "usuarioId = '" + pedido.getUsuarioId() + "', "
                     + "profesorId = '" + pedido.getProfesorId() + "', "
                     + "laboratorioId = " + pedido.getLaboratorioId() + ", "
@@ -319,7 +319,7 @@ public final class Context {
             Statement statement = connection.createStatement();
 
             statement.executeUpdate(""
-                    + "DELETE FROM invantarioquimica.pedido "
+                    + "DELETE FROM pedido "
                     + "WHERE id = " + id + ";");
         } catch (SQLException exception) {
             System.out.println(exception);
@@ -345,7 +345,7 @@ public final class Context {
 
             try (ResultSet resultSet = statement.executeQuery(""
                     + "SELECT * "
-                    + "FROM inventarioquimica.laboratorio "
+                    + "FROM laboratorio "
                     + "WHERE clave = '" + clave + "';")) {
                 if (resultSet.next()) {
                     laboratorio = new Laboratorio();
@@ -374,7 +374,7 @@ public final class Context {
             Statement statement = connection.createStatement();
 
             try (ResultSet resultSet = statement.executeQuery(
-                    "SELECT * FROM inventarioquimica.laboratorio;")) {
+                    "SELECT * FROM laboratorio;")) {
 
                 while (resultSet.next()) {
                     Laboratorio laboratorio = new Laboratorio();
@@ -404,7 +404,7 @@ public final class Context {
             Statement statement = connection.createStatement();
 
             statement.executeUpdate(""
-                    + "INSERT INTO invantarioquimica.laboratorio "
+                    + "INSERT INTO laboratorio "
                     + "(clave, nombre)"
                     + "VALUES ("
                     + "'" + laboratorio.getClave() + "', "
@@ -418,8 +418,8 @@ public final class Context {
     }
 
     /**
-     * Actualiza los valores de un pedido. Notar que la llave primaria no puede
-     * ser editada.
+     * Actualiza los valores de un laboratorio. Notar que la llave primaria no
+     * puede ser editada.
      * @param laboratorio Pedido con los nuevos valores.
      * @return Valor indicando si la operación fue exitosa o no.
      */
@@ -430,7 +430,7 @@ public final class Context {
             Statement statement = connection.createStatement();
 
             statement.executeUpdate(""
-                    + "UPDATE invantarioquimica.laboratorio SET "
+                    + "UPDATE laboratorio SET "
                     + "nombre = '" + laboratorio.getNombre() + "' "
                     + "WHERE clave = " + laboratorio.getClave() + ";");
         } catch (SQLException exception) {
@@ -453,7 +453,7 @@ public final class Context {
             Statement statement = connection.createStatement();
 
             statement.executeUpdate(""
-                    + "DELETE FROM invantarioquimica.pedido "
+                    + "DELETE FROM pedido "
                     + "WHERE clave = " + clave + ";");
         } catch (SQLException exception) {
             System.out.println(exception);
@@ -462,7 +462,77 @@ public final class Context {
 
         return true;
     }
-    
+
+    /**
+     * Obtiene un Equipo de la base de datos.
+     * @param clave La clave del equipo por obtener.
+     * @return El equipo, o nulo si no se encontró.
+     */
+    public static Equipo getEquipo(final String clave) {
+        Equipo equipo = null;
+
+        try {
+            Connection connection;
+            connection = DriverManager.getConnection(URL, "root", "");
+            Statement statement = connection.createStatement();
+
+            try (ResultSet resultSet = statement.executeQuery(""
+                    + "SELECT * "
+                    + "FROM equipo "
+                    + "WHERE clave = '" + clave + "';")) {
+                if (resultSet.next()) {
+                    equipo = new Equipo();
+
+                    equipo.setClave(resultSet.getString("clave"));
+                    equipo.setNombre(resultSet.getString("nombre"));
+                    equipo.setMarca(resultSet.getString("marca"));
+                    equipo.setCantidad(resultSet.getInt("cantidad"));
+                    equipo.setLocalizacion(resultSet.getString("localizacion"));
+                    equipo.setDescripcion(resultSet.getString("descripcion"));
+                }
+            }
+        } catch (SQLException exception) {
+            System.out.println(exception);
+        }
+
+        return equipo;
+    }
+
+    /**
+     * Obtiene la lista de todos los equipos.
+     * @return Lista con todos los equipos.
+     */
+    public static LinkedList<Equipo> getEquipos() {
+        LinkedList<Equipo> equipos = new LinkedList<>();
+
+        try {
+            Connection connection;
+            connection = DriverManager.getConnection(URL, "root", "");
+            Statement statement = connection.createStatement();
+
+            try (ResultSet resultSet = statement.executeQuery(
+                    "SELECT * FROM equipo;")) {
+
+                while (resultSet.next()) {
+                    Equipo equipo = new Equipo();
+
+                    equipo.setClave(resultSet.getString("clave"));
+                    equipo.setNombre(resultSet.getString("nombre"));
+                    equipo.setMarca(resultSet.getString("marca"));
+                    equipo.setCantidad(resultSet.getInt("cantidad"));
+                    equipo.setLocalizacion(resultSet.getString("localizacion"));
+                    equipo.setDescripcion(resultSet.getString("descripcion"));
+
+                    equipos.add(equipo);
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println(e.toString());
+        }
+
+        return equipos;
+    }
+
     /**
      * Crea un nuevo registro en la base de datos con el nuevo equipo.
      * @param equipo El equipo a ser guardado.
@@ -475,19 +545,70 @@ public final class Context {
             Statement statement = connection.createStatement();
 
             statement.executeUpdate(""
-                    + "INSERT INTO inventarioquimica.equipo "
-                    + "(clave, nombre, marca, cantidad, localizacion, descripcion) "
+                    + "INSERT INTO equipo "
+                    + "(clave, nombre, marca, cantidad, localizacion, "
+                    + "descripcion) "
                     + "VALUES ("
                     + "'" + equipo.getClave() + "', "
                     + "'" + equipo.getNombre() + "', "
                     + "'" + equipo.getMarca() + "', "
-                    + "'" + equipo.getCantidad() + "', "
+                    + equipo.getCantidad() + ", "
                     + "'" + equipo.getLocalizacion() + "', "
                     + "'" + equipo.getDescripcion() + "');");
         } catch (SQLException exception) {
             System.out.println(exception);
             return false;
         }
+        return true;
+    }
+
+    /**
+     * Actualiza los valores de un equipo. Notar que la llave primaria no puede
+     * ser editada.
+     * @param equipo equipo con los nuevos valores.
+     * @return Valor indicando si la operación fue exitosa o no.
+     */
+    public static boolean actualizarEquipo(final Equipo equipo) {
+        try {
+            Connection connection;
+            connection = DriverManager.getConnection(URL, "root", "");
+            Statement statement = connection.createStatement();
+
+            statement.executeUpdate(""
+                    + "UPDATE equipo SET "
+                    + "nombre = '" + equipo.getNombre() + "', "
+                    + "marca = '" + equipo.getMarca() + "', "
+                    + "cantidad = " + equipo.getCantidad() + ", "
+                    + "localizacion = '" + equipo.getLocalizacion() + "', "
+                    + "descripcion = '" + equipo.getDescripcion() + "' "
+                    + "WHERE clave = " + equipo.getClave() + ";");
+        } catch (SQLException exception) {
+            System.out.println(exception);
+            return false;
+        }
+
+        return true;
+    }
+
+    /**
+     * Elimina un laboratorio de la base de datos.
+     * @param clave ID del laboratorio por eliminar.
+     * @return Valor indicando si la operación fue exitosa.
+     */
+    public static boolean eliminarEquipo(final String clave) {
+        try {
+            Connection connection;
+            connection = DriverManager.getConnection(URL, "root", "");
+            Statement statement = connection.createStatement();
+
+            statement.executeUpdate(""
+                    + "DELETE FROM equipo "
+                    + "WHERE clave = " + clave + ";");
+        } catch (SQLException exception) {
+            System.out.println(exception);
+            return false;
+        }
+
         return true;
     }
 }
