@@ -10,6 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.LinkedList;
 import models.Equipo;
+import models.Reactivo;
 
 /**
  * Clase que será utilzada para obetener acceso a la base de datos.
@@ -488,6 +489,161 @@ public final class Context {
             System.out.println(exception);
             return false;
         }
+        return true;
+    }
+    
+    /**
+     * Crea un nuevo registro en la base de datos con el nuevo reactivo.
+     * @param equipo El reactivo a ser guardado.
+     * @return Valor indicando si fue exitoso o no.
+     */
+    public static boolean insertarReactivo(final Reactivo reactivo) {
+        try {
+            Connection connection;
+            connection = DriverManager.getConnection(URL, "root", "");
+            Statement statement = connection.createStatement();
+
+            statement.executeUpdate(""
+                    + "INSERT INTO reactivo "
+                    + "(clave, nombre, marca, presentacion, contenido, localizacion, descripcion, cantidad) "
+                    + "VALUES ("
+                    + "'" + reactivo.getClave() + "', "
+                    + "'" + reactivo.getNombre() + "', "
+                    + "'" + reactivo.getMarca() + "', "
+                    + "'" + reactivo.getPresentacion() + "', "
+                    + "'" + reactivo.getContenido() + "', "
+                    + "'" + reactivo.getLocalizacion() + "', "
+                    + "'" + reactivo.getDescripcion() + "', "
+                    + reactivo.getCantidad() + "');");
+        } catch (SQLException exception) {
+            System.out.println(exception);
+            return false;
+        }
+        return true;
+    }
+    
+    /**
+     * Obtiene un reactivo dado su clave.
+     *
+     * @param clave Clave del reactivo que se busca.
+     * @return El reactivo correspondiente, o nulo si no existe.
+     */
+    public static Reactivo getReactivo(final String clave) {
+        Reactivo reactivo = null;
+        //System.out.println(matricula);
+        try {
+            Connection connection;
+            connection = DriverManager.getConnection(URL, "root", "");
+            Statement statement = connection.createStatement();
+
+            try (ResultSet resultSet = statement.executeQuery(""
+                    + "SELECT * "
+                    + "FROM reactivo "
+                    + "WHERE clave = '" + clave + "';")) {
+                if (resultSet.next()) {
+                    reactivo = new Reactivo();
+                    reactivo.setClave(resultSet.getString("clave"));
+                    reactivo.setNombre(resultSet.getString("nombre"));
+                    reactivo.setMarca(resultSet.getString("marca"));
+                    reactivo.setPresentacion(resultSet.getString("presentacion"));
+                    reactivo.setContenido(resultSet.getString("contenido"));
+                    reactivo.setLocalizacion(resultSet.getString("localizacion"));
+                    reactivo.setDescripcion(resultSet.getString("descripcion"));
+                    reactivo.setCantidad(resultSet.getInt("cantidad"));
+                }
+            }
+        } catch (SQLException exception) {
+            System.out.println(exception);
+        }
+
+        return reactivo;
+    }
+    
+    /**
+     * Obtiene la lista de todos los reactivos.
+     *
+     * @return Lista con todos los reactivos.
+     */
+    public static LinkedList<Reactivo> getReactivos() {
+        LinkedList<Reactivo> reactivos = new LinkedList<>();
+
+        try {
+            Connection connection;
+            connection = DriverManager.getConnection(URL, "root", "");
+            Statement statement = connection.createStatement();
+
+            try (ResultSet resultSet = statement.executeQuery(
+                    "SELECT * FROM reactivo;")) {
+
+                while (resultSet.next()) {
+                    Reactivo reactivo = new Reactivo();
+                    reactivo.setClave(resultSet.getString("clave"));
+                    reactivo.setNombre(resultSet.getString("nombre"));
+                    reactivo.setMarca(resultSet.getString("marca"));
+                    reactivo.setPresentacion(resultSet.getString("presentacion"));
+                    reactivo.setContenido(resultSet.getString("contenido"));
+                    reactivo.setLocalizacion(resultSet.getString("localizacion"));
+                    reactivo.setDescripcion(resultSet.getString("descripcion"));
+                    reactivo.setCantidad(resultSet.getInt("cantidad"));
+                    reactivos.add(reactivo);
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println(e.toString());
+        }
+
+        return reactivos;
+    }
+    
+    /**
+     * Actualiza los valores de un reactivo. Notar que la llave primaria no puede
+     * ser editada.
+     * @param reactivo Reactivo con los nuevos valores.
+     * @return Valor indicando si la operación fue exitosa o no.
+     */
+    public static boolean actualizarReactivo(final Reactivo reactivo) {
+        try {
+            Connection connection;
+            connection = DriverManager.getConnection(URL, "root", "");
+            Statement statement = connection.createStatement();
+
+            statement.executeUpdate(""
+                    + "UPDATE reactivo SET "
+                    + "marca = '" + reactivo.getNombre() + "', "
+                    + "password = '" + reactivo.getMarca() + "', "
+                    + "presentacion = '" + reactivo.getPresentacion() + "', "
+                    + "contenido = '" + reactivo.getContenido() + "', "
+                    + "localizacion = '" + reactivo.getLocalizacion() + "', "
+                    + "descripcion = '" + reactivo.getDescripcion() + "', "
+                    + "cantidad = " + reactivo.getCantidad() + " "
+                    + "WHERE clave = '" + reactivo.getClave() + "';");
+        } catch (SQLException exception) {
+            System.out.println(exception);
+            return false;
+        }
+
+        return true;
+    }
+    
+    /**
+     * Elimina un reactivo de la base de datos.
+     * @param clave Clave del reactivo por eliminar.
+     * @return Valor indicando si la operación fue exitosa.
+     */
+    public static boolean eliminarReactivo(final String clave) {
+        try {
+            Connection connection;
+            connection = DriverManager.getConnection(URL, "root", "");
+            Statement statement = connection.createStatement();
+
+            statement.executeUpdate(""
+                    + "DELETE FROM reactivo "
+                    + "WHERE clave = '" + clave + "';");
+        } catch (SQLException exception) {
+            System.out.println(exception);
+            return false;
+        }
+
         return true;
     }
 }
