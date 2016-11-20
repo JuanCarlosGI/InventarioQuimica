@@ -10,6 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.LinkedList;
 import models.Equipo;
+import models.Material;
 
 /**
  * Clase que será utilzada para obetener acceso a la base de datos.
@@ -591,7 +592,7 @@ public final class Context {
     }
 
     /**
-     * Elimina un laboratorio de la base de datos.
+     * Elimina un equipo de la base de datos.
      * @param clave ID del laboratorio por eliminar.
      * @return Valor indicando si la operación fue exitosa.
      */
@@ -603,6 +604,161 @@ public final class Context {
 
             statement.executeUpdate(""
                     + "DELETE FROM equipo "
+                    + "WHERE clave = " + clave + ";");
+        } catch (SQLException exception) {
+            System.out.println(exception);
+            return false;
+        }
+
+        return true;
+    }
+
+    /**
+     * Obtiene un Material de la base de datos.
+     * @param clave La clave del material por obtener.
+     * @return El material, o nulo si no se encontró.
+     */
+    public static Material getMaterial(final String clave) {
+        Material material = null;
+
+        try {
+            Connection connection;
+            connection = DriverManager.getConnection(URL, "root", "");
+            Statement statement = connection.createStatement();
+
+            try (ResultSet resultSet = statement.executeQuery(""
+                    + "SELECT * "
+                    + "FROM material "
+                    + "WHERE clave = '" + clave + "';")) {
+                if (resultSet.next()) {
+                    material = new Material();
+
+                    material.setClave(resultSet.getString("clave"));
+                    material.setNombre(resultSet.getString("nombre"));
+                    material.setMarca(resultSet.getString("marca"));
+                    material.setCantidad(resultSet.getInt("cantidad"));
+                    material.setLocalizacion(resultSet.
+                            getString("localizacion"));
+                    material.setCapacidad(resultSet.getString("capacidad"));
+                    material.setDescripcion(resultSet.getString("descripcion"));
+                }
+            }
+        } catch (SQLException exception) {
+            System.out.println(exception);
+        }
+
+        return material;
+    }
+
+    /**
+     * Obtiene la lista de todos los materiales.
+     * @return Lista con todos los materiales.
+     */
+    public static LinkedList<Material> getMateriales() {
+        LinkedList<Material> materiales = new LinkedList<>();
+
+        try {
+            Connection connection;
+            connection = DriverManager.getConnection(URL, "root", "");
+            Statement statement = connection.createStatement();
+
+            try (ResultSet resultSet = statement.executeQuery(
+                    "SELECT * FROM material;")) {
+
+                while (resultSet.next()) {
+                    Material material = new Material();
+
+                    material.setClave(resultSet.getString("clave"));
+                    material.setNombre(resultSet.getString("nombre"));
+                    material.setMarca(resultSet.getString("marca"));
+                    material.setCantidad(resultSet.getInt("cantidad"));
+                    material.setLocalizacion(resultSet
+                            .getString("localizacion"));
+                    material.setCapacidad(resultSet.getString("capacidad"));
+                    material.setDescripcion(resultSet.getString("descripcion"));
+
+                    materiales.add(material);
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println(e.toString());
+        }
+
+        return materiales;
+    }
+
+    /**
+     * Crea un nuevo registro en la base de datos con el nuevo material.
+     * @param material El material a ser guardado.
+     * @return Valor indicando si fue exitoso o no.
+     */
+    public static boolean insertarMaterial(final Material material) {
+        try {
+            Connection connection;
+            connection = DriverManager.getConnection(URL, "root", "");
+            Statement statement = connection.createStatement();
+
+            statement.executeUpdate(""
+                    + "INSERT INTO material "
+                    + "(clave, nombre, marca, cantidad, localizacion, "
+                    + "descripcion, capacidad) "
+                    + "VALUES ("
+                    + "'" + material.getClave() + "', "
+                    + "'" + material.getNombre() + "', "
+                    + "'" + material.getMarca() + "', "
+                    + material.getCantidad() + ", "
+                    + "'" + material.getLocalizacion() + "', "
+                    + "'" + material.getDescripcion() + "', "
+                    + "'" + material.getCapacidad() + "');");
+        } catch (SQLException exception) {
+            System.out.println(exception);
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * Actualiza los valores de un material. Notar que la llave primaria no
+     * puede ser editada.
+     * @param material Material con los nuevos valores.
+     * @return Valor indicando si la operación fue exitosa o no.
+     */
+    public static boolean actualizarMaterial(final Material material) {
+        try {
+            Connection connection;
+            connection = DriverManager.getConnection(URL, "root", "");
+            Statement statement = connection.createStatement();
+
+            statement.executeUpdate(""
+                    + "UPDATE material SET "
+                    + "nombre = '" + material.getNombre() + "', "
+                    + "marca = '" + material.getMarca() + "', "
+                    + "cantidad = " + material.getCantidad() + ", "
+                    + "localizacion = '" + material.getLocalizacion() + "', "
+                    + "descripcion = '" + material.getDescripcion() + "', "
+                    + "capacidad = '" + material.getCapacidad() + "' "
+                    + "WHERE clave = " + material.getClave() + ";");
+        } catch (SQLException exception) {
+            System.out.println(exception);
+            return false;
+        }
+
+        return true;
+    }
+
+    /**
+     * Elimina un material de la base de datos.
+     * @param clave ID del material por eliminar.
+     * @return Valor indicando si la operación fue exitosa.
+     */
+    public static boolean eliminarMaterial(final String clave) {
+        try {
+            Connection connection;
+            connection = DriverManager.getConnection(URL, "root", "");
+            Statement statement = connection.createStatement();
+
+            statement.executeUpdate(""
+                    + "DELETE FROM material "
                     + "WHERE clave = " + clave + ";");
         } catch (SQLException exception) {
             System.out.println(exception);
