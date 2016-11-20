@@ -17,7 +17,7 @@ public final class Context {
     /**
      * String conteniendo el URL de la base de datos.
      */
-    private static final String URL = "jdbc:mysql://localhost:3306/mysql";
+    private static final String URL = "jdbc:mysql://localhost/inventarioquimica";
 
     /**
      * Constructor privado para asegurar que nadie instancie la clase.
@@ -33,7 +33,7 @@ public final class Context {
      */
     public static Usuario getUsuario(final String matricula) {
         Usuario usuario = null;
-
+        System.out.println(matricula);
         try {
             Connection connection;
             connection = DriverManager.getConnection(URL, "root", "");
@@ -41,11 +41,12 @@ public final class Context {
 
             try (ResultSet resultSet = statement.executeQuery(""
                     + "SELECT * "
-                    + "FROM inventarioquimica.usuario "
+                    + "FROM usuario "
                     + "WHERE matricula = '" + matricula + "';")) {
                 if (resultSet.next()) {
+                    
                     usuario = new Usuario();
-                    usuario.setMatricula(resultSet.getString("id"));
+                    usuario.setMatricula(resultSet.getString("matricula"));
                     usuario.setNombre(resultSet.getString("nombre"));
                     usuario.setPassword(resultSet.getString("password"));
                     usuario.setRol(resultSet.getString("rol"));

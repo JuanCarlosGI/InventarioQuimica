@@ -3,7 +3,7 @@ package servers;
 import java.io.*;
 import javax.servlet.*;
 import javax.servlet.http.*;
-import dal.Context;
+import data.Context;
 import models.Usuario;
 
 public class validaUsuario extends HttpServlet
@@ -13,10 +13,11 @@ public class validaUsuario extends HttpServlet
                           throws ServletException, IOException
     {
         String login = request.getParameter("username");
+        System.out.println(login);
         String pass = request.getParameter("password");
         Usuario usuario = Context.getUsuario(login);
         
-        if (usuario != null || usuario.getPassword().contentEquals(pass)) {
+        if (usuario != null && usuario.getPassword().contentEquals(pass)) {
             if (usuario.getRol().equals("Administrador")) {
                 String url = "/loginAdmin.html";
                 RequestDispatcher dispatcher =
@@ -28,7 +29,7 @@ public class validaUsuario extends HttpServlet
                  getServletContext().getRequestDispatcher(url);
                 dispatcher.forward(request, response); 
             } else if (usuario.getRol().equals("Alumno")) {
-                String url = "/loginAlumno.html";
+                String url = "/alumno_login.html";
                 RequestDispatcher dispatcher =
                  getServletContext().getRequestDispatcher(url);
                 dispatcher.forward(request, response); 
