@@ -110,38 +110,7 @@
 
       <h5>Productos</h5>
 
-  	  <table class="responsive-table striped" id="vale">
-    		<tr id="producto-1">
-    			<td id="tipo-1"> 
-            <select required>
-              <option value="" disabled selected>Tipo</option>
-              <option value="Material">Material</option>
-              <option value="Equipo">Equipo</option>
-              <option value="Consumible">Consumible</option>
-              <option value="Reactivo">Reactivo</option>
-            </select>
-    			</td>
-    			<td id="capacidad-1"> 
-            <input required placeholder="gramos" id="capacidad" name="capacidad"/> 
-          </td>
-    			<td id="marca-1">
-    				<select required>
-              <option value="" disabled selected>Marca</option>
-              <option value="1">Marca 1</option>
-              <option value="2">Marca 2</option>
-              <option value="3">Marca 3</option>
-            </select>
-    			</td>
-    			<td id="cantidad-1"> 
-            <input required placeholder="gramos" id="cantidad" name="cantidad"/> 
-          </td>
-    			<td id="observaciones-1"> 
-            <input placeholder="Observaciones" id="observaciones" name="observaciones"/> 
-          </td>
-          <td>
-            <button disabled class="btn waves-effect waves-light red" name="action"><i class="material-icons center">delete</i></button>
-          </td>
-    		</tr>
+  	  <table class="responsive-table" id="vale" onload="agregarFila()">
   	  </table>
 
       <div class='section'>
@@ -168,11 +137,6 @@
     <script type="text/javascript" src="js/materialize.js"></script>
     <script type="text/javascript">
       $(document).ready(function() {
-        $('select').material_select();
-      });
-
-      $('select').bind('contentchanged', function() {
-        // do something after the div content has changed
         $('select').material_select();
       });
     </script>
