@@ -83,7 +83,7 @@ public class addProfesor extends HttpServlet {
         
 
         // forward request and response objects to JSP page
-        String url = "/admin_editarProfesores.html";
+        String url = "/admin_editarProfesores.jsp";
         RequestDispatcher dispatcher =
              getServletContext().getRequestDispatcher(url);
         dispatcher.forward(request, response);

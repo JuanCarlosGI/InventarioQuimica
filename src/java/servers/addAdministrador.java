@@ -21,8 +21,8 @@ import models.Usuario;
  *
  * @author armando
  */
-@WebServlet(name = "addAlumno", urlPatterns = {"/addAlumno"})
-public class addAlumno extends HttpServlet {
+@WebServlet(name = "addAdministrador", urlPatterns = {"/addAdministrador"})
+public class addAdministrador extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,7 +36,6 @@ public class addAlumno extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -72,7 +71,7 @@ public class addAlumno extends HttpServlet {
         usuario.setMatricula(mat);
         usuario.setNombre(mat);
         usuario.setPassword(mat);
-        usuario.setRol("Alumno");
+        usuario.setRol("Administrador");
         usuario.setCreadorId(null);
         usuario.setCorreo(mat+"@itesm.mx");
         if(Context.insertarUsuario(usuario)){
@@ -84,7 +83,7 @@ public class addAlumno extends HttpServlet {
         
 
         // forward request and response objects to JSP page
-        String url = "/admin_editarAlumnos.jsp";
+        String url = "/admin_editarAdministradores.jsp";
         RequestDispatcher dispatcher =
              getServletContext().getRequestDispatcher(url);
         dispatcher.forward(request, response);

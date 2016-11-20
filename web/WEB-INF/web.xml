@@ -29,6 +29,16 @@
         <servlet-name>addProfesor</servlet-name>
         <url-pattern>/addProfesor</url-pattern>
     </servlet-mapping>
+     
+    <servlet>
+        <servlet-name>addAdministrador</servlet-name>
+        <servlet-class>servers.addAdministrador</servlet-class>
+    </servlet>
+    
+    <servlet-mapping>
+        <servlet-name>addAdministrador</servlet-name>
+        <url-pattern>/addAdministrador</url-pattern>
+    </servlet-mapping>
     
     <session-config>
         <session-timeout>30</session-timeout>
