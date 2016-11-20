@@ -111,7 +111,7 @@
             <h5 class="center"><i class="material-icons">description</i> Vales</h5>
             <div class="section center">
               <a href="#" class="waves-effect waves-light btn-large" style="width: 80%; background-color: #3f51b5">Entregar productos</a><br><br>
-              <a href="#" class="waves-effect waves-light btn-large" style="width: 80%; background-color: #3f51b5">Lista de Vales</a><br><br>
+              <a href="admin_listaVales.jsp" class="waves-effect waves-light btn-large" style="width: 80%; background-color: #3f51b5">Lista de Vales</a><br><br>
               <a href="#" class="waves-effect waves-light btn-large" style="width: 80%; background-color: #3f51b5">Crear Vale</a><br><br>
               <a href="#" class="waves-effect waves-light btn-large" style="width: 80%; background-color: #3f51b5">Detalle Vale</a>
             </div>

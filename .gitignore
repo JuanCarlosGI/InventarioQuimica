@@ -1,1 +1,7 @@
 /build/
+<<<<<<< HEAD
+/dist/
+=======
+nbproject/private/private.properties
+*.properties
+>>>>>>> origin/master

@@ -3,6 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/C:/Users/JuanCarlos/Programs/Netbeans/Desarrollo%20de%20Aplicaciónes%20Web/InventarioQuimica/web/alumno_misVales.jsp</file>
             <file>file:/C:/Users/JuanCarlos/Programs/Netbeans/Desarrollo%20de%20Aplicaciónes%20Web/InventarioQuimica/web/alumno_misVales.html</file>
             <file>file:/C:/Users/JuanCarlos/Programs/Netbeans/Desarrollo%20de%20Aplicaciónes%20Web/InventarioQuimica/src/java/models/DetalleConsumible.java</file>
@@ -14,6 +15,46 @@
             <file>file:/C:/Users/JuanCarlos/Programs/Netbeans/Desarrollo%20de%20Aplicaciónes%20Web/InventarioQuimica/src/java/data/Context.java</file>
             <file>file:/C:/Users/JuanCarlos/Programs/Netbeans/Desarrollo%20de%20Aplicaciónes%20Web/InventarioQuimica/src/java/servers/validaUsuario.java</file>
             <file>file:/C:/Users/JuanCarlos/Programs/Netbeans/Desarrollo%20de%20Aplicaciónes%20Web/InventarioQuimica/src/java/models/Usuario.java</file>
+=======
+<<<<<<< HEAD
+            <file>file:/C:/Users/Cesar/Documents/GitHub/InventarioQuimica/src/java/data/Context.java</file>
+            <file>file:/C:/Users/Cesar/Documents/GitHub/InventarioQuimica/web/admin_listaVales.html</file>
+            <file>file:/C:/Users/Cesar/Documents/GitHub/InventarioQuimica/src/java/models/Laboratorio.java</file>
+            <file>file:/C:/Users/Cesar/Documents/GitHub/InventarioQuimica/web/admin_login.html</file>
+            <file>file:/C:/Users/Cesar/Documents/GitHub/InventarioQuimica/web/admin_listaVales.jsp</file>
+            <file>file:/C:/Users/Cesar/Documents/GitHub/InventarioQuimica/src/java/servers/addEquipo.java</file>
+            <file>file:/C:/Users/Cesar/Documents/GitHub/InventarioQuimica/src/java/models/Usuario.java</file>
+            <file>file:/C:/Users/Cesar/Documents/GitHub/InventarioQuimica/web/alumno_login.html</file>
+            <file>file:/C:/Users/Cesar/Documents/GitHub/InventarioQuimica/web/login.html</file>
+            <file>file:/C:/Users/Cesar/Documents/GitHub/InventarioQuimica/src/java/models/DetalleConsumible.java</file>
+            <file>file:/C:/Users/Cesar/Documents/GitHub/InventarioQuimica/src/java/models/RegistroLaboratorio.java</file>
+            <file>file:/C:/Users/Cesar/Documents/GitHub/InventarioQuimica/src/java/models/DetalleReactivo.java</file>
+            <file>file:/C:/Users/Cesar/Documents/GitHub/InventarioQuimica/web/alumno_login.jsp</file>
+            <file>file:/C:/Users/Cesar/Documents/GitHub/InventarioQuimica/src/java/servers/validaUsuario.java</file>
+            <file>file:/C:/Users/Cesar/Documents/GitHub/InventarioQuimica/src/java/models/Pedido.java</file>
+            <file>file:/C:/Users/Cesar/Documents/GitHub/InventarioQuimica/nbproject/build-impl.xml</file>
+            <file>file:/C:/Users/Cesar/Documents/GitHub/InventarioQuimica/src/java/servers/addAlumno.java</file>
+            <file>file:/C:/Users/Cesar/Documents/GitHub/InventarioQuimica/src/java/models/MaestroLaboratorio.java</file>
+            <file>file:/C:/Users/Cesar/Documents/GitHub/InventarioQuimica/web/WEB-INF/web.xml</file>
+            <file>file:/C:/Users/Cesar/Documents/GitHub/InventarioQuimica/web/META-INF/context.xml</file>
+=======
+            <file>file:/C:/Users/armando/Desktop/SextoSemestre2/InventarioQuimica/web/admin_consumibles.html</file>
+            <file>file:/C:/Users/armando/Desktop/SextoSemestre2/InventarioQuimica/web/admin_reactivos.html</file>
+            <file>file:/C:/Users/armando/Desktop/SextoSemestre2/InventarioQuimica/web/admin_editarProfesores.html</file>
+            <file>file:/C:/Users/armando/Desktop/SextoSemestre2/InventarioQuimica/web/WEB-INF/web.xml</file>
+            <file>file:/C:/Users/armando/Desktop/SextoSemestre2/InventarioQuimica/web/admin_editarAlumnos.html</file>
+            <file>file:/C:/Users/armando/Desktop/SextoSemestre2/InventarioQuimica/web/login.html</file>
+            <file>file:/C:/Users/armando/Desktop/SextoSemestre2/InventarioQuimica/src/java/models/Reactivo.java</file>
+            <file>file:/C:/Users/armando/Desktop/SextoSemestre2/InventarioQuimica/src/java/servers/validaUsuario.java</file>
+            <file>file:/C:/Users/armando/Desktop/SextoSemestre2/InventarioQuimica/src/java/servers/addProfesor.java</file>
+            <file>file:/C:/Users/armando/Desktop/SextoSemestre2/InventarioQuimica/web/alumno_login.html</file>
+            <file>file:/C:/Users/armando/Desktop/SextoSemestre2/InventarioQuimica/src/java/servers/addAdministrador.java</file>
+            <file>file:/C:/Users/armando/Desktop/SextoSemestre2/InventarioQuimica/src/java/data/Context.java</file>
+            <file>file:/C:/Users/armando/Desktop/SextoSemestre2/InventarioQuimica/web/admin_login.html</file>
+            <file>file:/C:/Users/armando/Desktop/SextoSemestre2/InventarioQuimica/web/alumno_login.jsp</file>
+            <file>file:/C:/Users/armando/Desktop/SextoSemestre2/InventarioQuimica/src/java/servers/addAlumno.java</file>
+>>>>>>> origin/master
+>>>>>>> origin/master
         </group>
     </open-files>
 </project-private>
