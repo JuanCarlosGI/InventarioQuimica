@@ -30,6 +30,13 @@ public final class Context {
     private static final String URL =
             "jdbc:mysql://localhost/inventarioquimica";
     
+    static {
+        try{
+            Class.forName("com.mysql.jdbc.Driver");
+        } catch(Exception e) {
+            System.out.println(e);
+        }
+    }
     /**
      * Constructor privado para asegurar que nadie instancie la clase.
      */
@@ -46,6 +53,7 @@ public final class Context {
         Usuario usuario = null;
         System.out.println(matricula);
         try {
+            Class.forName("com.mysql.jdbc.Driver");
             Connection connection;
             connection = DriverManager.getConnection(URL, "root", "");
             Statement statement = connection.createStatement();

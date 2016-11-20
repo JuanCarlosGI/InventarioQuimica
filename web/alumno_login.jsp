@@ -87,7 +87,7 @@
             <h5 class="center"><i class="material-icons">description</i> Vales</h5>
             <div class="section center">
               <a href="alumno_crearVale.html" class="waves-effect waves-light btn-large" style="width: 80%; background-color: #3f51b5">Crear Vale</a><br><br>
-              <a href="alumno_misVales.html" class="waves-effect waves-light btn-large" style="width: 80%; background-color: #3f51b5">Mis Vales</a>
+              <a href="alumno_misVales.jsp" class="waves-effect waves-light btn-large" style="width: 80%; background-color: #3f51b5">Mis Vales</a>
             </div>
           </div>
         </div>

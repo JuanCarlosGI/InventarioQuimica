@@ -1,3 +1,4 @@
+<%@page import="java.util.LinkedList"%>
 <!DOCTYPE html>
   <html>
     <head>
@@ -62,7 +63,8 @@
         <tbody>
             <%@ page import="models.Pedido" %>
             <%
-                for (Pedido pedido : usuario.getPedidos())
+                LinkedList<Pedido> pedidos = usuario.getPedidos();
+                for (Pedido pedido : pedidos)
                 {
             %>
             <tr>

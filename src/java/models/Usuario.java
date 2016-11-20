@@ -152,7 +152,7 @@ public class Usuario {
         if (rol != "Alumno") return null;
         
         LinkedList<RegistroLaboratorio> registros = Context.getRegistrosLaboratorios();
-        registros.removeIf(r -> r.getAlumnoId()!= matricula);
+        registros.removeIf(r -> !(r.getAlumnoId().equals(matricula)));
         
         LinkedList<Laboratorio> resultado = new LinkedList<>();
         for (RegistroLaboratorio registro : registros) {
@@ -164,7 +164,7 @@ public class Usuario {
     
     public final LinkedList<Pedido> getPedidos() {
         LinkedList<Pedido> pedidos = Context.getPedidos();
-        pedidos.removeIf(p -> p.getUsuarioId() != matricula);
+        pedidos.removeIf(p -> !(p.getUsuarioId().equals(matricula)));
         return pedidos;
     }
 }
