@@ -1,5 +1,8 @@
 package models;
 
+import data.Context;
+import java.util.LinkedList;
+
 /**
  * Clase representando a un usuario.
  * @author Juan Carlos Guzmán Islas
@@ -129,5 +132,39 @@ public class Usuario {
      */
     public final void setCorreo(final String nuevoCorreo) {
         this.correo = nuevoCorreo;
+    }
+    
+    public final LinkedList<Laboratorio> getImparteLaboratorios() {
+        if (rol != "Profesor") return null;
+        
+        LinkedList<RegistroLaboratorio> registros = Context.getRegistrosLaboratorios();
+        registros.removeIf(r -> r.getMaestroId() != matricula);
+        
+        LinkedList<Laboratorio> resultado = new LinkedList<>();
+        for (RegistroLaboratorio registro : registros) {
+            resultado.add(Context.getLaboratorio(registro.getLaboratorioId()));
+        }
+        
+        return resultado;
+    }
+    
+    public final LinkedList<Laboratorio> getCursaLaboratorios() {
+        if (rol != "Alumno") return null;
+        
+        LinkedList<RegistroLaboratorio> registros = Context.getRegistrosLaboratorios();
+        registros.removeIf(r -> r.getAlumnoId()!= matricula);
+        
+        LinkedList<Laboratorio> resultado = new LinkedList<>();
+        for (RegistroLaboratorio registro : registros) {
+            resultado.add(Context.getLaboratorio(registro.getLaboratorioId()));
+        }
+        
+        return resultado;
+    }
+    
+    public final LinkedList<Pedido> getPedidos() {
+        LinkedList<Pedido> pedidos = Context.getPedidos();
+        pedidos.removeIf(p -> p.getUsuarioId() != matricula);
+        return pedidos;
     }
 }
