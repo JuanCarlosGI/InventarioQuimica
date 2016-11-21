@@ -63,10 +63,10 @@ function escogerProducto(list, e) {
 	        appendEquipo(e);
 	        break;
 	    case "Consumible":
-	        appendReactivo(e);
+	        appendReactivo(e, false);
 	        break;
 	    case "Reactivo":
-	        appendReactivo(e);
+	        appendReactivo(e, true);
 	        break;
 	}
 }
@@ -95,10 +95,12 @@ function appendMaterial(e) {
 	selectNombre.appendChild(option);
 
 	//for loop con datos de la base de datos
-	option = document.createElement("option");
-	option.setAttribute("value", "CODIGO");
-	option.text = "NOMBRE MATERIAL";
-	selectNombre.appendChild(option);
+	for (var mat in nombresMateriales) {
+	  	option = document.createElement("option");
+		option.setAttribute("value", "CODIGO");
+		option.text = mat;
+		selectNombre.appendChild(option);
+	}
 
 	//agregar select a celda
 	cellNombre.appendChild(selectNombre);
@@ -208,10 +210,12 @@ function appendEquipo(e) {
 	selectNombre.appendChild(option);
 
 	//for loop con datos de la base de datos
-	option = document.createElement("option");
-	option.setAttribute("value", "CODIGO");
-	option.text = "NOMBRE MATERIAL";
-	selectNombre.appendChild(option);
+	for (var eq in nombresEquipos) {
+		option = document.createElement("option");
+		option.setAttribute("value", "CODIGO");
+		option.text = eq;
+		selectNombre.appendChild(option);
+	}
 
 	//agregar select a celda
 	cellNombre.appendChild(selectNombre);
@@ -286,7 +290,7 @@ function appendEquipo(e) {
 	$('select').material_select();
 }
 
-function appendReactivo(e) {
+function appendReactivo(e, esReactivo) {
 	//-----------SELECT nombre-----------
 	//crear celda
 	var cellNombre = e.insertCell();
@@ -303,10 +307,22 @@ function appendReactivo(e) {
 	selectNombre.appendChild(option);
 
 	//for loop con datos de la base de datos
-	option = document.createElement("option");
-	option.setAttribute("value", "CODIGO");
-	option.text = "NOMBRE MATERIAL";
-	selectNombre.appendChild(option);
+	if (esReactivo) {
+		for (var re in nombresReactivos) {
+			option = document.createElement("option");
+			option.setAttribute("value", "CODIGO");
+			option.text = re;
+			selectNombre.appendChild(option);
+		}
+	}
+	else {
+		for (var co in nombresConsumibles) {
+			option = document.createElement("option");
+			option.setAttribute("value", "CODIGO");
+			option.text = co;
+			selectNombre.appendChild(option);
+		}
+	}
 
 	//agregar select a celda
 	cellNombre.appendChild(selectNombre);
