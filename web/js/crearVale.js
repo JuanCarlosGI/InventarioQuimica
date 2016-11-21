@@ -1,4 +1,4 @@
-function agregarFila() {
+function agregarFila(esAlumno) {
 	var table = document.getElementById('vale');
 	var row = table.insertRow();
 	var index = row.rowIndex + 1;
@@ -28,16 +28,17 @@ function agregarFila() {
 	option.text = "Equipo";
 	selectList.appendChild(option);
 
-	option = document.createElement("option");
-	option.setAttribute("value", "Consumible");
-	option.text = "Consumible";
-	selectList.appendChild(option);
+	if (!esAlumno) {
+		option = document.createElement("option");
+		option.setAttribute("value", "Consumible");
+		option.text = "Consumible";
+		selectList.appendChild(option);
 
-	option = document.createElement("option");
-	option.setAttribute("value", "Reactivo");
-	option.text = "Reactivo";
-	selectList.appendChild(option);
-	
+		option = document.createElement("option");
+		option.setAttribute("value", "Reactivo");
+		option.text = "Reactivo";
+		selectList.appendChild(option);
+	}
 
 	cellTipo.appendChild(selectList);
 	$('select').material_select();
@@ -109,6 +110,7 @@ function appendMaterial(e) {
 	//crear select
 	var selectMarca = document.createElement("select");
 	selectMarca.required = true;
+        selectMarca.disabled = true;
 
 	//crear opcion default
 	var option = document.createElement("option");
@@ -117,26 +119,27 @@ function appendMaterial(e) {
 	option.text = "Marca";
 	selectMarca.appendChild(option);
 
-	//for loop con datos de la base de datos
-	option = document.createElement("option");
-	option.setAttribute("value", "marca");
-	option.text = "NOMBRE MARCA";
-	selectMarca.appendChild(option);
-
 	//agregar select a celda
 	cellMarca.appendChild(selectMarca);
 
-	//-----------INPUT capacidad-----------
+	//-----------SELECT capacidad-----------
 	//crear celda
 	var cellCapacidad = e.insertCell();
 
-	//crear input
-	var input = document.createElement("input");
-	input.setAttribute("type", "text");
-	input.placeholder = "Capacidad";
+	//crear select
+	var selectCapacidad = document.createElement("select");
+	selectCapacidad.required = true;
+        selectCapacidad.disabled = true;
 
-	//agregar input a celda
-	cellCapacidad.appendChild(input);
+	//crear opcion default
+	var option = document.createElement("option");
+	option.disabled = true;
+	option.selected = true;
+	option.text = "Capacidad";
+	selectCapacidad.appendChild(option);
+
+	//agregar select a celda
+	cellCapacidad.appendChild(selectCapacidad);
 
 	//----------INPUT cantidad-----------
 	//crear celda
@@ -145,6 +148,7 @@ function appendMaterial(e) {
 	input = document.createElement("input");
 	input.setAttribute("type", "text");
 	input.placeholder = "Cantidad";
+        input.setAttribute("name", "materialCantidad");
 
 	//agregar input a celda
 	cellCantidad.appendChild(input);
@@ -156,6 +160,7 @@ function appendMaterial(e) {
 	input = document.createElement("input");
 	input.setAttribute("type", "text");
 	input.placeholder = "Observaciones";
+        input.setAttribute("name", "materialObservaciones");
 
 	//agregar input a celda
 	cellObservaciones.appendChild(input);
@@ -218,6 +223,7 @@ function appendEquipo(e) {
 	//crear select
 	var selectMarca = document.createElement("select");
 	selectMarca.required = true;
+	selectMarca.disabled = true;
 
 	//crear opcion default
 	var option = document.createElement("option");
@@ -242,6 +248,7 @@ function appendEquipo(e) {
 	input = document.createElement("input");
 	input.setAttribute("type", "text");
 	input.placeholder = "Cantidad";
+	input.disabled = true;
 
 	//agregar input a celda
 	cellCantidad.appendChild(input);
@@ -253,6 +260,7 @@ function appendEquipo(e) {
 	input = document.createElement("input");
 	input.setAttribute("type", "text");
 	input.placeholder = "Observaciones";
+	input.disabled = true;
 
 	//agregar input a celda
 	cellObservaciones.appendChild(input);
@@ -310,6 +318,7 @@ function appendReactivo(e) {
 	//crear select
 	var selectMarca = document.createElement("select");
 	selectMarca.required = true;
+	selectMarca.disabled = true;
 
 	//crear opcion default
 	var option = document.createElement("option");
@@ -327,17 +336,6 @@ function appendReactivo(e) {
 	//agregar select a celda
 	cellMarca.appendChild(selectMarca);
 
-	//----------INPUT cantidad-----------
-	//crear celda
-	var cellCantidad = e.insertCell();
-
-	input = document.createElement("input");
-	input.setAttribute("type", "text");
-	input.placeholder = "Cantidad";
-
-	//agregar input a celda
-	cellCantidad.appendChild(input);
-
 	//-----------SELECT presentacion-----------
 	//crear celda
 	var cellPresentacion = e.insertCell();
@@ -345,6 +343,7 @@ function appendReactivo(e) {
 	//crear select
 	var selectPresentacion = document.createElement("select");
 	selectPresentacion.required = true;
+	selectPresentacion.disabled  =true;
 
 	//crear opcion default
 	var option = document.createElement("option");
@@ -368,6 +367,7 @@ function appendReactivo(e) {
 	//crear select
 	var selectContenido = document.createElement("select");
 	selectContenido.required = true;
+	selectContenido.disabled = true;
 
 	//crear opcion default
 	var option = document.createElement("option");
@@ -384,6 +384,18 @@ function appendReactivo(e) {
 	//agregar select a celda
 	cellContenido.appendChild(selectContenido);
 
+	//----------INPUT cantidad-----------
+	//crear celda
+	var cellCantidad = e.insertCell();
+
+	input = document.createElement("input");
+	input.setAttribute("type", "text");
+	input.placeholder = "Cantidad";
+	input.disabled = true;
+
+	//agregar input a celda
+	cellCantidad.appendChild(input);
+
 	//----------INPUT observaciones-----------
 	//crear celda
 	var cellObservaciones = e.insertCell();
@@ -394,6 +406,7 @@ function appendReactivo(e) {
 
 	//agregar input a celda
 	cellObservaciones.appendChild(input);
+	input.disabled = true;
 
 	//----------BUTTON delete-----------
 	//crear celda

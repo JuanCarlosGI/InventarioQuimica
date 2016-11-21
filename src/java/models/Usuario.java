@@ -162,6 +162,17 @@ public class Usuario {
         return resultado;
     }
     
+    public final Usuario getMaestroForLaboratorio(String clave) {
+         LinkedList<RegistroLaboratorio> registros = Context.getRegistrosLaboratorios();
+        registros.removeIf(r -> !(r.getAlumnoId().equals(matricula)) || !(r.getLaboratorioId().equals(clave)));
+        
+        if (registros.size() != 0) {
+            return Context.getUsuario(registros.get(0).getMaestroId());
+        }
+        
+        return null;
+    }
+    
     public final LinkedList<Pedido> getPedidos() {
         LinkedList<Pedido> pedidos = Context.getPedidos();
         pedidos.removeIf(p -> !(p.getUsuarioId().equals(matricula)));

@@ -1481,4 +1481,86 @@ public final class Context {
         return consumibles;
     }    
     
+    public static boolean insertarDetalleMaterial(int cantidad, int cantidadRegresada, String observaciones, String materialId, int pedidoId) {
+        try {
+            Connection connection;
+            connection = DriverManager.getConnection(URL, "root", "");
+            Statement statement = connection.createStatement();
+            statement.executeUpdate(""
+                    + "INSERT INTO detallematerial "
+                    + "(cantidad, cantidadRegresada, observaciones, materialId, pedidoId) "
+                    + "VALUES ("
+                    + cantidad + ", "
+                    + cantidadRegresada + "', "
+                    + "'" + observaciones + "', "
+                    + "'" + materialId + "', "
+                    + pedidoId + ");");
+            } catch (SQLException exception) {
+            System.out.println(exception);
+            return false;
+        }
+        return true;
+    }
+    
+    public static boolean insertarDetalleReactivo(int cantidad, int cantidadRegresada, String observaciones, String reactivoId, int pedidoId) {
+        try {
+            Connection connection;
+            connection = DriverManager.getConnection(URL, "root", "");
+            Statement statement = connection.createStatement();
+            statement.executeUpdate(""
+                    + "INSERT INTO detallereactivo "
+                    + "(cantidad, cantidadRegresada, observaciones, reactivoId, pedidoId) "
+                    + "VALUES ("
+                    + cantidad + ", "
+                    + cantidadRegresada + "', "
+                    + "'" + observaciones + "', "
+                    + "'" + reactivoId + "', "
+                    + pedidoId + ");");
+            } catch (SQLException exception) {
+            System.out.println(exception);
+            return false;
+        }
+        return true;
+    }
+    
+    public static boolean insertarDetalleEquipo(int cantidad, int cantidadRegresada, String observaciones, String equipoId, int pedidoId) {
+        try {
+            Connection connection;
+            connection = DriverManager.getConnection(URL, "root", "");
+            Statement statement = connection.createStatement();
+            statement.executeUpdate(""
+                    + "INSERT INTO detalleequipo "
+                    + "(cantidad, cantidadRegresada, observaciones, equipoId, pedidoId) "
+                    + "VALUES ("
+                    + cantidad + ", "
+                    + cantidadRegresada + "', "
+                    + "'" + observaciones + "', "
+                    + "'" + equipoId + "', "
+                    + pedidoId + ");");
+            } catch (SQLException exception) {
+            System.out.println(exception);
+            return false;
+        }
+        return true;
+    }
+    
+    public static boolean insertarDetalleConsumible(int cantidad, String observaciones, String consumibleId, int pedidoId) {
+        try {
+            Connection connection;
+            connection = DriverManager.getConnection(URL, "root", "");
+            Statement statement = connection.createStatement();
+            statement.executeUpdate(""
+                    + "INSERT INTO detalleconsumible "
+                    + "(cantidad, observaciones, consumibleId, pedidoId) "
+                    + "VALUES ("
+                    + cantidad + ", "
+                    + "'" + observaciones + "', "
+                    + "'" + consumibleId + "', "
+                    + pedidoId + ");");
+            } catch (SQLException exception) {
+            System.out.println(exception);
+            return false;
+        }
+        return true;
+    }
 }
