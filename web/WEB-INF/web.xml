@@ -11,6 +11,16 @@
     </servlet-mapping>
     
     <servlet>
+        <servlet-name>editAdministrador</servlet-name>
+        <servlet-class>servers.editAdministrador</servlet-class>
+    </servlet>
+    
+    <servlet-mapping>
+        <servlet-name>editAdministrador</servlet-name>
+        <url-pattern>/editAdministrador</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
         <servlet-name>addAlumno</servlet-name>
         <servlet-class>servers.addAlumno</servlet-class>
     </servlet>

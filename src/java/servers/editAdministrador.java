@@ -15,14 +15,15 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import models.Usuario;
 
 /**
  *
- * @author armando
+ * @author Cesar
  */
-@WebServlet(name = "addAdministrador", urlPatterns = {"/addAdministrador"})
-public class addAdministrador extends HttpServlet {
+@WebServlet(name = "editAdministrador", urlPatterns = {"/editAdministrador"})
+public class editAdministrador extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,7 +37,7 @@ public class addAdministrador extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -52,13 +53,6 @@ public class addAdministrador extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
-        request.setAttribute("alumnos", Context.getUsuarios());
-        String mat = request.getParameter("id");
-        Context.eliminarUsuario(mat);   
-        String url = "/admin_editarAlumnos.jsp";
-        RequestDispatcher dispatcher =
-             getServletContext().getRequestDispatcher(url);
-        dispatcher.forward(request, response);
     }
 
     /**
@@ -73,28 +67,44 @@ public class addAdministrador extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
-        String mat = request.getParameter("matricula");
         ServletContext context = getServletContext();
         Usuario usuario = new Usuario();
-        usuario.setMatricula(mat);
-        usuario.setNombre(mat);
-        usuario.setPassword(mat);
-        usuario.setRol("Administrador");
-        usuario.setCreadorId(null);
-        usuario.setCorreo(mat+"@itesm.mx");
-        if(Context.insertarUsuario(usuario)){
-            System.out.println("se inserto");
+        String mat = request.getParameter("matricula");
+        String nom = request.getParameter("nombre");
+        String email = request.getParameter("email");
+        String pass = request.getParameter("password");
+        String passcon = request.getParameter("password_confirm");
+        HttpSession session = request.getSession();
+        usuario = (Usuario)session.getAttribute("usuario");
+   
+        if(pass.equals(passcon)){
+            usuario.setNombre(nom);
+            usuario.setCorreo(email);
+            usuario.setPassword(pass);
+            if(Context.actualizarUsuario(usuario)){
+                String url = "login.html";
+                if(usuario.getRol().equals("Administrador")){
+                 url = "/admin_login.jsp";
+                }else if(usuario.getRol().equals("Profesor")){
+                     url = "/profesor_login.jsp";
+                }else if(usuario.getRol().equals("Alumno")){
+                     url = "/alumno_login.jsp";
+                }
+                
+                RequestDispatcher dispatcher =
+                    getServletContext().getRequestDispatcher(url);
+                dispatcher.forward(request, response);
+            }
+            else{
+                System.out.println("No se actualizo");
+            }
         }
         else{
-            System.out.println("No se inserto");
+            String url = "/admin_editarPerfil.jsp";
+            RequestDispatcher dispatcher =
+                    getServletContext().getRequestDispatcher(url);
+            dispatcher.forward(request, response);
         }
-        
-
-        // forward request and response objects to JSP page
-        String url = "/admin_editarAdministradores.jsp";
-        RequestDispatcher dispatcher =
-             getServletContext().getRequestDispatcher(url);
-        dispatcher.forward(request, response);
     }
 
     /**

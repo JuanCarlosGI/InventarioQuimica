@@ -26,8 +26,7 @@
         <%@ page import="java.util.LinkedList"%>
         <jsp:useBean id = "usuario" class="models.Usuario" scope = "session"/>
         <% 
-            LinkedList<Usuario> usuarios = new LinkedList<>();
-            usuarios = Context.getUsuarios();    
+            LinkedList<Usuario> usuarios = (LinkedList<Usuario>)request.getAttribute("alumnos");    
         %>
       <ul id="dropdown1" class="dropdown-content">
         <li><a href="#!">Perfil</a></li>
@@ -37,7 +36,7 @@
 
       <nav>
         <div class="nav-wrapper">
-          <a href="#" class="brand-logo center">Almacén de Química</a>
+          <a href="#" class="brand-logo center">AlmacÃ©n de QuÃ­mica</a>
           <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
           <ul class="right hide-on-med-and-down">
           <!-- Dropdown Trigger -->
@@ -82,7 +81,6 @@
               <th data-field="correo">Correo</th>
               <th data-field="maestra">Maestra</th>
               <th data-field="laboratorio">Laboratorio</th>
-              <th data-field="modificar">Modificar</th>
               <th data-field="eliminar">Eliminar</th>
           </tr>
         </thead>
@@ -99,15 +97,16 @@
                         out.println("<td>"+ " Maestra1 "+"</td>");
                         out.println("<td>"+ " Lab 1 " +"</td>");
                       }
-                  }
+                 
               %>
             <td>
-              <button class="btn waves-effect waves-light" name="action"><i class="material-icons center">mode_edit</i></button>
+                <a href="addAlumno?id=<%=usuarios.get(i).getMatricula()%>" <button class="btn waves-effect waves-light red" name="action"><i class="material-icons center">delete</i></button> </a>
             </td>
-            <td>
-            <button class="btn waves-effect waves-light red" name="action"><i class="material-icons center">delete</i></button>
-            </td>
-          </tr>
+          <%
+            }
+            out.println("</tr>");
+          %>
+          
         </tbody>
       </table>
 

@@ -61,14 +61,35 @@
     <div class="section"></div>
 
     <div class="row">
-      <div class="col s2 m3 l4"></div>
-      <div class="card col s8 m6 l4">
-        <div class="card-content center">
-          <span class="card-title activator grey-text text-darken-4">AGREGAR MATERIAL</span>
-        </div>
-        <div class="card-reveal center">
-            <input placeholder="Nombre del material" type="text" class="validate" id="matricula" name="matricula"/>
-        </div>
+      <div class="container">
+
+        <form action="#">
+          <div class="row">
+            <div class="input-field col s6">
+              <input placeholder="Hamburguesa" type="text" class="validate" id="nombre" name="nombre"/>
+              <label for="nombre">Nombre</label>
+            </div>
+            <div class="input-field col s6">
+              <input required placeholder="McDonalds" type="text" class="validate" id="marca" name="marca"/>
+              <label for="marca">Marca</label>
+            </div>
+            <div class="input-field col s6">
+              <input required placeholder="Big Mac" type="text" class="validate" id="capacidad" name="capacidad"/>
+              <label for="capacidad">Capacidad</label>
+            </div>
+            <div class="input-field col s6">
+              <input required placeholder="4" type="text" class="validate" id="cantidad" name="cantidad"/>
+              <label for="cantidad">Cantidad</label>
+            </div>
+
+          <div class='section'>
+            <div class="row center">
+            <button class="btn waves-effect waves-light" type="submit" name="action">Agregar Material
+              <i class="material-icons right">send</i>
+            </button>
+            </div>
+          </div>
+        </form>
       </div>
     </div>
 

@@ -45,7 +45,7 @@
       <!-- NAVBAR -->
       <!-- Dropdown Menu Structure -->
       <ul id="dropdown1" class="dropdown-content">
-        <li><a href="#!">Perfil</a></li>
+        <li><a href="admin_editarPerfil.jsp">Perfil</a></li>
         <li class="divider"></li>
         <li><a href="#!">Salir</a></li>
       </ul>
@@ -104,7 +104,7 @@
           <div class="col s12 m6 l4">
             <h5 class="center"><i class="material-icons">assignment_ind</i> Usuarios</h5>
             <div class="section center">
-              <a href="admin_editarAlumnos.jsp" class="waves-effect waves-light btn-large" style="width: 80%; background-color: #00bcd4">Editar Alumnos</a><br><br>
+              <a href="addAdministrador" class="waves-effect waves-light btn-large" style="width: 80%; background-color: #00bcd4">Editar Alumnos</a><br><br>
               <a href="admin_editarProfesores.jsp" class="waves-effect waves-light btn-large" style="width: 80%; background-color: #00bcd4">Editar Maestros</a><br><br>
               <a href="admin_editarAdministradores.jsp" class="waves-effect waves-light btn-large" style="width: 80%; background-color: #00bcd4">Editar Administradores</a><br><br>
               <a href="addLaboratorio" class="waves-effect waves-light btn-large" style="width: 80%; background-color: #00bcd4">Editar Laboratorios</a>
@@ -113,10 +113,10 @@
           <div class="col s12 m6 l4">
             <h5 class="center"><i class="material-icons">view_list</i> Inventario</h5>
             <div class="section center">
-              <a href="#" class="waves-effect waves-light btn-large" style="width: 80%; background-color: #ffa000">Materiales</a><br><br>
-              <a href="admin_equipos.html" class="waves-effect waves-light btn-large" style="width: 80%; background-color: #ffa000">Equipos</a><br><br>
-              <a href="admin_reactivos.html" class="waves-effect waves-light btn-large" style="width: 80%; background-color: #ffa000">Reactivos</a><br><br>
-              <a href="#" class="waves-effect waves-light btn-large" style="width: 80%; background-color: #ffa000">Consumibles</a>
+              <a href="admin_materiales.jsp" class="waves-effect waves-light btn-large" style="width: 80%; background-color: #ffa000">Materiales</a><br><br>
+              <a href="admin_equipos.jsp" class="waves-effect waves-light btn-large" style="width: 80%; background-color: #ffa000">Equipos</a><br><br>
+              <a href="admin_reactivos.jsp" class="waves-effect waves-light btn-large" style="width: 80%; background-color: #ffa000">Reactivos</a><br><br>
+              <a href="addConsumible" class="waves-effect waves-light btn-large" style="width: 80%; background-color: #ffa000">Consumibles</a>
             </div>
           </div>
           <div class="col s12 m6 l4">
