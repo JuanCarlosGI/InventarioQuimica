@@ -61,26 +61,65 @@
     <div class="section"></div>
 
     <div class="row">
-      <div class="col s2 m3 l4"></div>
-      <div class="card col s8 m6 l4">
-        <div class="card-content center">
-          <span class="card-title activator grey-text text-darken-4">AGREGAR REACTIVO</span>
-        </div>
-        <div class="card-reveal center">
-            <input placeholder="Nombre del reactivo" type="text" class="validate" id="matricula" name="matricula"/>
-        </div>
+      <div class="container">
+
+        <form action="addReactivo" method="post">
+          <div class="row">
+            <div class="input-field col s6">
+              <input placeholder="Clave" type="text" class="validate" id="clave" name="clave"/>
+              <label for="clave">Clave</label>
+            </div>
+            <div class="input-field col s6">
+              <input placeholder="Hamburguesa" type="text" class="validate" id="nombre" name="nombre"/>
+              <label for="nombre">Nombre</label>
+            </div>
+            <div class="input-field col s6">
+              <input required placeholder="McDonalds" type="text" class="validate" id="marca" name="marca"/>
+              <label for="marca">Marca</label>
+            </div>
+            <div class="input-field col s6">
+              <input required placeholder="4" type="text" class="validate" id="cantidad" name="cantidad"/>
+              <label for="cantidad">Cantidad</label>
+            </div>
+            <div class="input-field col s6">
+              <input required placeholder="?" type="text" class="validate" id="presentacion" name="presentacion"/>
+              <label for="presentacion">Presentación</label>
+            </div>
+            <div class="input-field col s6">
+              <input required placeholder="?" type="text" class="validate" id="contenido" name="contenido"/>
+              <label for="contenido">Contenido</label>
+            </div>
+            <div class="input-field col s6">
+              <input required placeholder="?" type="text" class="validate" id="localizacion" name="localizacion"/>
+              <label for="localizacion">Localización</label>
+            </div>
+            <div class="input-field col s6">
+              <input required placeholder="4" type="text" class="validate" id="descripcion" name="descripcion"/>
+              <label for="descripcion">Descripcion</label>
+            </div>
+          </div>
+          <div class='section'>
+            <div class="row center">
+            <button class="btn waves-effect waves-light" type="submit" name="action">Agregar Consumible
+              <i class="material-icons right">send</i>
+            </button>
+            </div>
+          </div>
+        </form>
       </div>
     </div>
 
     <table class="responsive-table striped" style="width: 100%">
         <thead>
           <tr>
+              <th data-field="clave">Clave</th>
               <th data-field="nombre">Nombre</th>
               <th data-field="marca">Marca</th>
               <th data-field="cantidad">Cantidad</th>
               <th data-field="marca">Localización</th>
               <th data-field="marca">Presentación</th>
               <th data-field="marca">Contenido</th>
+              <th data-field="descripcion">Descripción</th>
               <th data-field="modificar">Modificar</th>
               <th data-field="eliminar">Eliminar</th>
           </tr>
@@ -93,12 +132,14 @@
 
              %>
           <tr>
+            <!-- FALTA CLAVE -->
             <td><%=reactivos.get(i).getNombre()%></td>
             <td><%=reactivos.get(i).getMarca()%></td>
             <td><%=reactivos.get(i).getCantidad()%></td>
             <td><%=reactivos.get(i).getLocalizacion()%></td>
             <td><%=reactivos.get(i).getPresentacion()%></td>
             <td><%=reactivos.get(i).getContenido()%></td>
+            <!-- FALTA DESCRIPCION -->
             <td>
                 <a href="modificarReactivo?clave=<%=reactivos.get(i).getClave()%>&action=modificar"><button class="btn waves-effect waves-light" name="action"><i class="material-icons center">mode_edit</i></button></a>
             </td>

@@ -64,6 +64,10 @@
         <form action="modificarEquipo" method="post">
           <div class="row">
             <div class="input-field col s6">
+              <input placeholder="Clave" type="text" class="validate" id="clave" name="clave"/>
+              <label for="clave">Clave</label>
+            </div>
+            <div class="input-field col s6">
               <input placeholder="Hamburguesa" type="text" class="validate" id="nombre" name="nombre"/>
               <label for="nombre">Nombre</label>
             </div>
@@ -74,6 +78,14 @@
             <div class="input-field col s6">
               <input required placeholder="4" type="text" class="validate" id="cantidad" name="cantidad"/>
               <label for="cantidad">Cantidad</label>
+            </div>
+            <div class="input-field col s6">
+              <input required placeholder="4" type="text" class="validate" id="localizacion" name="localizacion"/>
+              <label for="localizacion">Localizacion</label>
+            </div>
+            <div class="input-field col s6">
+              <input required placeholder="4" type="text" class="validate" id="descripcion" name="descripcion"/>
+              <label for="descripcion">Descripcion</label>
             </div>
             </div>
           <div class='section'>
@@ -91,10 +103,12 @@
     <table class="responsive-table striped" style="width: 100%">
         <thead>
           <tr>
+              <th data-field="clave">Clave</th>
               <th data-field="nombre">Nombre</th>
               <th data-field="marca">Marca</th>
               <th data-field="cantidad">Cantidad</th>
               <th data-field="marca">Localización</th>
+              <th data-field="descripcion">Descripción</th>
               <th data-field="modificar">Modificar</th>
               <th data-field="eliminar">Eliminar</th>
           </tr>
@@ -107,10 +121,12 @@
 
              %>
           <tr>
+            <!-- FALTA CLAVE -->
             <td><%=equipos.get(i).getNombre()%></td>
             <td><%=equipos.get(i).getMarca()%></td>
             <td><%=equipos.get(i).getCantidad()%></td>
             <td><%=equipos.get(i).getLocalizacion()%></td>
+            <!-- FALTA DESCRIPCION -->
             <td>
                 <a href="modificarEquipo?clave=<%=equipos.get(i).getClave()%>&action=modificar"><button class="btn waves-effect waves-light" name="action"><i class="material-icons center">mode_edit</i></button></a>
             </td>
