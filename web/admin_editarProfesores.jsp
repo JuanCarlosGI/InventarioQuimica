@@ -71,7 +71,7 @@
           <span class="card-title activator grey-text text-darken-4">AGREGAR PROFESOR</span>
         </div>
         <div class="card-reveal center">
-            <input placeholder="Matricula" type="text" class="validate" id="matricula" name="matricula"/>
+            <input placeholder="Nómina" type="text" class="validate" id="nomina" name="nomina"/>
         </div>
       </div>
     </div>

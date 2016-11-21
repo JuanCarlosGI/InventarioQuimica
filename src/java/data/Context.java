@@ -1266,4 +1266,22 @@ public final class Context {
 
         return registros;
     }
+    
+    public static boolean insertarMaestroLaboratorio(String nomina, String clave) {
+        try {
+            Connection connection;
+            connection = DriverManager.getConnection(URL, "root", "");
+            Statement statement = connection.createStatement();
+            statement.executeUpdate(""
+                    + "INSERT INTO maestrolaboratorio "
+                    + "(laboratorioId, maestroId) "
+                    + "VALUES ("
+                    + "'" + clave + "', "
+                    + "'" + nomina + "');");
+            } catch (SQLException exception) {
+            System.out.println(exception);
+            return false;
+        }
+        return true;
+    }
 }

@@ -12,6 +12,7 @@ function agregarFila() {
 
 
 	var option = document.createElement("option");
+	option.selected = true;
 	option.disabled = true;
 	option.text = "Tipo";
 	selectList.appendChild(option);
@@ -87,6 +88,7 @@ function appendMaterial(e) {
 
 	//crear opcion default
 	var option = document.createElement("option");
+	option.selected = true;
 	option.disabled = true;
 	option.text = "Nombre";
 	selectNombre.appendChild(option);
@@ -111,6 +113,7 @@ function appendMaterial(e) {
 	//crear opcion default
 	var option = document.createElement("option");
 	option.disabled = true;
+	option.selected = true;
 	option.text = "Marca";
 	selectMarca.appendChild(option);
 
@@ -195,6 +198,7 @@ function appendEquipo(e) {
 	//crear opcion default
 	var option = document.createElement("option");
 	option.disabled = true;
+	option.selected = true;
 	option.text = "Nombre";
 	selectNombre.appendChild(option);
 
@@ -218,6 +222,7 @@ function appendEquipo(e) {
 	//crear opcion default
 	var option = document.createElement("option");
 	option.disabled = true;
+	option.selected = true;
 	option.text = "Marca";
 	selectMarca.appendChild(option);
 
@@ -285,6 +290,7 @@ function appendReactivo(e) {
 	//crear opcion default
 	var option = document.createElement("option");
 	option.disabled = true;
+	option.selected = true;
 	option.text = "Nombre";
 	selectNombre.appendChild(option);
 
@@ -308,6 +314,7 @@ function appendReactivo(e) {
 	//crear opcion default
 	var option = document.createElement("option");
 	option.disabled = true;
+	option.selected = true;
 	option.text = "Marca";
 	selectMarca.appendChild(option);
 
@@ -342,6 +349,7 @@ function appendReactivo(e) {
 	//crear opcion default
 	var option = document.createElement("option");
 	option.disabled = true;
+	option.selected = true;
 	option.text = "Presentación";
 	selectPresentacion.appendChild(option);
 
@@ -364,6 +372,7 @@ function appendReactivo(e) {
 	//crear opcion default
 	var option = document.createElement("option");
 	option.disabled = true;
+	option.selected = true;
 	option.text = "Contenido";
 	selectContenido.appendChild(option);
 

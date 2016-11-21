@@ -28,8 +28,8 @@
     <servlet-mapping>
         <servlet-name>addProfesor</servlet-name>
         <url-pattern>/addProfesor</url-pattern>
-    </servlet-mapping>
-     
+    </servlet-mapping> 
+       
     <servlet>
         <servlet-name>addAdministrador</servlet-name>
         <servlet-class>servers.addAdministrador</servlet-class>
