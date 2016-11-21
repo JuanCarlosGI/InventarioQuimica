@@ -4,6 +4,7 @@
     Author     : Cesar
 --%>
 
+<%@page import="models.Laboratorio"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
@@ -74,9 +75,17 @@
             <div class="card blue">
               <div class="card-content white-text">
                 <span class="card-title">Bienvenido ${usuario.nombre}</span>
-                <p>Laboratorio #2</p>
-                <p>Hora Laboratorio: 10:30</p>
-                <p>Vales activos: 2</p>
+                <p>LABORATORIOS:</p>
+                <ul>
+                    <%
+                        for (Laboratorio lab : usuario.getCursaLaboratorios()) {
+                        %>
+                        <li><%=lab.getNombre()%></li>
+                        <%
+                            }
+                            %>
+                </ul>
+                <p>Vales activos: <%= usuario.getPedidos().size() %></p>
               </div>
             </div>
           </div>
