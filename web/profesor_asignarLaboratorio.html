@@ -42,7 +42,7 @@
     <div class="nav-wrapper center">
       <div class="col s12">
         <a href="#!" class="breadcrumb">Inicio</a>
-        <a href="#!" class="breadcrumb">Crear Laboratorio</a>
+        <a href="#!" class="breadcrumb">Asignar Laboratorio</a>
       </div>
     </div>
   </nav>
@@ -76,6 +76,14 @@
             <input required placeholder="36" type="text" class="validate" id="numeroAlumnos" name="numeroAlumnos" onchange="nuevosAlumnos(this)"/>
             <label for="numeroAlumnos">Cantidad de Alumnos inscritos</label>
           </div>
+          <div class="input-field col s6">
+            <select required>
+              <option value="" disabled selected>Laboratorio</option>
+              <option value="1">Quimica Experimental</option>
+              <option value="2">Quimica Organica General</option>
+              <option value="3">Semana i</option>
+            </select>
+          </div>
         </div><br>
 
         <div class="row center">
@@ -84,6 +92,8 @@
           </div>
           <div class="col s1 m3"></div>
           <div id="alumnos" class="input-field col s10 m6">
+            <input disabled type="text"/>
+            <label>Definir cantidad de alumnos</label>
           </div>
         </div>
 
@@ -100,5 +110,10 @@
     <!--Import jQuery before materialize.js-->
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script type="text/javascript" src="js/materialize.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function() {
+        $('select').material_select();
+      });
+    </script>
   </body>
 </html>
