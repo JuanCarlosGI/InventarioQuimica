@@ -127,13 +127,13 @@
 
              %>
           <tr>
-            <!-- FALTA CLAVE -->
+            <td><%=materiales.get(i).getClave()%></td>
             <td><%=materiales.get(i).getNombre()%></td>
             <td><%=materiales.get(i).getMarca()%></td>
             <td><%=materiales.get(i).getCantidad()%></td>
             <td><%=materiales.get(i).getLocalizacion()%></td>
             <td><%=materiales.get(i).getCapacidad()%></td>
-            <!-- FALTA DESCRIPCION -->
+            <td><%=materiales.get(i).getDescripcion()%></td>
             <td>
                 <a href="modificarMaterial?clave=<%=materiales.get(i).getClave()%>&action=modificar"><button class="btn waves-effect waves-light" name="action"><i class="material-icons center">mode_edit</i></button></a>
             </td>

@@ -61,7 +61,7 @@
     <div class="row">
       <div class="container">
 
-        <form action="modificarEquipo" method="post">
+        <form action="addEquipo" method="post">
           <div class="row">
             <div class="input-field col s6">
               <input placeholder="Clave" type="text" class="validate" id="clave" name="clave"/>
@@ -122,10 +122,12 @@
              %>
           <tr>
             <!-- FALTA CLAVE -->
+            <td><%=equipos.get(i).getClave()%></td>
             <td><%=equipos.get(i).getNombre()%></td>
             <td><%=equipos.get(i).getMarca()%></td>
             <td><%=equipos.get(i).getCantidad()%></td>
             <td><%=equipos.get(i).getLocalizacion()%></td>
+            <td><%=equipos.get(i).getDescripcion()%></td>
             <!-- FALTA DESCRIPCION -->
             <td>
                 <a href="modificarEquipo?clave=<%=equipos.get(i).getClave()%>&action=modificar"><button class="btn waves-effect waves-light" name="action"><i class="material-icons center">mode_edit</i></button></a>

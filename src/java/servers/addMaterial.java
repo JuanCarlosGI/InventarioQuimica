@@ -46,6 +46,7 @@ public class addMaterial extends HttpServlet {
             mat.setNombre(nombre);
             mat.setCantidad(cant);
             mat.setClave(clave);
+            mat.setCapacidad(capacidad);
             mat.setDescripcion(descripcion);
             mat.setLocalizacion(localizacion);
             

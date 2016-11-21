@@ -607,7 +607,7 @@ public final class Context {
                     + "'" + reactivo.getContenido() + "', "
                     + "'" + reactivo.getLocalizacion() + "', "
                     + "'" + reactivo.getDescripcion() + "', "
-                    + reactivo.getCantidad() + "');");
+                    + reactivo.getCantidad() + ");");
             } catch (SQLException exception) {
             System.out.println(exception);
             return false;
@@ -962,7 +962,7 @@ public final class Context {
                     + "'" + consumible.getContenido() + "', "
                     + "'" + consumible.getLocalizacion() + "', "
                     + "'" + consumible.getDescripcion() + "', "
-                    + consumible.getCantidad() + "');");
+                    + consumible.getCantidad() + ");");
             } catch (SQLException exception) {
             System.out.println(exception);
             return false;

@@ -131,14 +131,14 @@
 
              %>
           <tr>
-            <!-- FALTA CLAVE -->
+            <td><%=consumibles.get(i).getClave()%></td>
             <td><%=consumibles.get(i).getNombre()%></td>
             <td><%=consumibles.get(i).getMarca()%></td>
             <td><%=consumibles.get(i).getCantidad()%></td>
             <td><%=consumibles.get(i).getLocalizacion()%></td>
             <td><%=consumibles.get(i).getPresentacion()%></td>
             <td><%=consumibles.get(i).getContenido()%></td>
-            <!-- FALTA DESCRIPCION -->
+            <td><%=consumibles.get(i).getDescripcion()%></td>
             <td>
                 <a href="modificarConsumible?clave=<%=consumibles.get(i).getClave()%>&action=modificar"><button class="btn waves-effect waves-light" name="action"><i class="material-icons center">mode_edit</i></button><a href="modificarConsumible?clave=<%=consumibles.get(i).getClave()%>&action=modificar">
             </td>

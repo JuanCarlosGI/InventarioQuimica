@@ -4,6 +4,7 @@
     Author     : armando
 --%>
 
+<%@page import="models.Laboratorio"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
   <html>
@@ -86,13 +87,20 @@
 
         <tbody>
               <%
+                  LinkedList<Laboratorio> labos = new LinkedList<>();
                   for(int i=0; i<usuarios.size(); i++){
+                      labos=usuarios.get(i).getCursaLaboratorios();
+                      String laborat = "";
+                      for(int j=0; j<labos.size();j++){
+                          laborat += labos.get(j)+",\n";
+                      }
                       if(usuarios.get(i).getRol().equals("Alumno")){            
                         out.println("<tr>");
                         out.println("<td>"+usuarios.get(i).getMatricula()+"</td>");
                         out.println("<td>"+usuarios.get(i).getNombre()+"</td>");
                         out.println("<td>"+usuarios.get(i).getCorreo()+"</td>");
-                        out.println("<td>"+ " Lab 1 " +"</td>");
+                        out.println("<td>"+ laborat +"</td>");
+                      
                       
                   
               %>

@@ -132,14 +132,14 @@
 
              %>
           <tr>
-            <!-- FALTA CLAVE -->
+            <td><%=reactivos.get(i).getClave()%></td>
             <td><%=reactivos.get(i).getNombre()%></td>
             <td><%=reactivos.get(i).getMarca()%></td>
             <td><%=reactivos.get(i).getCantidad()%></td>
             <td><%=reactivos.get(i).getLocalizacion()%></td>
             <td><%=reactivos.get(i).getPresentacion()%></td>
             <td><%=reactivos.get(i).getContenido()%></td>
-            <!-- FALTA DESCRIPCION -->
+            <td><%=reactivos.get(i).getDescripcion()%></td>
             <td>
                 <a href="modificarReactivo?clave=<%=reactivos.get(i).getClave()%>&action=modificar"><button class="btn waves-effect waves-light" name="action"><i class="material-icons center">mode_edit</i></button></a>
             </td>
