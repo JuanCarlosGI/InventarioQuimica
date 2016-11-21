@@ -97,7 +97,7 @@ function appendMaterial(e) {
 	//for loop con datos de la base de datos
 	for (var i in nombresMateriales) {
 	  	option = document.createElement("option");
-		option.text = nombresMateriales[mat];
+		option.text = nombresMateriales[i];
 		selectNombre.appendChild(option);
 	}
 
