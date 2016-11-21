@@ -19,6 +19,19 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
       <meta charset="UTF-8">
       <meta http-equiv="Content-type" content="text/html; charset=UTF-8">
+
+      <script>
+        function validate() {
+          var check = prompt("¿Estás seguro? \n Escribe 'borrar alumnos del semestre'");
+          
+          if (check == "borrar alumnos del semestre") {
+              alert("boom");
+          }
+          else {
+            alert("No se borro información");
+          }
+        }
+      </script>
     </head>
 
     <body>
@@ -95,7 +108,7 @@
               <a href="admin_editarAlumnos.jsp" class="waves-effect waves-light btn-large" style="width: 80%; background-color: #00bcd4">Editar Alumnos</a><br><br>
               <a href="admin_editarProfesores.jsp" class="waves-effect waves-light btn-large" style="width: 80%; background-color: #00bcd4">Editar Maestros</a><br><br>
               <a href="admin_editarAdministradores.jsp" class="waves-effect waves-light btn-large" style="width: 80%; background-color: #00bcd4">Editar Administradores</a><br><br>
-              <a href="#" class="waves-effect waves-light btn-large" style="width: 80%; background-color: #00bcd4">Crear Laboratorio</a>
+              <a href="#" class="waves-effect waves-light btn-large" style="width: 80%; background-color: #00bcd4">Editar Laboratorios</a>
             </div>
           </div>
           <div class="col s12 m6 l4">
@@ -120,7 +133,7 @@
         <div class="row">
           <div class="col s12">
           <div class="section center">
-            <a href="#" class="waves-effect waves-light btn-large red" style="width: 80%">Borrar alumnos del Semestre</a><br><br>
+            <a onclick="validate()" class="waves-effect waves-light btn-large red" style="width: 80%">Borrar alumnos del Semestre</a><br><br>
             </div>
           </div>
         </div>
