@@ -1,4 +1,4 @@
-function agregarFila() {
+function agregarFila(esAlumno) {
 	var table = document.getElementById('vale');
 	var row = table.insertRow();
 	var index = row.rowIndex + 1;
@@ -28,16 +28,17 @@ function agregarFila() {
 	option.text = "Equipo";
 	selectList.appendChild(option);
 
-	option = document.createElement("option");
-	option.setAttribute("value", "Consumible");
-	option.text = "Consumible";
-	selectList.appendChild(option);
+	if (!esAlumno) {
+		option = document.createElement("option");
+		option.setAttribute("value", "Consumible");
+		option.text = "Consumible";
+		selectList.appendChild(option);
 
-	option = document.createElement("option");
-	option.setAttribute("value", "Reactivo");
-	option.text = "Reactivo";
-	selectList.appendChild(option);
-	
+		option = document.createElement("option");
+		option.setAttribute("value", "Reactivo");
+		option.text = "Reactivo";
+		selectList.appendChild(option);
+	}
 
 	cellTipo.appendChild(selectList);
 	$('select').material_select();
