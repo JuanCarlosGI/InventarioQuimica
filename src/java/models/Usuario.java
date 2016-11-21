@@ -135,13 +135,13 @@ public class Usuario {
     }
     
     public final LinkedList<Laboratorio> getImparteLaboratorios() {
-        if (rol != "Profesor") return null;
+        if (!rol.equals("Profesor")) return null;
         
-        LinkedList<RegistroLaboratorio> registros = Context.getRegistrosLaboratorios();
-        registros.removeIf(r -> r.getMaestroId() != matricula);
+        LinkedList<MaestroLaboratorio> registros = Context.getMaestrosLaboratorios();
+        registros.removeIf(r -> !(r.getMaestroId().equals(matricula)));
         
         LinkedList<Laboratorio> resultado = new LinkedList<>();
-        for (RegistroLaboratorio registro : registros) {
+        for (MaestroLaboratorio registro : registros) {
             resultado.add(Context.getLaboratorio(registro.getLaboratorioId()));
         }
         
@@ -149,7 +149,7 @@ public class Usuario {
     }
     
     public final LinkedList<Laboratorio> getCursaLaboratorios() {
-        if (rol != "Alumno") return null;
+        if (!rol.equals("Alumno")) return null;
         
         LinkedList<RegistroLaboratorio> registros = Context.getRegistrosLaboratorios();
         registros.removeIf(r -> !(r.getAlumnoId().equals(matricula)));

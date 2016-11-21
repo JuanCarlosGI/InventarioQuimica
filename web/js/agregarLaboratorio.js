@@ -14,7 +14,7 @@ function nuevosAlumnos(e) {
 		input.type = "text";
 		input.class = "validate";
 		input.id = "matricula-" + i;
-		input.name = "matricula-" + i;
+		input.name = "matricula";
 		elem.appendChild(input);
 	}
 }

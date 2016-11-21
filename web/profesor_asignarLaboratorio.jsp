@@ -1,3 +1,5 @@
+<%@page import="java.util.LinkedList"%>
+<%@page import="models.Laboratorio"%>
 <!DOCTYPE html>
   <html>
     <head>
@@ -26,7 +28,7 @@
 
       <nav>
         <div class="nav-wrapper">
-          <a href="#" class="brand-logo center">AlmacÃ©n de QuÃ­mica</a>
+          <a href="#" class="brand-logo center">Almacén de Química</a>
           <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
           <ul class="right hide-on-med-and-down">
           <!-- Dropdown Trigger -->
@@ -54,7 +56,7 @@
 
     <div class='section'></div>
 
-      <form action="#">
+      <form action="asignarLaboratorio" method="POST">
         <div class="row">
           <div class="input-field col s6">
             <input required placeholder="36" type="text" class="validate" id="numeroAlumnos" name="numeroAlumnos" onchange="nuevosAlumnos(this)"/>
@@ -63,9 +65,15 @@
           <div class="input-field col s6" >
             <select required name="laboratorioId">
               <option value="" disabled selected>Laboratorio</option>
-              <option value="1">Quimica Experimental</option>
-              <option value="2">Quimica Organica General</option>
-              <option value="3">Semana i</option>
+              <%
+                  LinkedList<Laboratorio> labs = (LinkedList<Laboratorio>)request.getAttribute("laboratorios");
+                for (Laboratorio lab : labs)
+                {
+                %>
+                <option value="<%=lab.getClave()%>"><%= lab.getNombre() %></option>
+                <%
+                    }
+                    %>
             </select>
           </div>
         </div><br>
