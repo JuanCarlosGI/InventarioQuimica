@@ -95,10 +95,9 @@ function appendMaterial(e) {
 	selectNombre.appendChild(option);
 
 	//for loop con datos de la base de datos
-	for (var mat in nombresMateriales) {
+	for (var i in nombresMateriales) {
 	  	option = document.createElement("option");
-		option.setAttribute("value", "CODIGO");
-		option.text = mat;
+		option.text = nombresMateriales[mat];
 		selectNombre.appendChild(option);
 	}
 
@@ -210,10 +209,9 @@ function appendEquipo(e) {
 	selectNombre.appendChild(option);
 
 	//for loop con datos de la base de datos
-	for (var eq in nombresEquipos) {
+	for (var i in nombresEquipos) {
 		option = document.createElement("option");
-		option.setAttribute("value", "CODIGO");
-		option.text = eq;
+		option.text = nombresEquipos[i];
 		selectNombre.appendChild(option);
 	}
 
@@ -308,18 +306,16 @@ function appendReactivo(e, esReactivo) {
 
 	//for loop con datos de la base de datos
 	if (esReactivo) {
-		for (var re in nombresReactivos) {
+		for (var i in nombresReactivos) {
 			option = document.createElement("option");
-			option.setAttribute("value", "CODIGO");
-			option.text = re;
+			option.text = nombresReactivos[i];
 			selectNombre.appendChild(option);
 		}
 	}
 	else {
-		for (var co in nombresConsumibles) {
+		for (var i in nombresConsumibles) {
 			option = document.createElement("option");
-			option.setAttribute("value", "CODIGO");
-			option.text = co;
+			option.text = nombresConsumibles[i];
 			selectNombre.appendChild(option);
 		}
 	}
