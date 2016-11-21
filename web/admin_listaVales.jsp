@@ -102,7 +102,7 @@
             %>
             <td><%=usuario.getNombre()%></td>
             <td>
-              <button class="btn waves-effect waves-light" name="action" ><i class="material-icons center">description</i></button>
+                <a href="adminDetalleVale?id=<%= pedidos.get(i).getId() %>"><button class="btn waves-effect waves-light" name="action" ><i class="material-icons center">description</i></button></a>
             </td>
           </tr>
           <%
