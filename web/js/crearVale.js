@@ -222,6 +222,7 @@ function appendEquipo(e) {
 	//crear select
 	var selectMarca = document.createElement("select");
 	selectMarca.required = true;
+	selectMarca.disabled = true;
 
 	//crear opcion default
 	var option = document.createElement("option");
@@ -246,6 +247,7 @@ function appendEquipo(e) {
 	input = document.createElement("input");
 	input.setAttribute("type", "text");
 	input.placeholder = "Cantidad";
+	input.disabled = true;
 
 	//agregar input a celda
 	cellCantidad.appendChild(input);
@@ -257,6 +259,7 @@ function appendEquipo(e) {
 	input = document.createElement("input");
 	input.setAttribute("type", "text");
 	input.placeholder = "Observaciones";
+	input.disabled = true;
 
 	//agregar input a celda
 	cellObservaciones.appendChild(input);
@@ -314,6 +317,7 @@ function appendReactivo(e) {
 	//crear select
 	var selectMarca = document.createElement("select");
 	selectMarca.required = true;
+	selectMarca.disabled = true;
 
 	//crear opcion default
 	var option = document.createElement("option");
@@ -331,17 +335,6 @@ function appendReactivo(e) {
 	//agregar select a celda
 	cellMarca.appendChild(selectMarca);
 
-	//----------INPUT cantidad-----------
-	//crear celda
-	var cellCantidad = e.insertCell();
-
-	input = document.createElement("input");
-	input.setAttribute("type", "text");
-	input.placeholder = "Cantidad";
-
-	//agregar input a celda
-	cellCantidad.appendChild(input);
-
 	//-----------SELECT presentacion-----------
 	//crear celda
 	var cellPresentacion = e.insertCell();
@@ -349,6 +342,7 @@ function appendReactivo(e) {
 	//crear select
 	var selectPresentacion = document.createElement("select");
 	selectPresentacion.required = true;
+	selectPresentacion.disabled  =true;
 
 	//crear opcion default
 	var option = document.createElement("option");
@@ -372,6 +366,7 @@ function appendReactivo(e) {
 	//crear select
 	var selectContenido = document.createElement("select");
 	selectContenido.required = true;
+	selectContenido.disabled = true;
 
 	//crear opcion default
 	var option = document.createElement("option");
@@ -388,6 +383,18 @@ function appendReactivo(e) {
 	//agregar select a celda
 	cellContenido.appendChild(selectContenido);
 
+	//----------INPUT cantidad-----------
+	//crear celda
+	var cellCantidad = e.insertCell();
+
+	input = document.createElement("input");
+	input.setAttribute("type", "text");
+	input.placeholder = "Cantidad";
+	input.disabled = true;
+
+	//agregar input a celda
+	cellCantidad.appendChild(input);
+
 	//----------INPUT observaciones-----------
 	//crear celda
 	var cellObservaciones = e.insertCell();
@@ -398,6 +405,7 @@ function appendReactivo(e) {
 
 	//agregar input a celda
 	cellObservaciones.appendChild(input);
+	input.disabled = true;
 
 	//----------BUTTON delete-----------
 	//crear celda
