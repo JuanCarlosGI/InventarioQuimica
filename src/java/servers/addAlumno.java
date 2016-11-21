@@ -51,7 +51,12 @@ public class addAlumno extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        
+        request.setAttribute("alumnos", Context.getUsuarios());
+        String url = "/admin_editarAlumnos.jsp";
+        RequestDispatcher dispatcher =
+                 getServletContext().getRequestDispatcher(url);
+        dispatcher.forward(request, response);
     }
 
     /**
@@ -65,7 +70,7 @@ public class addAlumno extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        
         String mat = request.getParameter("matricula");
         ServletContext context = getServletContext();
         Usuario usuario = new Usuario();
@@ -82,11 +87,11 @@ public class addAlumno extends HttpServlet {
             System.out.println("No se inserto");
         }
         
-
         // forward request and response objects to JSP page
+        request.setAttribute("alumnos", Context.getUsuarios());
         String url = "/admin_editarAlumnos.jsp";
         RequestDispatcher dispatcher =
-             getServletContext().getRequestDispatcher(url);
+                 getServletContext().getRequestDispatcher(url);
         dispatcher.forward(request, response);
     }
 

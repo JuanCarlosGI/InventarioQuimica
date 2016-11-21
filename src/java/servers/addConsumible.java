@@ -28,32 +28,41 @@ public class addConsumible extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        /*String marca = request.getParameter("clave");
+        String clave = request.getParameter("clave");
         String marca = request.getParameter("marca");
         String nombre = request.getParameter("nombre");
         String cantidad = request.getParameter("cantidad");
         String presentacion = request.getParameter("presentacion");
         String contenido = request.getParameter("contenido");
         String localizacion = request.getParameter("localizacion");
+        String descripcion = request.getParameter("descripcion");
 
         String url = "/login.html";
         Usuario user = (Usuario) request.getSession().getAttribute("usuario");
         if (user != null && user.getRol().equals("Administrador")
                 && marca != null && nombre != null && cantidad != null
-                && presentacion != null && contenido != null && localizacion != null) {
+                && presentacion != null && contenido != null && localizacion != null
+                && descripcion != null && clave != null) {
+            int cant = Integer.parseInt(cantidad);
             Consumible con = new Consumible();
             con.setMarca(marca);
-            lab.setNombre(nombre);
-
-            Context.insertarLaboratorio(lab);
+            con.setNombre(nombre);
+            con.setCantidad(cant);
+            con.setClave(clave);
+            con.setDescripcion(descripcion);
+            con.setLocalizacion(localizacion);
+            con.setContenido(contenido);
+            con.setPresentacion(presentacion);
             
-            request.setAttribute("laboratorios", Context.getLaboratorios());
-            url = "/admin_laboratorio.jsp";
-        }
+            
+            Context.insertarConsumible(con);
 
+            request.setAttribute("consumibles", Context.getConsumibles());
+            url = "/admin_consumibles.jsp";
+        }        
         RequestDispatcher dispatcher =
                  getServletContext().getRequestDispatcher(url);
-        dispatcher.forward(request, response);*/
+        dispatcher.forward(request, response);
     }
     
     @Override

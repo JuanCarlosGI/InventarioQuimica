@@ -26,8 +26,7 @@
         <%@ page import="java.util.LinkedList"%>
         <jsp:useBean id = "usuario" class="models.Usuario" scope = "session"/>
         <% 
-            LinkedList<Usuario> usuarios = new LinkedList<>();
-            usuarios = Context.getUsuarios();    
+            LinkedList<Usuario> usuarios = (LinkedList<Usuario>)request.getAttribute("administradores");     
         %>
       <!-- NAVBAR -->
       <!-- Dropdown Menu Structure -->
@@ -83,33 +82,30 @@
           <tr>
               <th data-field="matriucla">Nomina</th>
               <th data-field="nombre">Nombre</th>
-              <th data-field="apellidos">Apellidos</th>
               <th data-field="correo">Correo</th>
-              <th data-field="modificar">Modificar</th>
               <th data-field="eliminar">Eliminar</th>
           </tr>
         </thead>
 
         <tbody>
-          <tr>
-            <%
+          <%
                   for(int i=0; i<usuarios.size(); i++){
                       if(usuarios.get(i).getRol().equals("Administrador")){            
                         out.println("<tr>");
                         out.println("<td>"+usuarios.get(i).getMatricula()+"</td>");
                         out.println("<td>"+usuarios.get(i).getNombre()+"</td>");
-                        out.println("<td>"+usuarios.get(i).getNombre()+"</td>");
                         out.println("<td>"+usuarios.get(i).getCorreo()+"</td>");
-                      }
-                  }
+                      
+                  
               %>
             <td>
-              <button class="btn waves-effect waves-light" name="action"><i class="material-icons center">mode_edit</i></button>
-            </td>
-            <td>
-            <button class="btn waves-effect waves-light red" name="action"><i class="material-icons center">delete</i></button>
+                <a href="deleteThis?id=<%=usuarios.get(i).getMatricula()%>" <button class="btn waves-effect waves-light red" name="action"><i class="material-icons center">delete</i></button> </a>
             </td>
           </tr>
+          <%
+              }
+              }
+          %>
         </tbody>
       </table>
 

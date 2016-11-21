@@ -63,7 +63,7 @@
     <div class="row">
       <div class="container">
 
-        <form action="#">
+        <form action="addMaterial" method = "post">
           <div class="row">
             <div class="input-field col s6">
               <input placeholder="Hamburguesa" type="text" class="validate" id="nombre" name="nombre"/>
@@ -108,7 +108,7 @@
 
         <tbody>
           <%
-            LinkedList<Material> materiales= Context.getMateriales();
+            LinkedList<Material> materiales= (LinkedList<Material>)request.getAttribute("materiales");
             for(int i = 0; i < materiales.size(); i+=1){
 
              %>
@@ -119,10 +119,10 @@
             <td><%=materiales.get(i).getLocalizacion()%></td>
             <td><%=materiales.get(i).getCapacidad()%></td>
             <td>
-              <button class="btn waves-effect waves-light" name="action"><i class="material-icons center">mode_edit</i></button>
+                <a href="modificarMaterial?clave=<%=materiales.get(i).getClave()%>&action=modificar"><button class="btn waves-effect waves-light" name="action"><i class="material-icons center">mode_edit</i></button></a>
             </td>
             <td>
-            <button class="btn waves-effect waves-light red" name="action"><i class="material-icons center">delete</i></button>
+                <a href="modificarMaterial?clave=<%=materiales.get(i).getClave()%>&action=borrar"><button class="btn waves-effect waves-light red" name="action"><i class="material-icons center">delete</i></button></a>
             </td>
           </tr>
           <%

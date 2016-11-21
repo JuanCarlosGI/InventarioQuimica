@@ -9,29 +9,29 @@ import data.Context;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import models.Equipo;
+import models.Reactivo;
 import models.Usuario;
 
 /**
  *
- * @author armando
+ * @author Cesar
  */
-@WebServlet(name = "addEquipo", urlPatterns = {"/addEquipo"})
-public class addEquipo extends HttpServlet {
-
+@WebServlet(name = "addReactivo", urlPatterns = {"/addReactivo"})
+public class addReactivo extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String clave = request.getParameter("clave");
+         String clave = request.getParameter("clave");
         String marca = request.getParameter("marca");
         String nombre = request.getParameter("nombre");
         String cantidad = request.getParameter("cantidad");
+        String presentacion = request.getParameter("presentacion");
+        String contenido = request.getParameter("contenido");
         String localizacion = request.getParameter("localizacion");
         String descripcion = request.getParameter("descripcion");
 
@@ -39,22 +39,23 @@ public class addEquipo extends HttpServlet {
         Usuario user = (Usuario) request.getSession().getAttribute("usuario");
         if (user != null && user.getRol().equals("Administrador")
                 && marca != null && nombre != null && cantidad != null
-               && localizacion != null
+                && presentacion != null && contenido != null && localizacion != null
                 && descripcion != null && clave != null) {
             int cant = Integer.parseInt(cantidad);
-            Equipo eq = new Equipo();
-            eq.setMarca(marca);
-            eq.setNombre(nombre);
-            eq.setCantidad(cant);
-            eq.setClave(clave);
-            eq.setDescripcion(descripcion);
-            eq.setLocalizacion(localizacion);
+            Reactivo rea = new Reactivo();
+            rea.setMarca(marca);
+            rea.setNombre(nombre);
+            rea.setCantidad(cant);
+            rea.setClave(clave);
+            rea.setDescripcion(descripcion);
+            rea.setLocalizacion(localizacion);
+            rea.setContenido(contenido);
+            rea.setPresentacion(presentacion);
             
-            
-            Context.insertarEquipo(eq);
+            Context.insertarReactivo(rea);
 
-            request.setAttribute("equipos", Context.getEquipos());
-            url = "/admin_equipos.jsp";
+            request.setAttribute("reactivos", Context.getReactivos());
+            url = "/admin_reactivos.jsp";
         }        
         RequestDispatcher dispatcher =
                  getServletContext().getRequestDispatcher(url);
@@ -64,8 +65,8 @@ public class addEquipo extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.setAttribute("equipos", Context.getEquipos());
-        String url = "/admin_equipos.jsp";
+        request.setAttribute("reactivos", Context.getReactivos());
+        String url = "/admin_reactivos.jsp";
         RequestDispatcher dispatcher =
                  getServletContext().getRequestDispatcher(url);
         dispatcher.forward(request, response);

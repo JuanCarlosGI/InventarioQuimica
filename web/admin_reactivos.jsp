@@ -88,7 +88,7 @@
 
         <tbody>
             <%
-            LinkedList<Reactivo> reactivos= Context.getReactivos();
+            LinkedList<Reactivo> reactivos= (LinkedList<Reactivo>)request.getAttribute("reactivos");
             for(int i = 0; i < reactivos.size(); i+=1){
 
              %>
@@ -100,10 +100,10 @@
             <td><%=reactivos.get(i).getPresentacion()%></td>
             <td><%=reactivos.get(i).getContenido()%></td>
             <td>
-              <button class="btn waves-effect waves-light" name="action"><i class="material-icons center">mode_edit</i></button>
+                <a href="modificarReactivo?clave=<%=reactivos.get(i).getClave()%>&action=modificar"><button class="btn waves-effect waves-light" name="action"><i class="material-icons center">mode_edit</i></button></a>
             </td>
             <td>
-            <button class="btn waves-effect waves-light red" name="action"><i class="material-icons center">delete</i></button>
+                <a href="modificarReactivo?clave=<%=reactivos.get(i).getClave()%>&action=borrar"><button class="btn waves-effect waves-light red" name="action"><i class="material-icons center">delete</i></button></a>
             </td>
           </tr>
           <%

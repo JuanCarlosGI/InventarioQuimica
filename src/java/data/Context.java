@@ -54,7 +54,6 @@ public final class Context {
         Usuario usuario = null;
         System.out.println(matricula);
         try {
-            Class.forName("com.mysql.jdbc.Driver");
             Connection connection;
             connection = DriverManager.getConnection(URL, "root", "");
             Statement statement = connection.createStatement();
@@ -690,7 +689,7 @@ public final class Context {
 
             statement.executeUpdate(""
                     + "DELETE FROM equipo "
-                    + "WHERE clave = " + clave + ";");
+                    + "WHERE clave = '" + clave + "';");
         } catch (SQLException exception) {
             System.out.println(exception);
             return false;
@@ -933,7 +932,7 @@ public final class Context {
 
             statement.executeUpdate(""
                     + "DELETE FROM material "
-                    + "WHERE clave = " + clave + ";");
+                    + "WHERE clave = '" + clave + "';");
         } catch (SQLException exception) {
             System.out.println(exception);
             return false;

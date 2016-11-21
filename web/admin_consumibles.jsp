@@ -128,10 +128,10 @@
             <td><%=consumibles.get(i).getPresentacion()%></td>
             <td><%=consumibles.get(i).getContenido()%></td>
             <td>
-              <button class="btn waves-effect waves-light" name="action"><i class="material-icons center">mode_edit</i></button>
+                <a href="modificarConsumible?clave=<%=consumibles.get(i).getClave()%>&action=modificar"><button class="btn waves-effect waves-light" name="action"><i class="material-icons center">mode_edit</i></button><a href="modificarConsumible?clave=<%=consumibles.get(i).getClave()%>&action=modificar">
             </td>
             <td>
-            <button class="btn waves-effect waves-light red" name="action"><i class="material-icons center">delete</i></button>
+                <a href="modificarConsumible?clave=<%=consumibles.get(i).getClave()%>&action=borrar"><button class="btn waves-effect waves-light red" name="action"><i class="material-icons center">delete</i></button></a>
             </td>
             <%
             }

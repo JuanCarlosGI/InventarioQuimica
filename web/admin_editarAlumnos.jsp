@@ -77,7 +77,6 @@
           <tr>
               <th data-field="matriucla">Matricula</th>
               <th data-field="nombre">Nombre</th>
-              <th data-field="apellidos">Apellidos</th>
               <th data-field="correo">Correo</th>
               <th data-field="maestra">Maestra</th>
               <th data-field="laboratorio">Laboratorio</th>
@@ -92,19 +91,18 @@
                         out.println("<tr>");
                         out.println("<td>"+usuarios.get(i).getMatricula()+"</td>");
                         out.println("<td>"+usuarios.get(i).getNombre()+"</td>");
-                        out.println("<td>"+usuarios.get(i).getNombre()+"</td>");
                         out.println("<td>"+usuarios.get(i).getCorreo()+"</td>");
-                        out.println("<td>"+ " Maestra1 "+"</td>");
                         out.println("<td>"+ " Lab 1 " +"</td>");
-                      }
-                 
+                      
+                  
               %>
             <td>
-                <a href="addAlumno?id=<%=usuarios.get(i).getMatricula()%>" <button class="btn waves-effect waves-light red" name="action"><i class="material-icons center">delete</i></button> </a>
+                <a href="deleteThis?id=<%=usuarios.get(i).getMatricula()%>" <button class="btn waves-effect waves-light red" name="action"><i class="material-icons center">delete</i></button> </a>
             </td>
+          </tr>
           <%
-            }
-            out.println("</tr>");
+              }
+              }
           %>
           
         </tbody>

@@ -9,7 +9,6 @@ import data.Context;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -21,8 +20,8 @@ import models.Usuario;
  *
  * @author armando
  */
-@WebServlet(name = "addProfesor", urlPatterns = {"/addProfesor"})
-public class addProfesor extends HttpServlet {
+@WebServlet(name = "deleteThis", urlPatterns = {"/deleteThis"})
+public class deleteThis extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -50,12 +49,39 @@ public class addProfesor extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        processRequest(request, response);
+        String matricula = request.getParameter("id");
+        Usuario user = Context.getUsuario(matricula);
+        //Context.eliminarUsuario(matricula);
         
-        request.setAttribute("profesores", Context.getUsuarios());
-        String url = "/admin_editarProfesores.jsp";
-        RequestDispatcher dispatcher =
+        String rol = user.getRol();
+        if(rol.equals("Alumno")){
+            Context.eliminarUsuario(matricula);
+            request.setAttribute("alumnos", Context.getUsuarios());
+            String url = "/admin_editarAlumnos.jsp";
+            RequestDispatcher dispatcher =
                  getServletContext().getRequestDispatcher(url);
-        dispatcher.forward(request, response);
+            dispatcher.forward(request, response);
+            
+        }
+        else if(rol.equals("Profesor")){
+            Context.eliminarUsuario(matricula);
+            request.setAttribute("profesores", Context.getUsuarios());
+            String url = "/admin_editarProfesores.jsp";
+            RequestDispatcher dispatcher =
+                 getServletContext().getRequestDispatcher(url);
+            dispatcher.forward(request, response);
+            
+        }
+        else if(rol.equals("Administrador")){
+            Context.eliminarUsuario(matricula);
+            request.setAttribute("administradores", Context.getUsuarios());
+            String url = "/admin_editarAdministradores.jsp";
+            RequestDispatcher dispatcher =
+                 getServletContext().getRequestDispatcher(url);
+            dispatcher.forward(request, response);
+
+        }
     }
 
     /**
@@ -70,29 +96,6 @@ public class addProfesor extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
-        String mat = request.getParameter("nomina");
-        ServletContext context = getServletContext();
-        Usuario usuario = new Usuario();
-        usuario.setMatricula(mat);
-        usuario.setNombre(mat);
-        usuario.setPassword(mat);
-        usuario.setRol("Profesor");
-        usuario.setCreadorId(null);
-        usuario.setCorreo(mat+"@itesm.mx");
-        if(Context.insertarUsuario(usuario)){
-            System.out.println("se inserto");
-        }
-        else{
-            System.out.println("No se inserto");
-        }
-        
-
-        // forward request and response objects to JSP page
-        request.setAttribute("profesores", Context.getUsuarios());
-        String url = "/admin_editarProfesores.jsp";
-        RequestDispatcher dispatcher =
-             getServletContext().getRequestDispatcher(url);
-        dispatcher.forward(request, response);
     }
 
     /**

@@ -51,13 +51,10 @@ public class addAdministrador extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
-        request.setAttribute("alumnos", Context.getUsuarios());
-        String mat = request.getParameter("id");
-        Context.eliminarUsuario(mat);   
-        String url = "/admin_editarAlumnos.jsp";
+        request.setAttribute("administradores", Context.getUsuarios());
+        String url = "/admin_editarAdministradores.jsp";
         RequestDispatcher dispatcher =
-             getServletContext().getRequestDispatcher(url);
+                 getServletContext().getRequestDispatcher(url);
         dispatcher.forward(request, response);
     }
 
@@ -91,9 +88,10 @@ public class addAdministrador extends HttpServlet {
         
 
         // forward request and response objects to JSP page
+        request.setAttribute("administradores", Context.getUsuarios());
         String url = "/admin_editarAdministradores.jsp";
-        RequestDispatcher dispatcher =
-             getServletContext().getRequestDispatcher(url);
+        RequestDispatcher dispatcher
+                = getServletContext().getRequestDispatcher(url);
         dispatcher.forward(request, response);
     }
 
