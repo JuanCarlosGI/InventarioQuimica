@@ -109,6 +109,7 @@ function appendMaterial(e) {
 	//crear select
 	var selectMarca = document.createElement("select");
 	selectMarca.required = true;
+        selectMarca.disabled = true;
 
 	//crear opcion default
 	var option = document.createElement("option");
@@ -117,26 +118,27 @@ function appendMaterial(e) {
 	option.text = "Marca";
 	selectMarca.appendChild(option);
 
-	//for loop con datos de la base de datos
-	option = document.createElement("option");
-	option.setAttribute("value", "marca");
-	option.text = "NOMBRE MARCA";
-	selectMarca.appendChild(option);
-
 	//agregar select a celda
 	cellMarca.appendChild(selectMarca);
 
-	//-----------INPUT capacidad-----------
+	//-----------SELECT capacidad-----------
 	//crear celda
 	var cellCapacidad = e.insertCell();
 
-	//crear input
-	var input = document.createElement("input");
-	input.setAttribute("type", "text");
-	input.placeholder = "Capacidad";
+	//crear select
+	var selectCapacidad = document.createElement("select");
+	selectCapacidad.required = true;
+        selectCapacidad.disabled = true;
 
-	//agregar input a celda
-	cellCapacidad.appendChild(input);
+	//crear opcion default
+	var option = document.createElement("option");
+	option.disabled = true;
+	option.selected = true;
+	option.text = "Capacidad";
+	selectCapacidad.appendChild(option);
+
+	//agregar select a celda
+	cellCapacidad.appendChild(selectCapacidad);
 
 	//----------INPUT cantidad-----------
 	//crear celda
@@ -145,6 +147,7 @@ function appendMaterial(e) {
 	input = document.createElement("input");
 	input.setAttribute("type", "text");
 	input.placeholder = "Cantidad";
+        input.setAttribute("name", "materialCantidad");
 
 	//agregar input a celda
 	cellCantidad.appendChild(input);
@@ -156,6 +159,7 @@ function appendMaterial(e) {
 	input = document.createElement("input");
 	input.setAttribute("type", "text");
 	input.placeholder = "Observaciones";
+        input.setAttribute("name", "materialObservaciones");
 
 	//agregar input a celda
 	cellObservaciones.appendChild(input);
