@@ -2,6 +2,7 @@ package models;
 
 import data.Context;
 import java.sql.Date;
+import java.util.LinkedList;
 
 /**
  * Clase que representa a un pedido generado en el sistema.
@@ -166,5 +167,21 @@ public class Pedido {
     
     public Usuario getMaestro() {
         return Context.getUsuario(profesorId);
+    }
+    
+    public LinkedList<DetalleMaterial> getDetallesMaterial(){
+        return Context.getDetalleMaterial(id);
+    }
+    
+    public LinkedList<DetalleEquipo> getDetallesEquipo(){
+        return Context.getDetalleEquipo(id);
+    }
+    
+    public LinkedList<DetalleReactivo> getDetallesReactivo(){
+        return Context.getDetalleReactivo(id);
+    }
+    
+    public LinkedList<DetalleConsumible> getDetalleConsumible(){
+        return Context.getDetalleConsumible(id);
     }
 }

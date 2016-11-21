@@ -56,17 +56,17 @@
   <div class="col s12">
       <%@ page import="models.Pedido" %>
         <jsp:useBean id = "pedido" class="models.Pedido" scope = "request"/>
-    <div class="input-field col s6">
+  </div>
+    <div class="row">
+        <div class="input-field col s6">
       <input disabled type="text" class="validate" id="folio" name="folio" value="${pedido.id}"/>
       <label for="folio">Folio</label>
     </div>
-  </div>
-    <div class="row">
       <div class="input-field col s6">
           <input disabled type="text" class="validate" id="matricula" name="matricula" value="${pedido.usuarioId}"/>
         <label for="matricula">Matricula/Nómina</label>
       </div>
-      <div class="input-field col s12">
+      <div class="input-field col s6">
         <input disabled type="text" class="validate" id="nombre" name="nombre" value="${pedido.getUsuario().getNombre()}"/>
         <label for="nombre">Nombre</label>
       </div>
@@ -90,7 +90,11 @@
     <h5>Productos</h5>
 
     <table class="responsive-table striped" id="vale">
-
+        <tr>
+            <th>Nombre</th>
+            <th>Marca</th>
+            <th>Cantidad</th>
+        </tr>
     </table>
 
     <div class='section'></div>

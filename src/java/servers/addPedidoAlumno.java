@@ -27,8 +27,8 @@ import models.Equipo;
  *
  * @author JuanCarlos
  */
-@WebServlet(name = "addPedido", urlPatterns = {"/addPedido"})
-public class addPedido extends HttpServlet {
+@WebServlet(name = "addPedidoAlumno", urlPatterns = {"/addPedidoAlumno"})
+public class addPedidoAlumno extends HttpServlet {
 
         @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -37,27 +37,19 @@ public class addPedido extends HttpServlet {
         String[] materialCantidades = request.getParameterValues("materialCantidad");
         String[] materialesObservaciones = request.getParameterValues("materialObservaciones");
         
-        String[] reactivoIds = request.getParameterValues("reactivoId");
-        String[] reactivoCantidades = request.getParameterValues("reactivoCantidad");
-        String[] reactivosObservaciones = request.getParameterValues("reactivoObservaciones");
-        
-        String[] consumibleIds = request.getParameterValues("consumibleId");
-        String[] consumibleCantidades = request.getParameterValues("consumibleCantidad");
-        String[] consumiblesObservaciones = request.getParameterValues("consumibleObservaciones");
-        
         String[] equipoIds = request.getParameterValues("equipoId");
         String[] equipoCantidades = request.getParameterValues("equipoCantidad");
         String[] equiposObservaciones = request.getParameterValues("equipoObservaciones");
         
         Usuario user = (Usuario)request.getSession().getAttribute("usuario");
         
-        String profesorId = request.getParameter("profesorId");
         String laboratorioId = request.getParameter("laboratorioId");
         
         Date fechaEmision = Date.valueOf(LocalDate.now());
         Date fechaDevolucion = fechaEmision;
         Date fechaEntrega = fechaEmision;
         
+        String url = "/login.html";
         if (user != null) {
             Pedido pedido = new Pedido();
             
@@ -66,6 +58,7 @@ public class addPedido extends HttpServlet {
                 if (aux.getId() > max) max = aux.getId();
             }
             int pedidoId = max + 1;
+            String profesorId = user.getMaestroForLaboratorio(laboratorioId).getMatricula();
             pedido.setId(pedidoId);
             pedido.setLaboratorioId(laboratorioId);
             pedido.setProfesorId(profesorId);
@@ -89,30 +82,6 @@ public class addPedido extends HttpServlet {
                 }
             }
             
-            if (reactivoIds != null && reactivoCantidades != null && reactivosObservaciones != null &&
-                    reactivoIds.length == reactivoCantidades.length && reactivoIds.length == reactivosObservaciones.length) {
-                for (int i = 0; i < reactivoIds.length; i++) {
-                    Reactivo reactivo = Context.getReactivo(reactivoIds[i]);
-                    if (reactivo.getCantidad() < Integer.parseInt(reactivoCantidades[i])) {    
-                        Context.insertarDetalleReactivo(Integer.parseInt(reactivoCantidades[i]), 0, reactivosObservaciones[i], reactivoIds[i], pedidoId);
-                        reactivo.setCantidad(reactivo.getCantidad() - Integer.parseInt(reactivoCantidades[i]));
-                        Context.actualizarReactivo(reactivo);
-                    }
-                }
-            }
-            
-            if (consumibleIds != null && consumibleCantidades != null && consumiblesObservaciones != null &&
-                    consumibleIds.length == consumibleCantidades.length && consumibleIds.length == consumiblesObservaciones.length) {
-                for (int i = 0; i < consumibleIds.length; i++) {
-                    Consumible consumible = Context.getConsumible(consumibleIds[i]);
-                    if (consumible.getCantidad() < Integer.parseInt(consumibleCantidades[i])) {    
-                        Context.insertarDetalleConsumible(Integer.parseInt(consumibleCantidades[i]), consumiblesObservaciones[i], consumibleIds[i], pedidoId);
-                        consumible.setCantidad(consumible.getCantidad() - Integer.parseInt(consumibleCantidades[i]));
-                        Context.actualizarConsumible(consumible);
-                    }
-                }
-            }
-            
             if (equipoIds != null && equipoCantidades != null && equiposObservaciones != null &&
                     equipoIds.length == equipoCantidades.length && equipoIds.length == equiposObservaciones.length) {
                 for (int i = 0; i < equipoIds.length; i++) {
@@ -124,7 +93,12 @@ public class addPedido extends HttpServlet {
                     }
                 }
             }
+            
+            url = "/alumno_misValse.jsp";
         }
+        RequestDispatcher dispatcher =
+                 getServletContext().getRequestDispatcher(url);
+        dispatcher.forward(request, response);
     }
     
     @Override
@@ -136,17 +110,9 @@ public class addPedido extends HttpServlet {
         {
             request.setAttribute("materiales", Context.getMateriales());
             request.setAttribute("equipos", Context.getEquipos());
+            request.setAttribute("laboratorios", user.getCursaLaboratorios());
             
-            if (user.getRol().equals("Alumno")) {
-                url = "alumno_crearVale";
-                
-            }  
-            else {
-                request.setAttribute("reactivos", Context.getReactivos());
-                request.setAttribute("consumibles", Context.getConsumibles());
-                
-                url = "profesor_crearVale";
-            }
+            url = "/alumno_crearVale.jsp";
         }
         RequestDispatcher dispatcher =
                  getServletContext().getRequestDispatcher(url);
