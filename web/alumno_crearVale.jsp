@@ -100,15 +100,15 @@
         <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
         <script type="text/javascript" src="js/materialize.js"></script>
         <script type="text/javascript">
-                            $('.datepicker').pickadate({
-                                selectMonths: true, // Creates a dropdown to control month
-                                selectYears: 0, // Creates a dropdown of 0 years to control year
-                                selectDays: 2
-                            });
+            $('.datepicker').pickadate({
+                selectMonths: true, // Creates a dropdown to control month
+                selectYears: 0, // Creates a dropdown of 0 years to control year
+                selectDays: 2
+            });
 
-                            $(document).ready(function () {
-                                $('select').material_select();
-                            });
+            $(document).ready(function () {
+                $('select').material_select();
+            });
         </script>
         <%
             String arregloMateriales = "";
