@@ -101,7 +101,7 @@
                   <td><%=lab.getClave()%></td>
                   <td>TO DO</td>
                   <td>
-                    <button class="btn waves-effect waves-light green" name="action"><i class="material-icons center">add</i></button>
+                      <a href="addMaestroLaboratorio?clave=<%=lab.getClave()%>"><button class="btn waves-effect waves-light green" name="action" ><i class="material-icons center">add</i></button><a href="addMaestroLaboratorio?clave=<%=lab.getClave()%>">
                   </td>
                   <td>
                     <button class="btn waves-effect waves-light" name="action"><i class="material-icons center">mode_edit</i></button>
