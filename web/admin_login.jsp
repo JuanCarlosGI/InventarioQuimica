@@ -108,7 +108,7 @@
               <a href="admin_editarAlumnos.jsp" class="waves-effect waves-light btn-large" style="width: 80%; background-color: #00bcd4">Editar Alumnos</a><br><br>
               <a href="admin_editarProfesores.jsp" class="waves-effect waves-light btn-large" style="width: 80%; background-color: #00bcd4">Editar Maestros</a><br><br>
               <a href="admin_editarAdministradores.jsp" class="waves-effect waves-light btn-large" style="width: 80%; background-color: #00bcd4">Editar Administradores</a><br><br>
-              <a href="#" class="waves-effect waves-light btn-large" style="width: 80%; background-color: #00bcd4">Editar Laboratorios</a>
+              <a href="addLaboratorio" class="waves-effect waves-light btn-large" style="width: 80%; background-color: #00bcd4">Editar Laboratorios</a>
             </div>
           </div>
           <div class="col s12 m6 l4">

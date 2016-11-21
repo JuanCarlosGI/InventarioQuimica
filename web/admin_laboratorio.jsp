@@ -1,3 +1,5 @@
+<%@page import="java.util.LinkedList"%>
+<%@page import="models.Laboratorio"%>
 <!DOCTYPE html>
   <html>
     <head>
@@ -26,7 +28,7 @@
 
       <nav>
         <div class="nav-wrapper">
-          <a href="#" class="brand-logo center">AlmacÃ©n de QuÃ­mica</a>
+          <a href="#" class="brand-logo center">Almacén de Química</a>
           <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
           <ul class="right hide-on-med-and-down">
           <!-- Dropdown Trigger -->
@@ -56,7 +58,7 @@
     <form action="addLaboratorio" method="POST">
       <div class="row">
         <div class="input-field col s6">
-          <input placeholder="QuÃ­mica OrgÃ¡nica" type="text" class="validate" id="nombreLaboratorio" name="nombre"/>
+          <input placeholder="Química Orgánica" type="text" class="validate" id="nombreLaboratorio" name="nombre"/>
           <label for="nombreLaboratorio">Nombre</label>
         </div>
         <div class="input-field col s6">
@@ -82,36 +84,35 @@
             <th data-field="nombreLaboratorio">Nombre Laboratorio</th>
             <th data-field="claveLaboratorio">Clave Laboratorio</th>
             <th data-field="profesores">Profesores Inscritos</th>
-            <th data-field="profesores">Agregar Profesor</th>
+            <th data-field="profesores">Agregar Profesores</th>
             <th data-field="modificar">Modificar</th>
             <th data-field="eliminar">Eliminar</th>
         </tr>
       </thead>
 
       <tbody>
-          <
+          <%
             LinkedList<Laboratorio> labs = (LinkedList<Laboratorio>)request.getAttribute("laboratorios");
                 for (Laboratorio lab : labs)
               {
               %>
-              
+              <tr>
+                  <td><%=lab.getNombre()%></td>
+                  <td><%=lab.getClave()%></td>
+                  <td>TO DO</td>
+                  <td>
+                    <button class="btn waves-effect waves-light green" name="action"><i class="material-icons center">add</i></button>
+                  </td>
+                  <td>
+                    <button class="btn waves-effect waves-light" name="action"><i class="material-icons center">mode_edit</i></button>
+                  </td>
+                  <td>
+                  <button class="btn waves-effect waves-light red" name="action"><i class="material-icons center">delete</i></button>
+                  </td>
+              </tr>
               <%
               }
           %>
-        <tr>
-          <td>Quimicia Organica</td>
-          <td>HD30303</td>
-          <td>Zoraida Vazquez</td>
-          <td>
-            <button class="btn waves-effect waves-light green" name="action"><i class="material-icons center">add</i></button>
-          </td>
-          <td>
-            <button class="btn waves-effect waves-light" name="action"><i class="material-icons center">mode_edit</i></button>
-          </td>
-          <td>
-          <button class="btn waves-effect waves-light red" name="action"><i class="material-icons center">delete</i></button>
-          </td>
-        </tr>
       </tbody>
     </table>
   </div>

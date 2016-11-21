@@ -35,12 +35,24 @@ public class addLaboratorio extends HttpServlet {
             lab.setNombre(nombre);
 
             Context.insertarLaboratorio(lab);
-
-            url = "/admin_laboratorio.html";
+            
+            request.setAttribute("laboratorios", Context.getLaboratorios());
+            url = "/admin_laboratorio.jsp";
         }
 
         RequestDispatcher dispatcher =
                  getServletContext().getRequestDispatcher(url);
         dispatcher.forward(request, response);
+    }
+    
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        request.setAttribute("laboratorios", Context.getLaboratorios());
+        String url = "/admin_laboratorio.jsp";
+        RequestDispatcher dispatcher =
+                 getServletContext().getRequestDispatcher(url);
+        dispatcher.forward(request, response);
+            
     }
 }
