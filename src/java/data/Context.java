@@ -15,6 +15,7 @@ import java.sql.SQLException;
 import java.util.LinkedList;
 import models.Consumible;
 import models.Equipo;
+import models.MaestroLaboratorio;
 import models.Reactivo;
 import models.Material;
 import models.RegistroLaboratorio;
@@ -1278,6 +1279,54 @@ public final class Context {
                     + "VALUES ("
                     + "'" + clave + "', "
                     + "'" + nomina + "');");
+            } catch (SQLException exception) {
+            System.out.println(exception);
+            return false;
+        }
+        return true;
+    }
+    
+    public static LinkedList<MaestroLaboratorio> getMaestrosLaboratorios()
+    {
+        LinkedList<MaestroLaboratorio> registros = new LinkedList<>();
+
+        try {
+            Connection connection;
+            connection = DriverManager.getConnection(URL, "root", "");
+            Statement statement = connection.createStatement();
+
+            try (ResultSet resultSet = statement.executeQuery(""
+                    + "SELECT * "
+                    + "FROM maestrolaboratorio;")) {
+
+                while (resultSet.next()) {
+                    MaestroLaboratorio registro = new MaestroLaboratorio();
+
+                    registro.setLaboratorioId(resultSet.getString("laboratorioId"));
+                    registro.setMaestroId(resultSet.getString("maestroId"));
+                    
+                    registros.add(registro);
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println(e.toString());
+        }
+
+        return registros;
+    }
+    
+    public static boolean insertarRegistroLaboratorio(String nomina, String clave, String matricula) {
+        try {
+            Connection connection;
+            connection = DriverManager.getConnection(URL, "root", "");
+            Statement statement = connection.createStatement();
+            statement.executeUpdate(""
+                    + "INSERT INTO registrolaboratorio "
+                    + "(laboratorioId, maestroId, alumnoId) "
+                    + "VALUES ("
+                    + "'" + clave + "', "
+                    + "'" + nomina + "', "
+                    + "'" + matricula + "');");
             } catch (SQLException exception) {
             System.out.println(exception);
             return false;

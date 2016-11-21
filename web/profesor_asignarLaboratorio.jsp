@@ -1,3 +1,5 @@
+<%@page import="java.util.LinkedList"%>
+<%@page import="models.Laboratorio"%>
 <!DOCTYPE html>
   <html>
     <head>
@@ -26,7 +28,7 @@
 
       <nav>
         <div class="nav-wrapper">
-          <a href="#" class="brand-logo center">AlmacÃ©n de QuÃ­mica</a>
+          <a href="#" class="brand-logo center">Almacén de Química</a>
           <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
           <ul class="right hide-on-med-and-down">
           <!-- Dropdown Trigger -->
@@ -42,7 +44,7 @@
     <div class="nav-wrapper center">
       <div class="col s12">
         <a href="#!" class="breadcrumb">Inicio</a>
-        <a href="#!" class="breadcrumb">Crear Laboratorio</a>
+        <a href="#!" class="breadcrumb">Asignar Laboratorio</a>
       </div>
     </div>
   </nav>
@@ -54,27 +56,25 @@
 
     <div class='section'></div>
 
-      <form action="#">
+      <form action="asignarLaboratorio" method="POST">
         <div class="row">
           <div class="input-field col s6">
-            <input disabled placeholder="N00000000" type="text" class="validate" id="nomina" name="nomina"/>
-            <label for="nomina">Nomina</label>
-          </div>
-          <div class="input-field col s6">
-            <input required placeholder="David" type="text" class="validate" id="nombre" name="nombre"/>
-            <label for="nombre">Nombre</label>
-          </div>
-          <div class="input-field col s6">
-            <input required placeholder="Noel Ramirez" type="text" class="validate" id="apellidos" name="apellidos"/>
-            <label for="apellidos">Apellidos</label>
-          </div>
-          <div class="input-field col s6">
-            <input required placeholder="N00000000@itesm.mx" type="email" class="validate" id="email" name="email"/>
-            <label for="email">Correo</label>
-          </div>
-          <div class="input-field col s6">
             <input required placeholder="36" type="text" class="validate" id="numeroAlumnos" name="numeroAlumnos" onchange="nuevosAlumnos(this)"/>
-            <label for="numeroAlumnos">Cantidad de Alumnos inscritos</label>
+            <label for="numeroAlumnos">Cantidad de alumnos por inscribir</label>
+          </div>
+          <div class="input-field col s6" >
+            <select required name="laboratorioId">
+              <option value="" disabled selected>Laboratorio</option>
+              <%
+                  LinkedList<Laboratorio> labs = (LinkedList<Laboratorio>)request.getAttribute("laboratorios");
+                for (Laboratorio lab : labs)
+                {
+                %>
+                <option value="<%=lab.getClave()%>"><%= lab.getNombre() %></option>
+                <%
+                    }
+                    %>
+            </select>
           </div>
         </div><br>
 
@@ -84,13 +84,15 @@
           </div>
           <div class="col s1 m3"></div>
           <div id="alumnos" class="input-field col s10 m6">
+            <input disabled type="text"/>
+            <label>Definir cantidad de alumnos</label>
           </div>
         </div>
 
 
         <div class='section'>
           <div class="row center">
-          <button class="btn waves-effect waves-light" type="submit" name="action">Crear Laboratorio<i class="material-icons right">send</i>
+          <button class="btn waves-effect waves-light" type="submit" name="action">Asignar alumnos<i class="material-icons right">send</i>
           </button>
           </div>
         </div>
@@ -100,5 +102,10 @@
     <!--Import jQuery before materialize.js-->
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script type="text/javascript" src="js/materialize.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function() {
+        $('select').material_select();
+      });
+    </script>
   </body>
 </html>

@@ -24,7 +24,7 @@
 
       <nav>
         <div class="nav-wrapper">
-          <a href="#" class="brand-logo center">AlmacÃ©n de QuÃ­mica</a>
+          <a href="#" class="brand-logo center">Almacén de Química</a>
           <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
           <ul class="right hide-on-med-and-down">
           <!-- Dropdown Trigger -->
@@ -54,37 +54,35 @@
   <div class='section'></div>
 
   <div class="col s12">
+      <%@ page import="models.Pedido" %>
+        <jsp:useBean id = "pedido" class="models.Pedido" scope = "request"/>
     <div class="input-field col s6">
-      <input disabled type="text" class="validate" id="folio" name="folio"/>
+      <input disabled type="text" class="validate" id="folio" name="folio" value="${pedido.id}"/>
       <label for="folio">Folio</label>
     </div>
   </div>
     <div class="row">
       <div class="input-field col s6">
-        <input disabled type="text" class="validate" id="matricula" name="matricula" value="valor"/>
-        <label for="matricula">Matricula/NÃ³mina</label>
+          <input disabled type="text" class="validate" id="matricula" name="matricula" value="${pedido.usuarioId}"/>
+        <label for="matricula">Matricula/Nómina</label>
       </div>
-      <div class="input-field col s6">
-        <input disabled type="text" class="validate" id="nombre" name="nombre"/>
+      <div class="input-field col s12">
+        <input disabled type="text" class="validate" id="nombre" name="nombre" value="${pedido.getUsuario().getNombre()}"/>
         <label for="nombre">Nombre</label>
       </div>
       <div class="input-field col s6">
-        <input disabled type="text" class="validate" id="apellidos" name="apellidos"/>
-        <label for="apellidos">Apellidos</label>
-      </div>
-      <div class="input-field col s6">
-        <input disabled type="email" class="validate" id="email" name="email"/>
+          <input disabled type="email" class="validate" id="email" name="email" value="${pedido.getUsuario().getCorreo()}"/>
         <label for="email">Correo</label>
       </div>
     </div><br>
 
     <div class="row">
       <div class="input-field col s6">
-        <input disabled type="text" class="validate" id="laboratorio" name="laboratorio"/>
+          <input disabled type="text" class="validate" id="laboratorio" name="laboratorio" value="${pedido.getLaboratorio().getNombre()}"/>
         <label for="laboratorio">Laboratorio</label>
       </div>
       <div class="input-field col s6">
-        <input disabled type="text" class="validate" id="profesor" name="profesor"/>
+        <input disabled type="text" class="validate" id="profesor" name="profesor" value="${pedido.getMaestro().getNombre()}"/>
         <label for="profesor">Profesor</label>
       </div>
     </div><br>

@@ -24,7 +24,7 @@
 
       <nav>
         <div class="nav-wrapper">
-          <a href="#" class="brand-logo center">AlmacÃ©n de QuÃ­mica</a>
+          <a href="#" class="brand-logo center">Almacén de Química</a>
           <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
           <ul class="right hide-on-med-and-down">
           <!-- Dropdown Trigger -->

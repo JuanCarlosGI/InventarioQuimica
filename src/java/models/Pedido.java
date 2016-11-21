@@ -1,5 +1,6 @@
 package models;
 
+import data.Context;
 import java.sql.Date;
 
 /**
@@ -153,5 +154,17 @@ public class Pedido {
         this.fechaDevolucion = fechaDevolucion;
     }
     
+    public Usuario getUsuario()
+    {
+        return Context.getUsuario(usuarioId);
+    }
     
+    public Laboratorio getLaboratorio()
+    {
+        return Context.getLaboratorio(laboratorioId);
+    }
+    
+    public Usuario getMaestro() {
+        return Context.getUsuario(profesorId);
+    }
 }
