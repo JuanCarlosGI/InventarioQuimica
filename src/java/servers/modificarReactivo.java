@@ -14,6 +14,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import models.Reactivo;
 import models.Usuario;
 
 /**
@@ -42,7 +43,9 @@ public class modificarReactivo extends HttpServlet {
         Usuario user = (Usuario) request.getSession().getAttribute("usuario");
         if (user != null && user.getRol().equals("Administrador")) {
             if(action.equals("modificar")){
-                url = "/admin_modificarReactivo.jsp";
+                request.getSession().setAttribute("clave", clave);
+                request.setAttribute("reactivo", Context.getReactivo(clave));
+                url = "/admin_editarReactivo.jsp";
             }else{
                 Context.eliminarReactivo(clave);
                 request.setAttribute("reactivos", Context.getReactivos());
@@ -66,6 +69,47 @@ public class modificarReactivo extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
+        
+        String clave = request.getParameter("clave");
+        String marca = request.getParameter("marca");
+        String nombre = request.getParameter("nombre");
+        String cantidad = request.getParameter("cantidad");
+        String presentacion = request.getParameter("presentacion");
+        String contenido = request.getParameter("contenido");
+        String localizacion = request.getParameter("localizacion");
+        String descripcion = request.getParameter("descripcion");
+        clave = (String)request.getSession().getAttribute("clave");
+        
+        
+        String url = "/login.html";
+        Usuario user = (Usuario) request.getSession().getAttribute("usuario");
+        
+        System.out.println(user.getRol());
+        if (user != null && user.getRol().equals("Administrador")
+                && marca != null && nombre != null && cantidad != null
+                && presentacion != null && contenido != null && localizacion != null
+                && descripcion != null && clave != null) {
+            int cant = Integer.parseInt(cantidad);
+            Reactivo con = new Reactivo();
+            con.setMarca(marca);
+            con.setNombre(nombre);
+            con.setCantidad(cant);
+            con.setClave(clave);
+            con.setDescripcion(descripcion);
+            con.setLocalizacion(localizacion);
+            con.setContenido(contenido);
+            con.setPresentacion(presentacion);
+            System.out.println(clave);
+            
+            Context.actualizarReactivo(con);
+
+            request.setAttribute("reactivos", Context.getReactivos());
+            url = "/admin_reactivos.jsp";
+        }        
+        RequestDispatcher dispatcher =
+                 getServletContext().getRequestDispatcher(url);
+        dispatcher.forward(request, response);
     }
 
     /**

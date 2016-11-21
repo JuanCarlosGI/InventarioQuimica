@@ -55,11 +55,7 @@ public class addConsumible extends HttpServlet {
             con.setPresentacion(presentacion);
             
             
-            if(Context.insertarConsumible(con)){
-                System.out.println("Si se pUDO");
-            } else {
-                System.out.println("No se pUDO");
-            }
+            Context.insertarConsumible(con);
 
             request.setAttribute("consumibles", Context.getConsumibles());
             url = "/admin_consumibles.jsp";

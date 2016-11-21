@@ -14,6 +14,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import models.Material;
 import models.Usuario;
 
 /**
@@ -43,7 +44,9 @@ public class modificarMaterial extends HttpServlet {
         Usuario user = (Usuario) request.getSession().getAttribute("usuario");
         if (user != null && user.getRol().equals("Administrador")) {
             if(action.equals("modificar")){
-                url = "/admin_modificarMaterial.jsp";
+                request.getSession().setAttribute("clave", clave);
+                request.setAttribute("material", Context.getMaterial(clave));
+                url = "/admin_editarMaterial.jsp";
             }else{
                 Context.eliminarMaterial(clave);
                 request.setAttribute("materiales", Context.getMateriales());
@@ -67,6 +70,42 @@ public class modificarMaterial extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+         
+        String clave = request.getParameter("clave");
+        String marca = request.getParameter("marca");
+        String nombre = request.getParameter("nombre");
+        String cantidad = request.getParameter("cantidad");
+        String localizacion = request.getParameter("localizacion");
+        String capacidad = request.getParameter("capacidad");
+        String descripcion = request.getParameter("descripcion");
+        clave = (String)request.getSession().getAttribute("clave");
+        String url = "/login.html";
+        Usuario user = (Usuario) request.getSession().getAttribute("usuario");
+        
+        System.out.println(clave);
+        if (user != null && user.getRol().equals("Administrador")
+                && marca != null && nombre != null && cantidad != null
+                && localizacion != null
+                && descripcion != null && clave != null) {
+            int cant = Integer.parseInt(cantidad);
+            Material mat = new Material();
+            mat.setMarca(marca);
+            mat.setNombre(nombre);
+            mat.setCantidad(cant);
+            mat.setClave(clave);
+            mat.setDescripcion(descripcion);
+            mat.setLocalizacion(localizacion);
+            mat.setCapacidad(capacidad);
+            System.out.println(clave);
+            
+            Context.actualizarMaterial(mat);
+
+            request.setAttribute("materiales", Context.getMateriales());
+            url = "/admin_materiales.jsp";
+        }        
+        RequestDispatcher dispatcher =
+                 getServletContext().getRequestDispatcher(url);
+        dispatcher.forward(request, response);
     }
 
     /**

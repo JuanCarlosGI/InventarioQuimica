@@ -141,7 +141,7 @@
             <td><%=reactivos.get(i).getContenido()%></td>
             <td><%=reactivos.get(i).getDescripcion()%></td>
             <td>
-                <a href="modificarReactivo?clave=<%=reactivos.get(i).getClave()%>&action=modificar"><button class="btn waves-effect waves-light" name="action"><i class="material-icons center">mode_edit</i></button></a>
+                <a href="modificarReactivo?clave=<%=reactivos.get(i).getClave()%>&action=modificar"><button class="btn waves-effect waves-light" name="action"><i class="material-icons center">mode_edit</i></button><a href="modificarReactivo?clave=<%=reactivos.get(i).getClave()%>&action=modificar">
             </td>
             <td>
                 <a href="modificarReactivo?clave=<%=reactivos.get(i).getClave()%>&action=borrar"><button class="btn waves-effect waves-light red" name="action"><i class="material-icons center">delete</i></button></a>

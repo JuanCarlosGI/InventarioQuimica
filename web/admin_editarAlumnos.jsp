@@ -79,7 +79,6 @@
               <th data-field="matriucla">Matricula</th>
               <th data-field="nombre">Nombre</th>
               <th data-field="correo">Correo</th>
-              <th data-field="maestra">Maestra</th>
               <th data-field="laboratorio">Laboratorio</th>
               <th data-field="eliminar">Eliminar</th>
           </tr>
@@ -89,12 +88,16 @@
               <%
                   LinkedList<Laboratorio> labos = new LinkedList<>();
                   for(int i=0; i<usuarios.size(); i++){
-                      labos=usuarios.get(i).getCursaLaboratorios();
-                      String laborat = "";
-                      for(int j=0; j<labos.size();j++){
-                          laborat += labos.get(j)+",\n";
-                      }
-                      if(usuarios.get(i).getRol().equals("Alumno")){            
+                      
+                      
+                      if(usuarios.get(i).getRol().equals("Alumno")){ 
+                        labos=usuarios.get(i).getCursaLaboratorios();
+                        String laborat = "";
+                        for(int j=0; j<labos.size();j++){
+                          laborat += labos.get(j).getNombre()+",\n";
+                        }
+                        if(!laborat.equals(""))
+                        laborat=laborat.substring(0,laborat.length()-2);
                         out.println("<tr>");
                         out.println("<td>"+usuarios.get(i).getMatricula()+"</td>");
                         out.println("<td>"+usuarios.get(i).getNombre()+"</td>");

@@ -14,6 +14,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import models.Consumible;
 import models.Usuario;
 
 /**
@@ -41,7 +42,9 @@ public class modificarConsumible extends HttpServlet {
         Usuario user = (Usuario) request.getSession().getAttribute("usuario");
         if (user != null && user.getRol().equals("Administrador")) {
             if(action.equals("modificar")){
-                url = "/admin_modificarConsumible.jsp";
+                request.getSession().setAttribute("clave", clave);
+                request.setAttribute("consumible", Context.getConsumible(clave));
+                url = "/admin_editarConsumible.jsp";
             }else{
                 Context.eliminarConsumible(clave);
                 request.setAttribute("consumibles", Context.getConsumibles());
@@ -65,6 +68,46 @@ public class modificarConsumible extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
+        String clave = request.getParameter("clave");
+        String marca = request.getParameter("marca");
+        String nombre = request.getParameter("nombre");
+        String cantidad = request.getParameter("cantidad");
+        String presentacion = request.getParameter("presentacion");
+        String contenido = request.getParameter("contenido");
+        String localizacion = request.getParameter("localizacion");
+        String descripcion = request.getParameter("descripcion");
+        clave = (String)request.getSession().getAttribute("clave");
+        
+        
+        String url = "/login.html";
+        Usuario user = (Usuario) request.getSession().getAttribute("usuario");
+        
+        System.out.println(user.getRol());
+        if (user != null && user.getRol().equals("Administrador")
+                && marca != null && nombre != null && cantidad != null
+                && presentacion != null && contenido != null && localizacion != null
+                && descripcion != null && clave != null) {
+            int cant = Integer.parseInt(cantidad);
+            Consumible con = new Consumible();
+            con.setMarca(marca);
+            con.setNombre(nombre);
+            con.setCantidad(cant);
+            con.setClave(clave);
+            con.setDescripcion(descripcion);
+            con.setLocalizacion(localizacion);
+            con.setContenido(contenido);
+            con.setPresentacion(presentacion);
+            System.out.println(clave);
+            
+            Context.actualizarConsumible(con);
+
+            request.setAttribute("consumibles", Context.getConsumibles());
+            url = "/admin_consumibles.jsp";
+        }        
+        RequestDispatcher dispatcher =
+                 getServletContext().getRequestDispatcher(url);
+        dispatcher.forward(request, response);
     }
 
     /**

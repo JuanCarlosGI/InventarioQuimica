@@ -634,7 +634,7 @@ public final class Context {
                     + "cantidad = " + equipo.getCantidad() + ", "
                     + "localizacion = '" + equipo.getLocalizacion() + "', "
                     + "descripcion = '" + equipo.getDescripcion() + "' "
-                    + "WHERE clave = " + equipo.getClave() + ";");
+                    + "WHERE clave = '" + equipo.getClave() + "';");
         } catch (SQLException exception) {
             System.out.println(exception);
             return false;
@@ -819,8 +819,8 @@ public final class Context {
 
             statement.executeUpdate(""
                     + "UPDATE reactivo SET "
-                    + "marca = '" + reactivo.getNombre() + "', "
-                    + "password = '" + reactivo.getMarca() + "', "
+                    + "nombre = '" + reactivo.getNombre() + "', "
+                    + "marca = '" + reactivo.getMarca() + "', "
                     + "presentacion = '" + reactivo.getPresentacion() + "', "
                     + "contenido = '" + reactivo.getContenido() + "', "
                     + "localizacion = '" + reactivo.getLocalizacion() + "', "
@@ -887,7 +887,7 @@ public final class Context {
                     + "localizacion = '" + material.getLocalizacion() + "', "
                     + "descripcion = '" + material.getDescripcion() + "', "
                     + "capacidad = '" + material.getCapacidad() + "' "
-                    + "WHERE clave = " + material.getClave() + ";");
+                    + "WHERE clave = '" + material.getClave() + "';");
 
         } catch (SQLException exception) {
             System.out.println(exception);
@@ -1054,8 +1054,8 @@ public final class Context {
 
             statement.executeUpdate(""
                     + "UPDATE consumible SET "
-                    + "marca = '" + consumible.getNombre() + "', "
-                    + "password = '" + consumible.getMarca() + "', "
+                    + "nombre = '" + consumible.getNombre() + "', "
+                    + "marca = '" + consumible.getMarca() + "', "
                     + "presentacion = '" + consumible.getPresentacion() + "', "
                     + "contenido = '" + consumible.getContenido() + "', "
                     + "localizacion = '" + consumible.getLocalizacion() + "', "

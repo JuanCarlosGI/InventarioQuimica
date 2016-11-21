@@ -85,7 +85,6 @@
             <th data-field="claveLaboratorio">Clave Laboratorio</th>
             <th data-field="profesores">Profesores Inscritos</th>
             <th data-field="profesores">Agregar Profesores</th>
-            <th data-field="modificar">Modificar</th>
             <th data-field="eliminar">Eliminar</th>
         </tr>
       </thead>
@@ -103,9 +102,7 @@
                   <td>
                       <a href="addMaestroLaboratorio?clave=<%=lab.getClave()%>"><button class="btn waves-effect waves-light green" name="action" ><i class="material-icons center">add</i></button><a href="addMaestroLaboratorio?clave=<%=lab.getClave()%>">
                   </td>
-                  <td>
-                    <button class="btn waves-effect waves-light" name="action"><i class="material-icons center">mode_edit</i></button>
-                  </td>
+                 
                   <td>
                   <button class="btn waves-effect waves-light red" name="action"><i class="material-icons center">delete</i></button>
                   </td>
