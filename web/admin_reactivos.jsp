@@ -100,7 +100,7 @@
           </div>
           <div class='section'>
             <div class="row center">
-            <button class="btn waves-effect waves-light" type="submit" name="action">Agregar Consumible
+            <button class="btn waves-effect waves-light" type="submit" name="action">Agregar Reactivo
               <i class="material-icons right">send</i>
             </button>
             </div>

@@ -1332,4 +1332,153 @@ public final class Context {
         }
         return true;
     }
+    
+    public static LinkedList<Material> filtrarMateriales(String nombre, String capacidad) {
+        LinkedList<Material> materiales = new LinkedList<>();
+
+        try {
+            Connection connection;
+            connection = DriverManager.getConnection(URL, "root", "");
+            Statement statement = connection.createStatement();
+            
+            String sql = "SELECT * FROM material WHERE 1=1";
+            
+            if (nombre != null) sql += " and nombre = '" + nombre + "'";
+            if (capacidad != null) sql += " and capacidad = '" + capacidad + "'";
+            
+            sql += ";";
+
+            try (ResultSet resultSet = statement.executeQuery(sql)) {
+
+                while (resultSet.next()) {
+                    Material material = new Material();
+                    material.setClave(resultSet.getString("clave"));
+                    material.setNombre(resultSet.getString("nombre"));
+                    material.setMarca(resultSet.getString("marca"));
+                    material.setCantidad(resultSet.getInt("cantidad"));
+                    material.setLocalizacion(resultSet
+                            .getString("localizacion"));
+                    material.setCapacidad(resultSet.getString("capacidad"));
+                    material.setDescripcion(resultSet.getString("descripcion"));
+
+                    materiales.add(material);
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println(e.toString());
+        }
+
+        return materiales;
+    }
+    
+    public static LinkedList<Equipo> filtrarEquipos(String nombre) {
+        LinkedList<Equipo> equipos = new LinkedList<>();
+
+        try {
+            Connection connection;
+            connection = DriverManager.getConnection(URL, "root", "");
+            Statement statement = connection.createStatement();
+
+            String sql = "SELECT * FROM equipo WHERE 1=1";
+            
+            if (nombre != null) sql += " and nombre = '" + nombre + "'";
+            
+            sql += ";";
+
+            try (ResultSet resultSet = statement.executeQuery(sql)) {
+
+                while (resultSet.next()) {
+                    Equipo equipo = new Equipo();
+
+                    equipo.setClave(resultSet.getString("clave"));
+                    equipo.setNombre(resultSet.getString("nombre"));
+                    equipo.setMarca(resultSet.getString("marca"));
+                    equipo.setCantidad(resultSet.getInt("cantidad"));
+                    equipo.setLocalizacion(resultSet.getString("localizacion"));
+                    equipo.setDescripcion(resultSet.getString("descripcion"));
+
+                    equipos.add(equipo);
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println(e.toString());
+        }
+
+        return equipos;
+    }
+    
+    public static LinkedList<Reactivo> filtrarReactivos(String nombre, String marca, String presentacion) {
+        LinkedList<Reactivo> reactivos = new LinkedList<>();
+        try {
+            Connection connection;
+            connection = DriverManager.getConnection(URL, "root", "");
+            Statement statement = connection.createStatement();
+
+            String sql = "SELECT * FROM reactivo WHERE 1=1";
+            
+            if (nombre != null) sql += " and nombre = '" + nombre + "'";
+            if (marca != null) sql += " and marca = '" + marca + "'";
+            if (presentacion != null) sql += " and presentacion = '" + presentacion + "'";
+            
+            sql += ";";
+
+            try (ResultSet resultSet = statement.executeQuery(sql)) {
+
+                while (resultSet.next()) {
+                    Reactivo reactivo = new Reactivo();
+                    reactivo.setClave(resultSet.getString("clave"));
+                    reactivo.setNombre(resultSet.getString("nombre"));
+                    reactivo.setMarca(resultSet.getString("marca"));
+                    reactivo.setPresentacion(resultSet.getString("presentacion"));
+                    reactivo.setContenido(resultSet.getString("contenido"));
+                    reactivo.setLocalizacion(resultSet.getString("localizacion"));
+                    reactivo.setDescripcion(resultSet.getString("descripcion"));
+                    reactivo.setCantidad(resultSet.getInt("cantidad"));
+                    reactivos.add(reactivo);
+                }                
+            }
+        } catch (SQLException e) {
+            System.out.println(e.toString());
+        }
+        
+        return reactivos;
+    }    
+    
+    public static LinkedList<Consumible> filtrarConsumibles(String nombre, String marca, String presentacion) {
+        LinkedList<Consumible> consumibles = new LinkedList<>();
+        try {
+            Connection connection;
+            connection = DriverManager.getConnection(URL, "root", "");
+            Statement statement = connection.createStatement();
+
+            String sql = "SELECT * FROM consumible WHERE 1=1";
+            
+            if (nombre != null) sql += " and nombre = '" + nombre + "'";
+            if (marca != null) sql += " and marca = '" + marca + "'";
+            if (presentacion != null) sql += " and presentacion = '" + presentacion + "'";
+            
+            sql += ";";
+
+            try (ResultSet resultSet = statement.executeQuery(sql)) {
+
+                while (resultSet.next()) {
+                    Consumible consumible = new Consumible();
+                    consumible.setClave(resultSet.getString("clave"));
+                    consumible.setNombre(resultSet.getString("nombre"));
+                    consumible.setMarca(resultSet.getString("marca"));
+                    consumible.setPresentacion(resultSet.getString("presentacion"));
+                    consumible.setContenido(resultSet.getString("contenido"));
+                    consumible.setLocalizacion(resultSet.getString("localizacion"));
+                    consumible.setDescripcion(resultSet.getString("descripcion"));
+                    consumible.setCantidad(resultSet.getInt("cantidad"));
+                    consumibles.add(consumible);
+                }                
+            }
+        } catch (SQLException e) {
+            System.out.println(e.toString());
+        }
+        
+        return consumibles;
+    }    
+    
 }
