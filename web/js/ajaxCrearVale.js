@@ -13,15 +13,8 @@ function ajax(cellIndex, row, url) {
 }
 
 
-//---------MATERIAL------------
-function beginAjaxMaterial(row, select) {
-	queries[row.rowIndex] = "tipo=materiales";
-	var url = queries[row.rowIndex];
-	ajax(select.parentElement.parentElement.cellIndex, row, url);
-}
-
 function AjaxMaterialNombre(row, select) {
-	queries[row.rowIndex] += "&nombre=" + select.options[select.selectedIndex].innerHTML;
+	queries[row.rowIndex] = "tipo=materiales&nombre=" + select.options[select.selectedIndex].innerHTML;
 	var url = queries[row.rowIndex];
 	ajax(select.parentElement.parentElement.cellIndex, row, url);
 }
@@ -33,27 +26,16 @@ function AjaxMaterialMarca(row, select) {
 }
 
 //---------Equipo------------
-function beginAjaxEquipo(row, select) {
-	queries[row.rowIndex] = "tipo=equipos";
-	var url = queries[row.rowIndex];
-	ajax(select.parentElement.parentElement.cellIndex, row, url);
-}
 
 function AjaxEquipoNombre(row, select) {
-	queries[row.rowIndex] += "&nombre=" + select.options[select.selectedIndex].innerHTML;
+	queries[row.rowIndex] = "tipo=equipos&nombre=" + select.options[select.selectedIndex].innerHTML;
 	var url = queries[row.rowIndex];
 	ajax(select.parentElement.parentElement.cellIndex, row, url);
 }
 
 //---------Reactivo------------
-function beginAjaxReactivo(row, select) {
-	queries[row.rowIndex] = "tipo=reactivos";
-	var url = queries[row.rowIndex];
-	ajax(select.parentElement.parentElement.cellIndex, row, url);
-}
-
 function AjaxReactivoNombre(row, select) {
-	queries[row.rowIndex] += "&nombre=" + select.options[select.selectedIndex].innerHTML;
+	queries[row.rowIndex] = "tipo=reactivos&nombre=" + select.options[select.selectedIndex].innerHTML;
 	var url = queries[row.rowIndex];
 	ajax(select.parentElement.parentElement.cellIndex, row, url);
 }
@@ -71,14 +53,9 @@ function AjaxReactivoPresentacion(row, select) {
 }
 
 //---------Consumible------------
-function beginAjaxConsumible(row, select) {
-	queries[row.rowIndex] = "tipo=consumibles";
-	var url = queries[row.rowIndex];
-	ajax(select.parentElement.parentElement.cellIndex, row, url);
-}
 
 function AjaxConsumibleNombre(row, select) {
-	queries[row.rowIndex] += "&nombre=" + select.options[select.selectedIndex].innerHTML;
+	queries[row.rowIndex] = "tipo=consumibles&nombre=" + select.options[select.selectedIndex].innerHTML;
 	var url = queries[row.rowIndex];
 	ajax(select.parentElement.parentElement.cellIndex, row, url);
 }
