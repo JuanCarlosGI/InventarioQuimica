@@ -12,6 +12,11 @@ import java.sql.Statement;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.LinkedList;
 import models.Consumible;
 import models.Equipo;
@@ -1561,6 +1566,76 @@ public final class Context {
             System.out.println(exception);
             return false;
         }
+        return true;
+    }
+    
+    public static boolean aceptarPedido(Pedido pedido) {
+        try {
+            Connection connection;
+            connection = DriverManager.getConnection(URL, "root", "");
+            Statement statement = connection.createStatement();
+            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+            LocalDate localDate = LocalDate.now();
+            String date = dtf.format(localDate); //2016/11/16
+            System.out.println(date);
+            statement.executeUpdate(""
+                    + "UPDATE pedido SET "
+                    + "status = " + 1 + ", "
+                    + "fechaEntrega = '" + date + "' "
+                    + "WHERE id = " + pedido.getId() + ";");
+        } catch (SQLException exception) {
+            System.out.println(exception);
+            return false;
+        }
+
+        return true;
+    }
+    
+    
+    
+    public static boolean regresarPedido(Pedido pedido) {
+        try {
+            Connection connection;
+            connection = DriverManager.getConnection(URL, "root", "");
+            Statement statement = connection.createStatement();
+            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+            LocalDate localDate = LocalDate.now();
+            String date = dtf.format(localDate); //2016/11/16
+            System.out.println(date);
+            statement.executeUpdate(""
+                    + "UPDATE pedido SET "
+                    + "status = " + 2 + ", "
+                    + "fechaDevolucion = '" + date + "' "
+                    + "WHERE id = " + pedido.getId() + ";");
+        } catch (SQLException exception) {
+            System.out.println(exception);
+            return false;
+        }
+
+        return true;
+    }
+    
+    
+    public static boolean denegarPedido(Pedido pedido) {
+        try {
+            Connection connection;
+            connection = DriverManager.getConnection(URL, "root", "");
+            Statement statement = connection.createStatement();
+            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+            LocalDate localDate = LocalDate.now();
+            String date = dtf.format(localDate); //2016/11/16
+            System.out.println(date);
+            statement.executeUpdate(""
+                    + "UPDATE pedido SET "
+                    + "status = " + 3 + ", "
+                    + "fechaEntrega = '" + date + "', "
+                    + "fechaDevolucion = '" + date + "' "
+                    + "WHERE id = " + pedido.getId() + ";");
+        } catch (SQLException exception) {
+            System.out.println(exception);
+            return false;
+        }
+
         return true;
     }
 }

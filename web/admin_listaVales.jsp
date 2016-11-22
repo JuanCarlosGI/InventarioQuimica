@@ -69,6 +69,9 @@
               <th data-field="fecha_entrega">Fecha de Devolución</th>
               <th data-field="profesor">Matricula/Nomina</th>
               <th data-field="profesor">Nombre</th>
+              <th data-field="aceptar">Aceptar</th>
+              <th data-field="regresar">Regresar</th>
+              <th data-field="denegar">Denegar</th>
               <th data-field="vale">Vale</th>
           </tr>
         </thead>
@@ -101,6 +104,15 @@
             
             %>
             <td><%=usuario.getNombre()%></td>
+            <td>
+                <a href="adminStatusVale?status=1&id=<%= pedidos.get(i).getId() %>"><button class="btn waves-effect waves-light" name="action" ><i class="material-icons center">done</i></button></a>
+            </td>
+            <td>
+                <a href="adminStatusVale?status=2&id=<%= pedidos.get(i).getId() %>"><button class="btn waves-effect waves-light" name="action" ><i class="material-icons center">done_all</i></button></a>
+            </td>
+            <td>
+                <a href="adminStatusVale?status=3&id=<%= pedidos.get(i).getId() %>"><button class="btn waves-effect waves-light" name="action" ><i class="material-icons center">not_interested</i></button></a>
+            </td>
             <td>
                 <a href="adminDetalleVale?id=<%= pedidos.get(i).getId() %>"><button class="btn waves-effect waves-light" name="action" ><i class="material-icons center">description</i></button></a>
             </td>
