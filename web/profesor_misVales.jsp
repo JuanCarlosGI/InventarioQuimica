@@ -26,7 +26,7 @@
 
       <nav>
         <div class="nav-wrapper">
-          <a href="#" class="brand-logo center">Almacén de Química</a>
+          <a href="./profesor_login.jsp" class="brand-logo center">Almacén de Química</a>
           <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
           <ul class="right hide-on-med-and-down">
           <!-- Dropdown Trigger -->
@@ -72,7 +72,7 @@
                 <td><%=pedido.getFechaEmision()%></td>
                 <td><%=pedido.getStatus() >= 1 ? pedido.getFechaEntrega() : ""%></td>
                 <td><%=pedido.getStatus() >= 2 ? pedido.getFechaDevolucion() : ""%></td>
-                <td><button class="btn waves-effect waves-light" name="action"><i class="material-icons center">description</i></button></td>
+                <td><a href="adminDetalleVale?id=<%= pedido.getId()%>"><button class="btn waves-effect waves-light" name="action"><i class="material-icons center">description</i></button></td></a>
             </tr>
                 
             <% 

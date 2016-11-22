@@ -8,13 +8,20 @@ package servers;
 import data.Context;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.LinkedList;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import models.DetalleEquipo;
+import models.DetalleMaterial;
+import models.DetalleReactivo;
+import models.Equipo;
+import models.Material;
 import models.Pedido;
+import models.Reactivo;
 
 /**
  *
@@ -42,8 +49,84 @@ public class adminStatusVale extends HttpServlet {
            Context.aceptarPedido(pedido);
        }else if(status.equals("2")){
            Context.regresarPedido(pedido);
+           LinkedList<DetalleEquipo> de = Context.getDetalleEquipo(pedido.getId());
+           LinkedList<DetalleMaterial> dm = Context.getDetalleMaterial(pedido.getId());
+           LinkedList<DetalleReactivo> dr = Context.getDetalleReactivo(pedido.getId());
+           LinkedList<Equipo> equipos = Context.getEquipos();
+           LinkedList<Material> materiales = Context.getMateriales();
+           LinkedList<Reactivo> reactivos = Context.getReactivos();
+           for(int i=0; i<de.size(); i++){
+               for(int j=0; j<equipos.size(); j++){
+                    if(de.get(i).getEquipoId()==equipos.get(j).getClave()){
+                        int cant = de.get(i).getCantidad()+equipos.get(j).getCantidad();
+                        Equipo eq = equipos.get(j);
+                       eq.setCantidad(cant);
+                       Context.actualizarEquipo(eq);
+                    }
+                }
+           }
+           
+           for(int i=0; i<dm.size(); i++){
+               for(int j=0; j<materiales.size(); j++){
+                    if(dm.get(i).getMaterialId()==materiales.get(j).getClave()){
+                        int cant = dm.get(i).getCantidad()+materiales.get(j).getCantidad();
+                        Material eq = materiales.get(j);
+                       eq.setCantidad(cant);
+                       Context.actualizarMaterial(eq);
+                    }
+                }
+           }
+           
+           for(int i=0; i<dr.size(); i++){
+               for(int j=0; j<reactivos.size(); j++){
+                    if(dr.get(i).getReactivoId()==reactivos.get(j).getClave()){
+                        int cant = dr.get(i).getCantidad()+reactivos.get(j).getCantidad();
+                        Reactivo eq = reactivos.get(j);
+                       eq.setCantidad(cant);
+                       Context.actualizarReactivo(eq);
+                    }
+                }
+           }
        }else if(status.equals("3")){
            Context.denegarPedido(pedido);
+           LinkedList<DetalleEquipo> de = Context.getDetalleEquipo(pedido.getId());
+           LinkedList<DetalleMaterial> dm = Context.getDetalleMaterial(pedido.getId());
+           LinkedList<DetalleReactivo> dr = Context.getDetalleReactivo(pedido.getId());
+           LinkedList<Equipo> equipos = Context.getEquipos();
+           LinkedList<Material> materiales = Context.getMateriales();
+           LinkedList<Reactivo> reactivos = Context.getReactivos();
+           for(int i=0; i<de.size(); i++){
+               for(int j=0; j<equipos.size(); j++){
+                    if(de.get(i).getEquipoId()==equipos.get(j).getClave()){
+                        int cant = de.get(i).getCantidad()+equipos.get(j).getCantidad();
+                        Equipo eq = equipos.get(j);
+                       eq.setCantidad(cant);
+                       Context.actualizarEquipo(eq);
+                    }
+                }
+           }
+           
+           for(int i=0; i<dm.size(); i++){
+               for(int j=0; j<materiales.size(); j++){
+                    if(dm.get(i).getMaterialId()==materiales.get(j).getClave()){
+                        int cant = de.get(i).getCantidad()+materiales.get(j).getCantidad();
+                        Material eq = materiales.get(j);
+                       eq.setCantidad(cant);
+                       Context.actualizarMaterial(eq);
+                    }
+                }
+           }
+           
+           for(int i=0; i<dr.size(); i++){
+               for(int j=0; j<reactivos.size(); j++){
+                    if(dr.get(i).getReactivoId()==reactivos.get(j).getClave()){
+                        int cant = dr.get(i).getCantidad()+reactivos.get(j).getCantidad();
+                        Reactivo eq = reactivos.get(j);
+                       eq.setCantidad(cant);
+                       Context.actualizarReactivo(eq);
+                    }
+                }
+           }
        }
        String url = "/admin_listaVales.jsp";
        

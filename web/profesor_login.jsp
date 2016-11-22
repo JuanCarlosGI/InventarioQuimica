@@ -76,15 +76,15 @@
           <div class="col s12 m6">
             <h5 class="center"><i class="material-icons">assignment_ind</i> Laboratorio</h5>
             <div class="section center">
-              <a href="./profesor_editarAlumnos.html" class="waves-effect waves-light btn-large" style="width: 80%; background-color: #00bcd4">Editar Alumnos</a><br><br>
-              <a href="./asignarLaboratorio.jsp" class="waves-effect waves-light btn-large" style="width: 80%; background-color: #00bcd4">Asignar Laboratorio</a>
+              <a href="addAlumno" class="waves-effect waves-light btn-large" style="width: 80%; background-color: #00bcd4">Editar Alumnos</a><br><br>
+              <a href="asignarLaboratorio" class="waves-effect waves-light btn-large" style="width: 80%; background-color: #00bcd4">Asignar Laboratorio</a>
             </div>
           </div>
           <div class="col s12 m6">
             <h5 class="center"><i class="material-icons">description</i> Vales</h5>
             <div class="section center">
-              <a href="./profesor_crearVale.jsp" class="waves-effect waves-light btn-large" style="width: 80%; background-color: #3f51b5">Crear Vale</a><br><br>
-              <a href="./profesor_misVales.html" class="waves-effect waves-light btn-large" style="width: 80%; background-color: #3f51b5">Mis Vales</a>
+              <a href="addPedido" class="waves-effect waves-light btn-large" style="width: 80%; background-color: #3f51b5">Crear Vale</a><br><br>
+              <a href="./profesor_misVales.jsp" class="waves-effect waves-light btn-large" style="width: 80%; background-color: #3f51b5">Mis Vales</a>
             </div>
           </div>
         </div>

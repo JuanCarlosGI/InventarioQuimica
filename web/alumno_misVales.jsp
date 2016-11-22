@@ -72,7 +72,7 @@
                 <td><%=pedido.getFechaEmision()%></td>
                 <td><%=pedido.getStatus() >= 1 ? pedido.getFechaEntrega() : ""%></td>
                 <td><%=pedido.getStatus() >= 2 ? pedido.getFechaDevolucion() : ""%></td>
-                <td><button class="btn waves-effect waves-light" name="action"><i class="material-icons center">description</i></button></td>
+                <td><a href="adminDetalleVale?id=<%= pedido.getId()%>"<button class="btn waves-effect waves-light" name="action"><i class="material-icons center">description</i></button></a></td>
             </tr>
                 
             <% 

@@ -53,7 +53,11 @@ public class addAlumno extends HttpServlet {
             throws ServletException, IOException {
         
         request.setAttribute("alumnos", Context.getUsuarios());
+        Usuario user = (Usuario)request.getSession().getAttribute("usuario");
         String url = "/admin_editarAlumnos.jsp";
+        if (user.getRol().equals("Profesor")) {
+            url = "/profesor_editarAlumnos.jsp";
+        }
         RequestDispatcher dispatcher =
                  getServletContext().getRequestDispatcher(url);
         dispatcher.forward(request, response);

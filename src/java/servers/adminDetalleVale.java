@@ -32,11 +32,13 @@ public class adminDetalleVale extends HttpServlet {
 
         String url = "/login.html";
         Usuario user = (Usuario) request.getSession().getAttribute("usuario");
-        if (user != null && user.getRol().equals("Administrador") && idString != null) {
+        if (user != null && idString != null) {
             Pedido pedido = Context.getPedido(Integer.parseInt(idString));
             
             request.setAttribute("pedido", pedido);
             url = "/admin_detalleVale.jsp";
+            if (user.getRol().equals("Profesor")) url = "/profesor_detalleVale.jsp";
+            if (user.getRol().equals("Alumno")) url = "/alumno_detalleVale.jsp";
         }
 
         RequestDispatcher dispatcher =

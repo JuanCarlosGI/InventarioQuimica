@@ -92,9 +92,6 @@
             <div class="card blue">
               <div class="card-content white-text">
                 <span class="card-title">Bienvenido ${usuario.nombre}</span>
-                <p>Vales atrasados: 1</p>
-                <p>Vales activos: 3</p>
-                <p>Total de vales del semestre: 20</p>
               </div>
             </div>
           </div>
@@ -122,10 +119,8 @@
           <div class="col s12 m6 l4">
             <h5 class="center"><i class="material-icons">description</i> Vales</h5>
             <div class="section center">
-              <a href="#" class="waves-effect waves-light btn-large" style="width: 80%; background-color: #3f51b5">Entregar productos</a><br><br>
               <a href="admin_listaVales.jsp" class="waves-effect waves-light btn-large" style="width: 80%; background-color: #3f51b5">Lista de Vales</a><br><br>
-              <a href="#" class="waves-effect waves-light btn-large" style="width: 80%; background-color: #3f51b5">Crear Vale</a><br><br>
-              <a href="#" class="waves-effect waves-light btn-large" style="width: 80%; background-color: #3f51b5">Detalle Vale</a>
+              <a href="addPedido" class="waves-effect waves-light btn-large" style="width: 80%; background-color: #3f51b5">Crear Vale</a><br><br>
             </div>
           </div>
         </div>
