@@ -86,7 +86,7 @@ function appendMaterial(e) {
 	//crear select
 	var selectNombre = document.createElement("select");
 	selectNombre.required = true;
-	selectNombre.setAttribute("onchange", "beginAjaxMaterial(this.parentElement.parentElement.parentElement)");
+	selectNombre.setAttribute("onchange", "beginAjaxMaterial(this.parentElement.parentElement.parentElement, this)");
 	//crear opcion default
 	var option = document.createElement("option");
 	option.selected = true;
@@ -200,7 +200,7 @@ function appendEquipo(e) {
 	//crear select
 	var selectNombre = document.createElement("select");
 	selectNombre.required = true;
-	selectNombre.setAttribute("onchange", "beginAjaxEquipo(this.parentElement.parentElement.parentElement)");
+	selectNombre.setAttribute("onchange", "beginAjaxEquipo(this.parentElement.parentElement.parentElement, this)");
 	//crear opcion default
 	var option = document.createElement("option");
 	option.disabled = true;
@@ -306,7 +306,7 @@ function appendReactivo(e, esReactivo) {
 
 	//for loop con datos de la base de datos
 	if (esReactivo) {
-		selectNombre.setAttribute("onchange", "beginAjaxReactivo(this.parentElement.parentElement.parentElement)");
+		selectNombre.setAttribute("onchange", "beginAjaxReactivo(this.parentElement.parentElement.parentElement, this)");
 		for (var i in nombresReactivos) {
 			option = document.createElement("option");
 			option.text = nombresReactivos[i];
@@ -314,7 +314,7 @@ function appendReactivo(e, esReactivo) {
 		}
 	}
 	else {
-		selectNombre.setAttribute("onchange", "beginAjaxConsumible(this.parentElement.parentElement.parentElement)");
+		selectNombre.setAttribute("onchange", "beginAjaxConsumible(this.parentElement.parentElement.parentElement, this)");
 		for (var i in nombresConsumibles) {
 			option = document.createElement("option");
 			option.text = nombresConsumibles[i];
