@@ -86,6 +86,7 @@ function appendMaterial(e) {
 	//crear select
 	var selectNombre = document.createElement("select");
 	selectNombre.required = true;
+    selectNombre.setAttribute("onchange", "beginAjax(this.parentElement.parentElement.parentElement), this, this.parentElement.cellIndex");
 
 	//crear opcion default
 	var option = document.createElement("option");
@@ -111,7 +112,7 @@ function appendMaterial(e) {
 	//crear select
 	var selectMarca = document.createElement("select");
 	selectMarca.required = true;
-        selectMarca.disabled = true;
+    selectMarca.disabled = true;
 
 	//crear opcion default
 	var option = document.createElement("option");
@@ -200,6 +201,7 @@ function appendEquipo(e) {
 	//crear select
 	var selectNombre = document.createElement("select");
 	selectNombre.required = true;
+	selectNombre.setAttribute("onchange", "beginAjax(this.parentElement.parentElement.parentElement), this, this.parentElement.cellIndex");
 
 	//crear opcion default
 	var option = document.createElement("option");
@@ -296,6 +298,7 @@ function appendReactivo(e, esReactivo) {
 	//crear select
 	var selectNombre = document.createElement("select");
 	selectNombre.required = true;
+	selectNombre.setAttribute("onchange", "beginAjax(this.parentElement.parentElement.parentElement), this, this.parentElement.cellIndex");
 
 	//crear opcion default
 	var option = document.createElement("option");
