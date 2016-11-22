@@ -71,7 +71,7 @@ function AjaxReactivoPresentacion(row, select) {
 
 //---------Consumible------------
 function beginAjaxConsumible(row) {
-	queries[row.rowIndex] = "tipo=reactivos";
+	queries[row.rowIndex] = "tipo=consumibles";
 	var url = queries[row.rowIndex];
 	ajax(select.parentElement.cellIndex, row, url);
 }
