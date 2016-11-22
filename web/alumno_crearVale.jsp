@@ -23,21 +23,21 @@
         <!-- NAVBAR -->
         <!-- Dropdown Menu Structure -->
         <ul id="dropdown1" class="dropdown-content">
-            <li><a href="admin_editarPerfil.jsp">Perfil</a></li>
+            <li><a href="./alumno_editarPerfil.html">Perfil</a></li>
             <li class="divider"></li>
             <li><a href="#!">Salir</a></li>
         </ul>
 
         <nav>
             <div class="nav-wrapper">
-                <a href="#" class="brand-logo center">Almacén de Química</a>
+                <a href="./alumno_login.jsp" class="brand-logo center">Almacén de Química</a>
                 <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
                 <ul class="right hide-on-med-and-down">
                     <!-- Dropdown Trigger -->
                     <li><a class="dropdown-button" href="#!" data-activates="dropdown1">USUARIO<i class="material-icons right">arrow_drop_down</i></a></li>
                 </ul>
                 <ul class="side-nav" id="mobile-demo">
-                    <li><a href="#">Perfil</a></li>
+                    <li><a href="./alumno_editarPerfil.html">Perfil</a></li>
                     <li><a href="#">Salir</a></li>
                 </ul>
             </div>
@@ -45,8 +45,8 @@
         <nav style="background-color: #3f51b5">
             <div class="nav-wrapper center">
                 <div class="col s12">
-                    <a href="#!" class="breadcrumb">Inicio</a>
-                    <a href="#!" class="breadcrumb">Crear vale</a>
+                    <a href="./alumno_login.jsp" class="breadcrumb">Inicio</a>
+                    <a class="breadcrumb">Crear vale</a>
                 </div>
             </div>
         </nav>
@@ -58,11 +58,11 @@
 
             <div class='section'></div>
 
-            <form action="#">
+            <form action="addPedidoAlumno" method="POST">
 
                 <div class="row">
                     <div class="input-field col s12">
-                        <select required>
+                        <select required name="laboratorioId">
                             <option value="" disabled selected>Laboratorio</option>
 
                             <% for (Laboratorio lab : (LinkedList<Laboratorio>) request.getAttribute("laboratorios")) {%>

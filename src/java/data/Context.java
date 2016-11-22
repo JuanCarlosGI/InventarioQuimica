@@ -288,12 +288,12 @@ public final class Context {
 
             statement.executeUpdate(""
                     + "INSERT INTO pedido "
-                    + "(id, usuarioId, profesorId, labratorioId, fechaEmision, fechaEntrega, fechaDevolucion, status)"
+                    + "(id, usuarioId, profesorId, laboratorioId, fechaEmision, fechaEntrega, fechaDevolucion, status)"
                     + "VALUES ("
                     + pedido.getId() + ", "
                     + "'" + pedido.getUsuarioId() + "', "
                     + "'" + pedido.getProfesorId() + "', "
-                    + pedido.getLaboratorioId() + ", "
+                    + "'" + pedido.getLaboratorioId() + "', "
                     + "'" + pedido.getFechaEmision() + "', "
                     + "'" + pedido.getFechaEntrega() + "', "
                     + "'" + pedido.getFechaDevolucion() + "', "
@@ -1496,7 +1496,7 @@ public final class Context {
                     + "(cantidad, cantidadRegresada, observaciones, materialId, pedidoId) "
                     + "VALUES ("
                     + cantidad + ", "
-                    + cantidadRegresada + "', "
+                    + cantidadRegresada + ", "
                     + "'" + observaciones + "', "
                     + "'" + materialId + "', "
                     + pedidoId + ");");
@@ -1517,7 +1517,7 @@ public final class Context {
                     + "(cantidad, cantidadRegresada, observaciones, reactivoId, pedidoId) "
                     + "VALUES ("
                     + cantidad + ", "
-                    + cantidadRegresada + "', "
+                    + cantidadRegresada + ", "
                     + "'" + observaciones + "', "
                     + "'" + reactivoId + "', "
                     + pedidoId + ");");
@@ -1538,7 +1538,7 @@ public final class Context {
                     + "(cantidad, cantidadRegresada, observaciones, equipoId, pedidoId) "
                     + "VALUES ("
                     + cantidad + ", "
-                    + cantidadRegresada + "', "
+                    + cantidadRegresada + ", "
                     + "'" + observaciones + "', "
                     + "'" + equipoId + "', "
                     + pedidoId + ");");

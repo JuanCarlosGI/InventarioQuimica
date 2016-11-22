@@ -53,7 +53,7 @@ public class getFiltro extends HttpServlet {
                 String marca = request.getParameter("marca");
                 String presentacion = request.getParameter("presentacion");
                 
-                if (tipo.equals("reactivo")){
+                if (tipo.equals("reactivos")){
                     LinkedList<Reactivo> reactivos = Context.filtrarReactivos(nombre, marca, presentacion);
                     request.setAttribute("reactivos", reactivos);
                     

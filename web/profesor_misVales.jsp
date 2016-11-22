@@ -1,3 +1,4 @@
+<%@page import="java.util.LinkedList"%>
 <!DOCTYPE html>
   <html>
     <head>
@@ -12,26 +13,27 @@
       <meta charset="UTF-8">
       <meta http-equiv="Content-type" content="text/html; charset=UTF-8">
     </head>
-
+<%@ page import="models.Usuario" %>
+        <jsp:useBean id = "usuario" class="models.Usuario" scope = "session"/>
     <body>
       <!-- NAVBAR -->
       <!-- Dropdown Menu Structure -->
       <ul id="dropdown1" class="dropdown-content">
-        <li><a href="#!">Perfil</a></li>
+        <li><a href="./profesor_editarPerfil.jsp">Perfil</a></li>
         <li class="divider"></li>
         <li><a href="#!">Salir</a></li>
       </ul>
 
       <nav>
         <div class="nav-wrapper">
-          <a href="#" class="brand-logo center">AlmacÃ©n de QuÃ­mica</a>
+          <a href="#" class="brand-logo center">Almacén de Química</a>
           <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
           <ul class="right hide-on-med-and-down">
           <!-- Dropdown Trigger -->
-          <li><a class="dropdown-button" href="#!" data-activates="dropdown1">USUARIO<i class="material-icons right">arrow_drop_down</i></a></li>
+          <li><a class="dropdown-button" href="#!" data-activates="dropdown1">${usuario.nombre}<i class="material-icons right">arrow_drop_down</i></a></li>
         </ul>
           <ul class="side-nav" id="mobile-demo">
-            <li><a href="#">Perfil</a></li>
+            <li><a href="./profesor_editarPerfil.jsp">Perfil</a></li>
             <li><a href="#">Salir</a></li>
           </ul>
         </div>
@@ -39,7 +41,7 @@
       <nav style="background-color: #3f51b5">
     <div class="nav-wrapper center">
       <div class="col s12">
-        <a href="#!" class="breadcrumb">Inicio</a>
+        <a href="./profesor_login.jsp" class="breadcrumb">Inicio</a>
         <a href="#!" class="breadcrumb">Mis Vales</a>
       </div>
     </div>
@@ -53,51 +55,29 @@
               <th data-field="folio">Folio</th>
               <th data-field="fecha_emision">Fecha de Emision</th>
               <th data-field="fecha_entrega">Fecha de Entrega</th>
-              <th data-field="fecha_entrega">Fecha de DevoluciÃ³n</th>
+              <th data-field="fecha_entrega">Fecha de Devolución</th>
               <th data-field="vale">Vale</th>
           </tr>
         </thead>
 
         <tbody>
-          <tr>
-            <td>000122003</td>
-            <td>18/11/16</td>
-            <td>
-              18/11/16
-            </td>
-            <td>
-              <button class="btn waves-effect waves-light red" name="action"><i class="material-icons">error</i></button>
-            </td>
-            <td>
-              <button class="btn waves-effect waves-light" name="action"><i class="material-icons center">description</i></button>
-            </td>
-          </tr>
-          <tr>
-            <td>000122003</td>
-            <td>18/11/16</td>
-            <td>
-              18/11/16
-            </td>
-            <td>
-              <button class="btn waves-effect waves-light blue" name="action"><i class="material-icons">schedule</i></button>
-            </td>
-            <td>
-              <button class="btn waves-effect waves-light" name="action"><i class="material-icons center">description</i></button>
-            </td>
-          </tr>
-          <tr>
-            <td>000122003</td>
-            <td>18/11/16</td>
-            <td>
-              18/11/16
-            </td>
-            <td>
-              18/11/16
-            </td>
-            <td>
-              <button class="btn waves-effect waves-light" name="action"><i class="material-icons center">description</i></button>
-            </td>
-          </tr>
+            <%@ page import="models.Pedido" %>
+            <%@page import="java.util.LinkedList"%>
+            <%
+                for (Pedido pedido : usuario.getPedidos())
+                {
+            %>
+            <tr>
+                <td><%=pedido.getId()%></td>
+                <td><%=pedido.getFechaEmision()%></td>
+                <td><%=pedido.getStatus() >= 1 ? pedido.getFechaEntrega() : ""%></td>
+                <td><%=pedido.getStatus() >= 2 ? pedido.getFechaDevolucion() : ""%></td>
+                <td><button class="btn waves-effect waves-light" name="action"><i class="material-icons center">description</i></button></td>
+            </tr>
+                
+            <% 
+                }
+            %>
         </tbody>
       </table>
 
