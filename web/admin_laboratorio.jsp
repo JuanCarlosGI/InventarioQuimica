@@ -40,7 +40,7 @@
           </ul>
         </div>
       </nav>
-      <nav style="background-color: #3f51b5">
+      <nav style="background-color: #00bcd4">
     <div class="nav-wrapper center">
       <div class="col s12">
         <a href="./admin_login.jsp" class="breadcrumb">Inicio</a>
