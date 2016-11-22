@@ -19,21 +19,21 @@
       <!-- NAVBAR -->
       <!-- Dropdown Menu Structure -->
       <ul id="dropdown1" class="dropdown-content">
-        <li><a href="./profesor_editarPerfil.jsp">Perfil</a></li>
+        <li><a href="./admin_editarPerfil.jsp">Perfil</a></li>
         <li class="divider"></li>
         <li><a href="#!">Salir</a></li>
       </ul>
 
       <nav>
         <div class="nav-wrapper">
-          <a href="#" class="brand-logo center">Almacén de Química</a>
+          <a href="#" class="brand-logo center">AlmacÃ©n de QuÃ­mica</a>
           <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
           <ul class="right hide-on-med-and-down">
           <!-- Dropdown Trigger -->
           <li><a class="dropdown-button" href="#!" data-activates="dropdown1">${usuario.nombre}<i class="material-icons right">arrow_drop_down</i></a></li>
         </ul>
           <ul class="side-nav" id="mobile-demo">
-            <li><a href="./profesor_editarPerfil.jsp">Perfil</a></li>
+            <li><a href="./admin_editarPerfil.jsp">Perfil</a></li>
             <li><a href="#">Salir</a></li>
           </ul>
         </div>
@@ -55,7 +55,7 @@
               <th data-field="folio">Folio</th>
               <th data-field="fecha_emision">Fecha de Emision</th>
               <th data-field="fecha_entrega">Fecha de Entrega</th>
-              <th data-field="fecha_entrega">Fecha de Devolución</th>
+              <th data-field="fecha_entrega">Fecha de DevoluciÃ³n</th>
               <th data-field="vale">Vale</th>
           </tr>
         </thead>
