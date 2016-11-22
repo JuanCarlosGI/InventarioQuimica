@@ -17,7 +17,7 @@
       <!-- NAVBAR -->
       <!-- Dropdown Menu Structure -->
       <ul id="dropdown1" class="dropdown-content">
-        <li><a href="#!">Perfil</a></li>
+        <li><a href="admin_editarPerfil.jsp">Perfil</a></li>
         <li class="divider"></li>
         <li><a href="#!">Salir</a></li>
       </ul>
