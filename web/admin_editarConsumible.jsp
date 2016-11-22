@@ -52,7 +52,7 @@
     <div class="nav-wrapper center">
       <div class="col s12">
         <a href="#!" class="breadcrumb">Inicio</a>
-        <a href="#!" class="breadcrumb">Materiales</a>
+        <a href="#!" class="breadcrumb">Consumibles</a>
         <a href="#!" class="breadcrumb">Editar <%=con.getNombre()%></a>
       </div>
     </div>
