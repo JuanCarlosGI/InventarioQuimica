@@ -39,7 +39,7 @@
           <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
           <ul class="right hide-on-med-and-down">
           <!-- Dropdown Trigger -->
-          <li><a class="dropdown-button" href="#!" data-activates="dropdown1"><%="HOLA ARREGLAME PLIS!!!!!" %><i class="material-icons right">arrow_drop_down</i></a></li>
+          <li><a class="dropdown-button" href="#!" data-activates="dropdown1">${usuario.nombre}<i class="material-icons right">arrow_drop_down</i></a></li>
         </ul>
           <ul class="side-nav" id="mobile-demo">
             <li><a href="./admin_editarPerfil.jsp">Perfil</a></li>
