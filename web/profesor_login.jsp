@@ -17,21 +17,21 @@
       <!-- NAVBAR -->
       <!-- Dropdown Menu Structure -->
       <ul id="dropdown1" class="dropdown-content">
-        <li><a href="admin_editarPerfil.jsp">Perfil</a></li>
+        <li><a href="./profesor_editarPerfil.jsp">Perfil</a></li>
         <li class="divider"></li>
         <li><a href="#!">Salir</a></li>
       </ul>
 
       <nav>
         <div class="nav-wrapper">
-          <a href="#" class="brand-logo center">Almacén de Química</a>
+          <a href="./profesor_login.jsp" class="brand-logo center">Almacén de Química</a>
           <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
           <ul class="right hide-on-med-and-down">
           <!-- Dropdown Trigger -->
           <li><a class="dropdown-button" href="#!" data-activates="dropdown1">USUARIO<i class="material-icons right">arrow_drop_down</i></a></li>
         </ul>
           <ul class="side-nav" id="mobile-demo">
-            <li><a href="#">Perfil</a></li>
+            <li><a href="./profesor_editarPerfil.jsp">Perfil</a></li>
             <li><a href="#">Salir</a></li>
           </ul>
         </div>
@@ -76,15 +76,15 @@
           <div class="col s12 m6">
             <h5 class="center"><i class="material-icons">assignment_ind</i> Laboratorio</h5>
             <div class="section center">
-              <a href="#" class="waves-effect waves-light btn-large" style="width: 80%; background-color: #00bcd4">Editar Alumnos</a><br><br>
-              <a href="asignarLaboratorio" class="waves-effect waves-light btn-large" style="width: 80%; background-color: #00bcd4">Asignar Laboratorio</a>
+              <a href="./profesor_editarAlumnos.html" class="waves-effect waves-light btn-large" style="width: 80%; background-color: #00bcd4">Editar Alumnos</a><br><br>
+              <a href="./asignarLaboratorio.jsp" class="waves-effect waves-light btn-large" style="width: 80%; background-color: #00bcd4">Asignar Laboratorio</a>
             </div>
           </div>
           <div class="col s12 m6">
             <h5 class="center"><i class="material-icons">description</i> Vales</h5>
             <div class="section center">
-              <a href="#" class="waves-effect waves-light btn-large" style="width: 80%; background-color: #3f51b5">Crear Vale</a><br><br>
-              <a href="#" class="waves-effect waves-light btn-large" style="width: 80%; background-color: #3f51b5">Mis Vales</a>
+              <a href="./profesor_crearVale.jsp" class="waves-effect waves-light btn-large" style="width: 80%; background-color: #3f51b5">Crear Vale</a><br><br>
+              <a href="./profesor_misVales.html" class="waves-effect waves-light btn-large" style="width: 80%; background-color: #3f51b5">Mis Vales</a>
             </div>
           </div>
         </div>
