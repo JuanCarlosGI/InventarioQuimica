@@ -66,31 +66,31 @@
         <form action="addMaterial" method = "post">
           <div class="row">
             <div class="input-field col s6">
-              <input placeholder="Clave" type="text" class="validate" id="clave" name="clave"/>
+              <input required type="text" class="validate" id="clave" name="clave"/>
               <label for="clave">Clave</label>
             </div>
             <div class="input-field col s6">
-              <input placeholder="Hamburguesa" type="text" class="validate" id="nombre" name="nombre"/>
+              <input required type="text" class="validate" id="nombre" name="nombre"/>
               <label for="nombre">Nombre</label>
             </div>
             <div class="input-field col s6">
-              <input required placeholder="McDonalds" type="text" class="validate" id="marca" name="marca"/>
+              <input required type="text" class="validate" id="marca" name="marca"/>
               <label for="marca">Marca</label>
             </div>
             <div class="input-field col s6">
-              <input required placeholder="Big Mac" type="text" class="validate" id="capacidad" name="capacidad"/>
+              <input required type="text" class="validate" id="capacidad" name="capacidad"/>
               <label for="capacidad">Capacidad</label>
             </div>
             <div class="input-field col s6">
-              <input required placeholder="4" type="text" class="validate" id="cantidad" name="cantidad"/>
+              <input required type="text" class="validate" id="cantidad" name="cantidad"/>
               <label for="cantidad">Cantidad</label>
             </div>
             <div class="input-field col s6">
-              <input required placeholder="4" type="text" class="validate" id="localizacion" name="localizacion"/>
+              <input required type="text" class="validate" id="localizacion" name="localizacion"/>
               <label for="localizacion">Localizacion</label>
             </div>
             <div class="input-field col s6">
-              <input required placeholder="4" type="text" class="validate" id="descripcion" name="descripcion"/>
+              <input required type="text" class="validate" id="descripcion" name="descripcion"/>
               <label for="descripcion">Descripcion</label>
             </div>
 

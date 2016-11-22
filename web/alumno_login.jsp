@@ -28,7 +28,7 @@
       <!-- NAVBAR -->
       <!-- Dropdown Menu Structure -->
       <ul id="dropdown1" class="dropdown-content">
-        <li><a href="./alumno_perfil.html">Perfil</a></li>
+        <li><a href="./admin_editarPerfil.jsp">Perfil</a></li>
         <li class="divider"></li>
         <li><a href="#!">Salir</a></li>
       </ul>
@@ -42,7 +42,7 @@
           <li><a class="dropdown-button" href="#!" data-activates="dropdown1"><%="HOLA ARREGLAME PLIS!!!!!" %><i class="material-icons right">arrow_drop_down</i></a></li>
         </ul>
           <ul class="side-nav" id="mobile-demo">
-            <li><a href="alumno_perfil.html">Perfil</a></li>
+            <li><a href="./admin_editarPerfil.jsp">Perfil</a></li>
             <li><a href="#">Salir</a></li>
           </ul>
         </div>

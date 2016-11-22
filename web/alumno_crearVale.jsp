@@ -30,7 +30,7 @@
 
         <nav>
             <div class="nav-wrapper">
-                <a href="./admin_login.jsp" class="brand-logo center">Almacén de Química</a>
+                <a href="./alumno_login.jsp" class="brand-logo center">AlmacÃ©n de QuÃ­mica</a>
                 <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
                 <ul class="right hide-on-med-and-down">
                     <!-- Dropdown Trigger -->
@@ -45,7 +45,7 @@
         <nav style="background-color: #3f51b5">
             <div class="nav-wrapper center">
                 <div class="col s12">
-                    <a href="./admin_login.jsp" class="breadcrumb">Inicio</a>
+                    <a href="./alumno_login.jsp" class="breadcrumb">Inicio</a>
                     <a class="breadcrumb">Crear vale</a>
                 </div>
             </div>

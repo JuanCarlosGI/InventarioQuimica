@@ -51,9 +51,15 @@
       <nav style="background-color: #ffa000">
     <div class="nav-wrapper center">
       <div class="col s12">
+<<<<<<< HEAD
+        <a href="#!" class="breadcrumb">Inicio</a>
+        <a href="#!" class="breadcrumb">Consumibles</a>
+        <a href="#!" class="breadcrumb">Editar <%=con.getNombre()%></a>
+=======
         <a href="./admin_login.jsp" class="breadcrumb">Inicio</a>
         <a href="./admin_editarMaterial.jsp" class="breadcrumb">Materiales</a>
         <a class="breadcrumb">Editar <%=con.getNombre()%></a>
+>>>>>>> 8a91d0094c641ff515f391744b58ee6c2697b14e
       </div>
     </div>
   </nav>
