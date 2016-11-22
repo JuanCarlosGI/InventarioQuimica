@@ -28,14 +28,14 @@
       <!-- NAVBAR -->
       <!-- Dropdown Menu Structure -->
       <ul id="dropdown1" class="dropdown-content">
-        <li><a href="alumno_perfil.html">Perfil</a></li>
+        <li><a href="./alumno_perfil.html">Perfil</a></li>
         <li class="divider"></li>
         <li><a href="#!">Salir</a></li>
       </ul>
 
       <nav>
         <div class="nav-wrapper">
-          <a href="#" class="brand-logo center">Almacén de Química</a>
+          <a href="./alumno_login.jsp" class="brand-logo center">Almacén de Química</a>
           <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
           <ul class="right hide-on-med-and-down">
           <!-- Dropdown Trigger -->

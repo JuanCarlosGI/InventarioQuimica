@@ -30,21 +30,21 @@
             LinkedList<Usuario> usuarios = (LinkedList<Usuario>)request.getAttribute("alumnos");    
         %>
       <ul id="dropdown1" class="dropdown-content">
-        <li><a href="#!">Perfil</a></li>
+        <li><a href="admin_editarPerfil.jsp">Perfil</a></li>
         <li class="divider"></li>
         <li><a href="#!">Salir</a></li>
       </ul>
 
       <nav>
         <div class="nav-wrapper">
-          <a href="#" class="brand-logo center">Almacén de Química</a>
+          <a href="./admin_login.jsp" class="brand-logo center">Almacén de Química</a>
           <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
           <ul class="right hide-on-med-and-down">
           <!-- Dropdown Trigger -->
           <li><a class="dropdown-button" href="#!" data-activates="dropdown1">${usuario.nombre}<i class="material-icons right">arrow_drop_down</i></a></li>
         </ul>
           <ul class="side-nav" id="mobile-demo">
-            <li><a href="#">Perfil</a></li>
+            <li><a href="./admin_editarPerfil.jsp">Perfil</a></li>
             <li><a href="#">Salir</a></li>
           </ul>
         </div>
@@ -53,7 +53,7 @@
     <div class="nav-wrapper center">
       <div class="col s12">
         <a href="./admin_login.jsp" class="breadcrumb">Inicio</a>
-        <a href="#!" class="breadcrumb">Editar Alumnos</a>
+        <a class="breadcrumb">Editar Alumnos</a>
       </div>
     </div>
   </nav>

@@ -19,7 +19,7 @@
       <!-- NAVBAR -->
       <!-- Dropdown Menu Structure -->
       <ul id="dropdown1" class="dropdown-content">
-        <li><a href="#!">Perfil</a></li>
+        <li><a href="./profesor_editarPerfil.jsp">Perfil</a></li>
         <li class="divider"></li>
         <li><a href="#!">Salir</a></li>
       </ul>
@@ -33,7 +33,7 @@
           <li><a class="dropdown-button" href="#!" data-activates="dropdown1">${usuario.nombre}<i class="material-icons right">arrow_drop_down</i></a></li>
         </ul>
           <ul class="side-nav" id="mobile-demo">
-            <li><a href="#">Perfil</a></li>
+            <li><a href="./profesor_editarPerfil.jsp">Perfil</a></li>
             <li><a href="#">Salir</a></li>
           </ul>
         </div>
@@ -41,7 +41,7 @@
       <nav style="background-color: #3f51b5">
     <div class="nav-wrapper center">
       <div class="col s12">
-        <a href="#!" class="breadcrumb">Inicio</a>
+        <a href="./profesor_login.jsp" class="breadcrumb">Inicio</a>
         <a href="#!" class="breadcrumb">Mis Vales</a>
       </div>
     </div>
