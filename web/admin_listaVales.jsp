@@ -108,10 +108,10 @@
                 <a href="adminStatusVale?status=1&id=<%= pedidos.get(i).getId() %>"><button class="btn waves-effect waves-light" name="action" ><i class="material-icons center">done</i></button></a>
             </td>
             <td>
-                <a href="adminStatusVale?status=2&id=<%= pedidos.get(i).getId() %>"><button class="btn waves-effect waves-light" name="action" ><i class="material-icons center">done_all</i></button></a>
+                <a href="adminStatusVale?status=2&id=<%= pedidos.get(i).getId() %>"><button class="btn waves-effect waves-light green" name="action" ><i class="material-icons center">done_all</i></button></a>
             </td>
             <td>
-                <a href="adminStatusVale?status=3&id=<%= pedidos.get(i).getId() %>"><button class="btn waves-effect waves-light" name="action" ><i class="material-icons center">not_interested</i></button></a>
+                <a href="adminStatusVale?status=3&id=<%= pedidos.get(i).getId() %>"><button class="btn waves-effect waves-light red" name="action" ><i class="material-icons center">not_interested</i></button></a>
             </td>
             <td>
                 <a href="adminDetalleVale?id=<%= pedidos.get(i).getId() %>"><button class="btn waves-effect waves-light" name="action" ><i class="material-icons center">description</i></button></a>
