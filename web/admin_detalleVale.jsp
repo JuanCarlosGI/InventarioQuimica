@@ -95,6 +95,7 @@
             <th>Marca</th>
             <th>Cantidad</th>
         </tr>
+        
     </table>
 
     <div class='section'></div>

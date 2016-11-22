@@ -1,3 +1,5 @@
+<%@page import="models.Consumible"%>
+<%@page import="models.Reactivo"%>
 <%@page import="models.Equipo"%>
 <%@page import="models.Material"%>
 <%@page import="java.util.LinkedList"%>
@@ -100,15 +102,15 @@
         <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
         <script type="text/javascript" src="js/materialize.js"></script>
         <script type="text/javascript">
-            $('.datepicker').pickadate({
-                selectMonths: true, // Creates a dropdown to control month
-                selectYears: 0, // Creates a dropdown of 0 years to control year
-                selectDays: 2
-            });
+                            $('.datepicker').pickadate({
+                                selectMonths: true, // Creates a dropdown to control month
+                                selectYears: 0, // Creates a dropdown of 0 years to control year
+                                selectDays: 2
+                            });
 
-            $(document).ready(function () {
-                $('select').material_select();
-            });
+                            $(document).ready(function () {
+                                $('select').material_select();
+                            });
         </script>
         <%
             String arregloMateriales = "";
@@ -122,13 +124,24 @@
                 arregloEquipos += ", \"" + equipo.getNombre() + "\"";
             }
             arregloEquipos = arregloEquipos.length() > 0 ? arregloEquipos.substring(2) : "";
+            
+            String arregloReactivos = "";
+            for (Reactivo reactivo : (LinkedList<Reactivo>) request.getAttribute("reactivos")) {
+                arregloReactivos += ", \"" + reactivo.getNombre() + "\"";
+            }
+            arregloReactivos = arregloReactivos.length() > 0 ? arregloReactivos.substring(2) : "";
+            
+            String arregloConsumibles = "";
+            for (Consumible consumible : (LinkedList<Consumible>) request.getAttribute("consumibles")) {
+                arregloConsumibles += ", \"" + consumible.getNombre() + "\"";
+            }
+            arregloConsumibles = arregloConsumibles.length() > 0 ? arregloConsumibles.substring(2) : "";
         %>
         <script type="text/javascript">
             var nombresMateriales = [<%=arregloMateriales%>];
             var nombresEquipos = [<%=arregloEquipos%>];
-            var nombresReactivos = [];
-            var nombresConsumibles = [];
+            var nombresReactivos = [<%=arregloReactivos%>];
+            var nombresConsumibles = [<%=arregloConsumibles%>];
         </script>
-        <script src="js/ajaxCrearVale.js" type="text/javascript"></script>
     </body>
 </html>

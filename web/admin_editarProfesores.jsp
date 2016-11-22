@@ -54,7 +54,7 @@
       <nav style="background-color: #00bcd4">
     <div class="nav-wrapper center">
       <div class="col s12">
-        <a href="#!" class="breadcrumb">Inicio</a>
+        <a href="./admin_login.jsp" class="breadcrumb">Inicio</a>
         <a href="#!" class="breadcrumb">Editar Profesores</a>
       </div>
     </div>

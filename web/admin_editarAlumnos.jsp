@@ -37,7 +37,7 @@
 
       <nav>
         <div class="nav-wrapper">
-          <a href="#" class="brand-logo center">AlmacÃ©n de QuÃ­mica</a>
+          <a href="#" class="brand-logo center">Almacén de Química</a>
           <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
           <ul class="right hide-on-med-and-down">
           <!-- Dropdown Trigger -->
@@ -52,7 +52,7 @@
       <nav style="background-color: #00bcd4">
     <div class="nav-wrapper center">
       <div class="col s12">
-        <a href="#!" class="breadcrumb">Inicio</a>
+        <a href="./admin_login.jsp" class="breadcrumb">Inicio</a>
         <a href="#!" class="breadcrumb">Editar Alumnos</a>
       </div>
     </div>

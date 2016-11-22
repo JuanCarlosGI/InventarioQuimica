@@ -39,7 +39,7 @@
           <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
           <ul class="right hide-on-med-and-down">
           <!-- Dropdown Trigger -->
-          <li><a class="dropdown-button" href="#!" data-activates="dropdown1">USUARIO<i class="material-icons right">arrow_drop_down</i></a></li>
+          <li><a class="dropdown-button" href="#!" data-activates="dropdown1"><%="HOLA ARREGLAME PLIS!!!!!" %><i class="material-icons right">arrow_drop_down</i></a></li>
         </ul>
           <ul class="side-nav" id="mobile-demo">
             <li><a href="alumno_perfil.html">Perfil</a></li>
@@ -95,7 +95,7 @@
           <div class="col s12">
             <h5 class="center"><i class="material-icons">description</i> Vales</h5>
             <div class="section center">
-              <a href="alumno_crearVale.html" class="waves-effect waves-light btn-large" style="width: 80%; background-color: #3f51b5">Crear Vale</a><br><br>
+              <a href="addPedidoAlumno" class="waves-effect waves-light btn-large" style="width: 80%; background-color: #3f51b5">Crear Vale</a><br><br>
               <a href="alumno_misVales.jsp" class="waves-effect waves-light btn-large" style="width: 80%; background-color: #3f51b5">Mis Vales</a>
             </div>
           </div>

@@ -86,7 +86,7 @@ function appendMaterial(e) {
 	//crear select
 	var selectNombre = document.createElement("select");
 	selectNombre.required = true;
-
+	selectNombre.setAttribute("onchange", "beginAjaxMaterial(this.parentElement.parentElement.parentElement, this)");
 	//crear opcion default
 	var option = document.createElement("option");
 	option.selected = true;
@@ -95,10 +95,9 @@ function appendMaterial(e) {
 	selectNombre.appendChild(option);
 
 	//for loop con datos de la base de datos
-	for (var mat in nombresMateriales) {
+	for (var i in nombresMateriales) {
 	  	option = document.createElement("option");
-		option.setAttribute("value", "CODIGO");
-		option.text = mat;
+		option.text = nombresMateriales[i];
 		selectNombre.appendChild(option);
 	}
 
@@ -112,7 +111,7 @@ function appendMaterial(e) {
 	//crear select
 	var selectMarca = document.createElement("select");
 	selectMarca.required = true;
-        selectMarca.disabled = true;
+    selectMarca.disabled = true;
 
 	//crear opcion default
 	var option = document.createElement("option");
@@ -201,7 +200,7 @@ function appendEquipo(e) {
 	//crear select
 	var selectNombre = document.createElement("select");
 	selectNombre.required = true;
-
+	selectNombre.setAttribute("onchange", "beginAjaxEquipo(this.parentElement.parentElement.parentElement, this)");
 	//crear opcion default
 	var option = document.createElement("option");
 	option.disabled = true;
@@ -210,10 +209,9 @@ function appendEquipo(e) {
 	selectNombre.appendChild(option);
 
 	//for loop con datos de la base de datos
-	for (var eq in nombresEquipos) {
+	for (var i in nombresEquipos) {
 		option = document.createElement("option");
-		option.setAttribute("value", "CODIGO");
-		option.text = eq;
+		option.text = nombresEquipos[i];
 		selectNombre.appendChild(option);
 	}
 
@@ -308,18 +306,18 @@ function appendReactivo(e, esReactivo) {
 
 	//for loop con datos de la base de datos
 	if (esReactivo) {
-		for (var re in nombresReactivos) {
+		selectNombre.setAttribute("onchange", "beginAjaxReactivo(this.parentElement.parentElement.parentElement, this)");
+		for (var i in nombresReactivos) {
 			option = document.createElement("option");
-			option.setAttribute("value", "CODIGO");
-			option.text = re;
+			option.text = nombresReactivos[i];
 			selectNombre.appendChild(option);
 		}
 	}
 	else {
-		for (var co in nombresConsumibles) {
+		selectNombre.setAttribute("onchange", "beginAjaxConsumible(this.parentElement.parentElement.parentElement, this)");
+		for (var i in nombresConsumibles) {
 			option = document.createElement("option");
-			option.setAttribute("value", "CODIGO");
-			option.text = co;
+			option.text = nombresConsumibles[i];
 			selectNombre.appendChild(option);
 		}
 	}
