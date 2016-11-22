@@ -66,7 +66,7 @@ public class addPedido extends HttpServlet {
                 if (aux.getId() > max) max = aux.getId();
             }
             int pedidoId = max + 1;
-            String profesorId = user.getMaestroForLaboratorio(laboratorioId).getMatricula();
+            String profesorId = user.getMatricula();
             pedido.setId(pedidoId);
             pedido.setLaboratorioId(laboratorioId);
             pedido.setProfesorId(profesorId);
@@ -82,7 +82,7 @@ public class addPedido extends HttpServlet {
                     materialIds.length == materialCantidades.length && materialIds.length == materialesObservaciones.length) {
                 for (int i = 0; i < materialIds.length; i++) {
                     Material material = Context.getMaterial(materialIds[i]);
-                    if (material.getCantidad() < Integer.parseInt(materialCantidades[i])) {    
+                    if (material.getCantidad() > Integer.parseInt(materialCantidades[i])) {    
                         Context.insertarDetalleMaterial(Integer.parseInt(materialCantidades[i]), 0, materialesObservaciones[i], materialIds[i], pedidoId);
                         material.setCantidad(material.getCantidad() - Integer.parseInt(materialCantidades[i]));
                         Context.actualizarMaterial(material);
@@ -94,7 +94,7 @@ public class addPedido extends HttpServlet {
                     equipoIds.length == equipoCantidades.length && equipoIds.length == equiposObservaciones.length) {
                 for (int i = 0; i < equipoIds.length; i++) {
                     Equipo equipo = Context.getEquipo(equipoIds[i]);
-                    if (equipo.getCantidad() < Integer.parseInt(equipoCantidades[i])) {    
+                    if (equipo.getCantidad() > Integer.parseInt(equipoCantidades[i])) {    
                         Context.insertarDetalleEquipo(Integer.parseInt(equipoCantidades[i]), 0, equiposObservaciones[i], equipoIds[i], pedidoId);
                         equipo.setCantidad(equipo.getCantidad() - Integer.parseInt(equipoCantidades[i]));
                         Context.actualizarEquipo(equipo);
@@ -106,7 +106,7 @@ public class addPedido extends HttpServlet {
                     reactivoIds.length == reactivoCantidades.length && reactivoIds.length == reactivosObservaciones.length) {
                 for (int i = 0; i < reactivoIds.length; i++) {
                     Reactivo reactivo = Context.getReactivo(reactivoIds[i]);
-                    if (reactivo.getCantidad() < Integer.parseInt(reactivoCantidades[i])) {    
+                    if (reactivo.getCantidad() > Integer.parseInt(reactivoCantidades[i])) {    
                         Context.insertarDetalleReactivo(Integer.parseInt(reactivoCantidades[i]), 0, reactivosObservaciones[i], reactivoIds[i], pedidoId);
                         reactivo.setCantidad(reactivo.getCantidad() - Integer.parseInt(reactivoCantidades[i]));
                         Context.actualizarReactivo(reactivo);
@@ -118,7 +118,7 @@ public class addPedido extends HttpServlet {
                     consumibleIds.length == consumibleCantidades.length && consumibleIds.length == consumiblesObservaciones.length) {
                 for (int i = 0; i < consumibleIds.length; i++) {
                     Consumible consumible = Context.getConsumible(consumibleIds[i]);
-                    if (consumible.getCantidad() < Integer.parseInt(consumibleCantidades[i])) {    
+                    if (consumible.getCantidad() > Integer.parseInt(consumibleCantidades[i])) {    
                         Context.insertarDetalleConsumible(Integer.parseInt(consumibleCantidades[i]), consumiblesObservaciones[i], consumibleIds[i], pedidoId);
                         consumible.setCantidad(consumible.getCantidad() - Integer.parseInt(consumibleCantidades[i]));
                         Context.actualizarConsumible(consumible);
@@ -126,7 +126,13 @@ public class addPedido extends HttpServlet {
                 }
             }
             
-            url = "/alumno_misValse.jsp";
+            if (user.getRol().equals("Profesor"))
+            {
+                url = "/profesor_misVales.jsp";
+            }
+            else {
+                url = "/admin_listaVales.jsp";
+            }
         }
         RequestDispatcher dispatcher =
                  getServletContext().getRequestDispatcher(url);

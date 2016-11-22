@@ -86,7 +86,7 @@ function appendMaterial(e) {
 	//crear select
 	var selectNombre = document.createElement("select");
 	selectNombre.required = true;
-	selectNombre.setAttribute("onchange", "AjaxMaterialNombre(this.parentElement.parentElement.parentElement, this)");
+	selectNombre.setAttribute("onchange", "ajaxMaterialNombre(this.parentElement.parentElement.parentElement, this)");
 	//crear opcion default
 	var option = document.createElement("option");
 	option.selected = true;
@@ -200,7 +200,7 @@ function appendEquipo(e) {
 	//crear select
 	var selectNombre = document.createElement("select");
 	selectNombre.required = true;
-	selectNombre.setAttribute("onchange", "AjaxEquipoNombre(this.parentElement.parentElement.parentElement, this)");
+	selectNombre.setAttribute("onchange", "ajaxEquipoNombre(this.parentElement.parentElement.parentElement, this)");
 	//crear opcion default
 	var option = document.createElement("option");
 	option.disabled = true;
@@ -250,7 +250,7 @@ function appendEquipo(e) {
 	input = document.createElement("input");
 	input.setAttribute("type", "text");
 	input.placeholder = "Cantidad";
-	input.disabled = true;
+        input.setAttribute("name", "equipoCantidad");
 
 	//agregar input a celda
 	cellCantidad.appendChild(input);
@@ -262,7 +262,7 @@ function appendEquipo(e) {
 	input = document.createElement("input");
 	input.setAttribute("type", "text");
 	input.placeholder = "Observaciones";
-	input.disabled = true;
+        input.setAttribute("name", "equipoObservaciones");
 
 	//agregar input a celda
 	cellObservaciones.appendChild(input);
@@ -306,7 +306,7 @@ function appendReactivo(e, esReactivo) {
 
 	//for loop con datos de la base de datos
 	if (esReactivo) {
-		selectNombre.setAttribute("onchange", "AjaxReactivoNombre(this.parentElement.parentElement.parentElement, this)");
+		selectNombre.setAttribute("onchange", "ajaxReactivoNombre(this.parentElement.parentElement.parentElement, this)");
 		for (var i in nombresReactivos) {
 			option = document.createElement("option");
 			option.text = nombresReactivos[i];
@@ -314,7 +314,7 @@ function appendReactivo(e, esReactivo) {
 		}
 	}
 	else {
-		selectNombre.setAttribute("onchange", "AjaxConsumibleNombre(this.parentElement.parentElement.parentElement, this)");
+		selectNombre.setAttribute("onchange", "ajaxConsumibleNombre(this.parentElement.parentElement.parentElement, this)");
 		for (var i in nombresConsumibles) {
 			option = document.createElement("option");
 			option.text = nombresConsumibles[i];
@@ -405,7 +405,11 @@ function appendReactivo(e, esReactivo) {
 	input = document.createElement("input");
 	input.setAttribute("type", "text");
 	input.placeholder = "Cantidad";
-	input.disabled = true;
+        if (esReactivo) {
+            input.setAttribute("name", "reactivoCantidad");
+        } else {
+            input.setAttribute("name", "consumibleCantidad");
+        }
 
 	//agregar input a celda
 	cellCantidad.appendChild(input);
@@ -417,10 +421,14 @@ function appendReactivo(e, esReactivo) {
 	input = document.createElement("input");
 	input.setAttribute("type", "text");
 	input.placeholder = "Observaciones";
+        if (esReactivo) {
+            input.setAttribute("name", "reactivoObservaciones");
+        } else {
+            input.setAttribute("name", "consumibleObservaciones");
+        }
 
 	//agregar input a celda
 	cellObservaciones.appendChild(input);
-	input.disabled = true;
 
 	//----------BUTTON delete-----------
 	//crear celda

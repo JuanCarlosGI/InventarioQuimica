@@ -60,7 +60,7 @@
 
             <div class='section'></div>
 
-            <form action="#">
+            <form action="addPedido" method="POST">
 
                 <div class="row">
                     <div class="input-field col s12">
@@ -81,7 +81,7 @@
 
                 <div class='section'>
                     <div class='row right'>
-                        <a onclick="agregarFila(true)" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">add</i></a>
+                        <a onclick="agregarFila(false)" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">add</i></a>
                     </div>
                 </div>
 
@@ -143,5 +143,6 @@
             var nombresReactivos = [<%=arregloReactivos%>];
             var nombresConsumibles = [<%=arregloConsumibles%>];
         </script>
+        <script src="js/ajaxCrearVale.js" type="text/javascript"></script>
     </body>
 </html>

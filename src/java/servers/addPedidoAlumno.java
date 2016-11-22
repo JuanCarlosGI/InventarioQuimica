@@ -74,7 +74,7 @@ public class addPedidoAlumno extends HttpServlet {
                     materialIds.length == materialCantidades.length && materialIds.length == materialesObservaciones.length) {
                 for (int i = 0; i < materialIds.length; i++) {
                     Material material = Context.getMaterial(materialIds[i]);
-                    if (material.getCantidad() < Integer.parseInt(materialCantidades[i])) {    
+                    if (material.getCantidad() > Integer.parseInt(materialCantidades[i])) {    
                         Context.insertarDetalleMaterial(Integer.parseInt(materialCantidades[i]), 0, materialesObservaciones[i], materialIds[i], pedidoId);
                         material.setCantidad(material.getCantidad() - Integer.parseInt(materialCantidades[i]));
                         Context.actualizarMaterial(material);
@@ -86,7 +86,7 @@ public class addPedidoAlumno extends HttpServlet {
                     equipoIds.length == equipoCantidades.length && equipoIds.length == equiposObservaciones.length) {
                 for (int i = 0; i < equipoIds.length; i++) {
                     Equipo equipo = Context.getEquipo(equipoIds[i]);
-                    if (equipo.getCantidad() < Integer.parseInt(equipoCantidades[i])) {    
+                    if (equipo.getCantidad() > Integer.parseInt(equipoCantidades[i])) {    
                         Context.insertarDetalleEquipo(Integer.parseInt(equipoCantidades[i]), 0, equiposObservaciones[i], equipoIds[i], pedidoId);
                         equipo.setCantidad(equipo.getCantidad() - Integer.parseInt(equipoCantidades[i]));
                         Context.actualizarEquipo(equipo);
@@ -94,7 +94,7 @@ public class addPedidoAlumno extends HttpServlet {
                 }
             }
             
-            url = "/alumno_misValse.jsp";
+            url = "/alumno_misVales.jsp";
         }
         RequestDispatcher dispatcher =
                  getServletContext().getRequestDispatcher(url);

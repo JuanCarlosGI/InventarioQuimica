@@ -58,11 +58,11 @@
 
             <div class='section'></div>
 
-            <form action="#">
+            <form action="addPedidoAlumno" method="POST">
 
                 <div class="row">
                     <div class="input-field col s12">
-                        <select required>
+                        <select required name="laboratorioId">
                             <option value="" disabled selected>Laboratorio</option>
 
                             <% for (Laboratorio lab : (LinkedList<Laboratorio>) request.getAttribute("laboratorios")) {%>
