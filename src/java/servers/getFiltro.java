@@ -35,14 +35,14 @@ public class getFiltro extends HttpServlet {
         String url;
         String tipo = request.getParameter("tipo");
         switch(tipo) {
-            case("material"):
+            case("materiales"):
                 String nombreMaterial = request.getParameter("nombre");
                 String marcaMaterial = request.getParameter("marca");
                 LinkedList<Material> materiales = Context.filtrarMateriales(nombreMaterial, marcaMaterial);
                 request.setAttribute("materiales", materiales);
                 url = marcaMaterial == null ? "/ajaxMaterialesMarca.jsp" : "/ajaxMaterialesCapacidad.jsp";
                 break;
-            case("equipo"):
+            case("equipos"):
                 String nombreEquipo = request.getParameter("nombre");
                 LinkedList<Equipo> equipos = Context.filtrarEquipos(nombreEquipo);
                 request.setAttribute("equipos", equipos);
