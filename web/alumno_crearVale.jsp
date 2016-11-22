@@ -129,5 +129,6 @@
             var nombresReactivos = [];
             var nombresConsumibles = [];
         </script>
+        <script src="js/ajaxCrearVale.js" type="text/javascript"></script>
     </body>
 </html>
